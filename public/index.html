@@ -1,241 +1,322 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <title>Ruby on Rails: Welcome aboard</title>
-    <style type="text/css" media="screen">
-      body {
-        margin: 0;
-        margin-bottom: 25px;
-        padding: 0;
-        background-color: #f0f0f0;
-        font-family: "Lucida Grande", "Bitstream Vera Sans", "Verdana";
-        font-size: 13px;
-        color: #333;
-      }
+    <head>
+        <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <meta name="description" content="">
+                    <meta name="author" content="">
+                        
+                        <!-- Le styles -->
+                        <link href="/~guestuser/trialtracker/bootstrap/css/bootstrap.css" rel="stylesheet">
+                            <style type="text/css">
+                                body {
+                                    padding-top: 60px;
+                                    padding-bottom: 40px;
+                                }
+                                .sidebar-nav {
+                                    padding: 9px 0;
+                                }
+                                </style>
+                            <link href="/~guestuser/trialtracker/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+                                
+                                <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+                                <!--[if lt IE 9]>
+                                 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+                                 <![endif]-->
+                                
+                                                                                    
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript">
+            google.load("visualization", "1", {packages:["corechart"]});
+            google.setOnLoadCallback(drawBarChart);
+            google.setOnLoadCallback(drawLineChart);
+                        
+            function drawBarChart() {
+                // Create and populate the data table.
+                var data = google.visualization.arrayToDataTable(
+                    [
+                    ['Total', 'Subjects'],
+                    [ 'Enrolled', 6336],
+                    [ 'Potentially Vulnerable', 1104] , 
+                    ['Refused', 974],
+                    ['Withdrawn', 3817],
+                    ['Lost', 2651],  
+                    ['Withdrawn by PI', 3017],
+                    ['Completed', 1651],  
+                    
+                    ]);
+                
+                // Create and draw the visualization.
+                new google.visualization.ColumnChart(document.getElementById('bar_chart')).
+                draw(data,
+                     {
+                     width:500, height:300,
+                     backgroundColor:'#EDEDED',
+                     legend: {position: 'none'},
+                     chartArea: {top: 20, left: 60, height:200, width:400}
+                     }
+                     );
+            }
 
-      h1 {
-        font-size: 28px;
-        color: #000;
-      }
+            function drawLineChart() {
+                var data = new google.visualization.DataTable();
 
-      a  {color: #03c}
-      a:hover {
-        background-color: #03c;
-        color: white;
-        text-decoration: none;
-      }
+                data.addColumn('date', 'Day');
+                data.addColumn('number', 'Enrolled');
+                data.addColumn('number', 'Projected');
 
+                data.addRows([
+                  [new Date(2012, 0, 1),  100,      100],
+                  [new Date(2012, 0, 2),  130,      110],
+                  [new Date(2012, 0, 3),  142,      120],
+                  [new Date(2012, 0, 4),  146,      130],
+                  [new Date(2012, 0, 5),  150,      140],
+                  [new Date(2012, 0, 6),  160,      150],
+                  [new Date(2012, 0, 7),  167,      160],
+                  [new Date(2012, 0, 8),  171,      170],
+                  [new Date(2012, 0, 9),  200,      180],
+                  [new Date(2012, 0, 10),  205,      190],
+                  [new Date(2012, 0, 11),  210,      200],
+                  [new Date(2012, 0, 12),  214,      210],
+                  [new Date(2012, 0, 13),  218,      220],
+                  [new Date(2012, 0, 14),  226,      230]
+                ]);
 
-      #page {
-        background-color: #f0f0f0;
-        width: 750px;
-        margin: 0;
-        margin-left: auto;
-        margin-right: auto;
-      }
+                var options = {
+                  width:700, height:400,
+                  backgroundColor:'#EDEDED',
+                  legend: {position: 'none'},
+                  chartArea: {top: 20, left: 60}
+                };
 
-      #content {
-        float: left;
-        background-color: white;
-        border: 3px solid #aaa;
-        border-top: none;
-        padding: 25px;
-        width: 500px;
-      }
-
-      #sidebar {
-        float: right;
-        width: 175px;
-      }
-
-      #footer {
-        clear: both;
-      }
-
-      #header, #about, #getting-started {
-        padding-left: 75px;
-        padding-right: 30px;
-      }
-
-
-      #header {
-        background-image: url("assets/rails.png");
-        background-repeat: no-repeat;
-        background-position: top left;
-        height: 64px;
-      }
-      #header h1, #header h2 {margin: 0}
-      #header h2 {
-        color: #888;
-        font-weight: normal;
-        font-size: 16px;
-      }
-
-
-      #about h3 {
-        margin: 0;
-        margin-bottom: 10px;
-        font-size: 14px;
-      }
-
-      #about-content {
-        background-color: #ffd;
-        border: 1px solid #fc0;
-        margin-left: -55px;
-        margin-right: -10px;
-      }
-      #about-content table {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        font-size: 11px;
-        border-collapse: collapse;
-      }
-      #about-content td {
-        padding: 10px;
-        padding-top: 3px;
-        padding-bottom: 3px;
-      }
-      #about-content td.name  {color: #555}
-      #about-content td.value {color: #000}
-
-      #about-content ul {
-        padding: 0;
-        list-style-type: none;
-      }
-
-      #about-content.failure {
-        background-color: #fcc;
-        border: 1px solid #f00;
-      }
-      #about-content.failure p {
-        margin: 0;
-        padding: 10px;
-      }
-
-
-      #getting-started {
-        border-top: 1px solid #ccc;
-        margin-top: 25px;
-        padding-top: 15px;
-      }
-      #getting-started h1 {
-        margin: 0;
-        font-size: 20px;
-      }
-      #getting-started h2 {
-        margin: 0;
-        font-size: 14px;
-        font-weight: normal;
-        color: #333;
-        margin-bottom: 25px;
-      }
-      #getting-started ol {
-        margin-left: 0;
-        padding-left: 0;
-      }
-      #getting-started li {
-        font-size: 18px;
-        color: #888;
-        margin-bottom: 25px;
-      }
-      #getting-started li h2 {
-        margin: 0;
-        font-weight: normal;
-        font-size: 18px;
-        color: #333;
-      }
-      #getting-started li p {
-        color: #555;
-        font-size: 13px;
-      }
-
-
-      #sidebar ul {
-        margin-left: 0;
-        padding-left: 0;
-      }
-      #sidebar ul h3 {
-        margin-top: 25px;
-        font-size: 16px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid #ccc;
-      }
-      #sidebar li {
-        list-style-type: none;
-      }
-      #sidebar ul.links li {
-        margin-bottom: 5px;
-      }
-
-      .filename {
-        font-style: italic;
-      }
-    </style>
-    <script type="text/javascript">
-      function about() {
-        info = document.getElementById('about-content');
-        if (window.XMLHttpRequest)
-          { xhr = new XMLHttpRequest(); }
-        else
-          { xhr = new ActiveXObject("Microsoft.XMLHTTP"); }
-        xhr.open("GET","rails/info/properties",false);
-        xhr.send("");
-        info.innerHTML = xhr.responseText;
-        info.style.display = 'block'
-      }
-    </script>
-  </head>
-  <body>
-    <div id="page">
-      <div id="sidebar">
-        <ul id="sidebar-items">
-          <li>
-            <h3>Browse the documentation</h3>
-            <ul class="links">
-              <li><a href="http://guides.rubyonrails.org/">Rails Guides</a></li>
-              <li><a href="http://api.rubyonrails.org/">Rails API</a></li>
-              <li><a href="http://www.ruby-doc.org/core/">Ruby core</a></li>
-              <li><a href="http://www.ruby-doc.org/stdlib/">Ruby standard library</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-
-      <div id="content">
-        <div id="header">
-          <h1>Welcome aboard</h1>
-          <h2>You&rsquo;re riding Ruby on Rails!</h2>
+                var chart = new google.visualization.LineChart(document.getElementById('line_chart'));
+                chart.draw(data, options);
+            }
+            
+            </script>
+    </head>
+    
+    <body>
+        
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="#">TrialTracker</a>
+                    <div class="nav-collapse collapse">
+                        <p class="navbar-text pull-right">
+                        Logged in as <a href="#" class="navbar-link">Username</a>
+                        </p>
+                        <ul class="nav">
+                            <li class="active"><a href="#">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
         </div>
+        
+        
+        
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span3">
+                    <div class="well sidebar-nav">
+                        <ul class="nav nav-list">
+                            <li class="nav-header">My Trials</li>
+                            <li class="active"><a href="#">Cancer</a></li>
+                            <li><a href="#">Flesh Eating Bacteria</a></li>
+                            <li><a href="#">Herpes</a></li>
+                            <li><a href="#">Worms</a></li>
+                            <li class="nav-header">More Trials</li>
+                            <li><a href="#">AIDS</a></li>
+                            <li><a href="#">Leukemia</a></li>
+                            <li><a href="#">Lung Cancer</a></li>
+                            <li class="nav-header">Even More Trials</li>
+                            <li><a href="#">Obesity</a></li>
+                            <li><a href="#">Elephantitis</a></li>
+                            <li><a href="#">+ New Trial</a></li>
+                        </ul>
+                    </div><!--/.well -->
+                </div><!--/span-->
+                <div class="span9">
+                    
+                    <div class="hero-unit">
+                        
+                        <ul class="nav nav-tabs" id="myTab">
+                            <li class="active"><a href="#home" data-toggle="tab">View Trends</a></li>
+                            <li><a href="#profile" data-toggle="tab">Edit Data</a></li>
+                            <li><a href="#messages" data-toggle="tab">Report</a></li>
+                            <li><a href="#settings" data-toggle="tab">Settings</a></li>
+                        </ul>
+                        
+                        <div class="tab-content">
+                            
+                            
+        <!--**************** begin View Trends ******************** -->
+                            
+    <div class="tab-pane active" id="home">
 
-        <div id="about">
-          <h3><a href="rails/info/properties" onclick="about(); return false">About your application&rsquo;s environment</a></h3>
-          <div id="about-content" style="display: none"></div>
-        </div>
+        <h4>Subjects</h4>           
+        <div id="bar_chart" style="display:inline; float:left"></div>
 
-        <div id="getting-started">
-          <h1>Getting started</h1>
-          <h2>Here&rsquo;s how to get rolling:</h2>
+        <table class="table table-condensed" style="display:inline; float:right; width:250px">
+            <tr><th>Total Subjects</th><td>4856</td></tr>
+            <tr><th>Trial Period</th><td>Jan 1st - July 14th</td></tr>
+            <tr><th>CRC's:</th><td>Harry Potter</td></tr>
+            <tr><th></th><td> Bob Loblaw</td></tr>
+            <tr><th></th><td> Jerry Garcia</td></tr>
+</table>
 
-          <ol>
-            <li>
-              <h2>Use <code>rails generate</code> to create your models and controllers</h2>
-              <p>To see all available options, run it without parameters.</p>
-            </li>
+        <div class = "span11" style="border-bottom: 1px solid #ddd; margin-bottom:20px;"> </div>
 
-            <li>
-              <h2>Set up a default route and remove <span class="filename">public/index.html</span></h2>
-              <p>Routes are set up in <span class="filename">config/routes.rb</span>.</p>
-            </li>
 
-            <li>
-              <h2>Create your database</h2>
-              <p>Run <code>rake db:create</code> to create your database. If you're not using SQLite (the default), edit <span class="filename">config/database.yml</span> with your username and password.</p>
-            </li>
-          </ol>
-        </div>
-      </div>
+        <ul class="nav nav-pills">
+  <li class="active">
+    <a href="#" data-toggle="tab">Enrolled</a>
+  </li>
+  <li><a href="#" data-toggle="tab">Withdrawn</a></li>
+  <li><a href="#" data-toggle="tab">Vulnerable</a></li>
+  <li><a href="#" data-toggle="tab">Refused</a></li>
+  <li><a href="#" data-toggle="tab">Lost</a></li>
+</ul>
+        
 
-      <div id="footer">&nbsp;</div>
+<h4>Subjects Enrolled</h4> 
+         <div id="line_chart"></div>
+         
     </div>
-  </body>
-</html>
+                            
+                            
+        <!--**************** begin Edit Data ******************** -->                     
+                            
+        <div class="tab-pane" id="profile">
+                            
+            <form class="form-inline">
+                <input type="text" class="input-small" placeholder="1">
+                    <div class="btn-group" data-toggle="buttons-checkbox">
+                        <button type="button" class="btn btn-primary">Enrolled</button>
+                        <button type="button" class="btn btn-primary">Vulnerable</button>
+                        <button type="button" class="btn btn-primary">Refused</button>
+                        <button type="button" class="btn btn-primary">Withdrawn</button>
+                        <button type="button" class="btn btn-primary">Lost</button>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success">Add Subject(s)</button>
+                    </form>
+            
+            
+            
+            <table class = "table table-hover">
+                
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Enrolled</th>
+                        <th>Vulnerable</th>
+                        <th>Refused</th>
+                        <th>Withdrawn</th>
+                        <th>Lost</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>D111</td>
+                    <td contenteditable style = "background-color:#dff0d8">Yes</td>
+                    <td style = "background-color:#d9edf7">No</td>
+                    <td style = "background-color:#d9edf7">No</td>
+                    <td style = "background-color:#d9edf7">No</td>
+                    <td style = "background-color:#d9edf7">No</td>
+
+                </tr>
+                <tr>
+                    <td>D112</td>
+                    <td style = "background-color:#d9edf7">No</td>
+                    <td style = "background-color:#dff0d8">Yes</td>
+                    <td style = "background-color:#d9edf7">No</td>
+                    <td style = "background-color:#d9edf7">No</td>
+                    <td style = "background-color:#dff0d8">Yes</td>
+                </tr>                                </tr>
+                <tr contenteditable>
+                    <td>D113</td>
+                    <td style = "background-color:#dff0d8">Yes</td>
+                    <td style = "background-color:#d9edf7">No</td>
+                    <td style = "background-color:#dff0d8">Yes</td>
+                    <td style = "background-color:#d9edf7">No</td>
+                    <td style = "background-color:#d9edf7">No</td>
+                </tr>
+                </tr>
+            </table>
+            
+            
+        </div>
+                            
+                            
+          <!--**************** end Edit Data ******************** -->
+                            
+                            
+                            <div class="tab-pane" id="messages">...</div>
+                            <div class="tab-pane" id="settings">...</div>
+                        </div>
+                        
+                        <script>
+                            $(function () {
+                              $('#myTab a:last').tab('show');
+                              })
+                            </script>
+                        
+                        
+                                    
+                                
+                    </div>
+                    
+                    <!--
+                    <div class="hero-unit">
+                        <iframe src="https://docs.google.com/spreadsheet/ccc?key=0AjbPpOm7eZrKdFN1bVlhWEk2NHRZUVdySXBYaE4zblE&rm=minimal" width="600" height="400" frameborder="1" scrolling="auto"></iframe>
+                        
+                        <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+                    </div>
+                    -->
+
+                    
+                    <div class="row-fluid">
+                        <div class="span4">
+                            <h2>Heading</h2>
+                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                            <p><a class="btn" href="#">View details &raquo;</a></p>
+                        </div><!--/span-->
+                        <div class="span4">
+                            <h2>Heading</h2>
+                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                            <p><a class="btn" href="#">View details &raquo;</a></p>
+                        </div><!--/span-->
+                        <div class="span4">
+                            <h2>Heading</h2>
+                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                            <p><a class="btn" href="#">View details &raquo;</a></p>
+                        </div><!--/span-->
+                    </div><!--/row-->
+                    
+                </div><!--/span-->
+            </div><!--/row-->
+            
+            <hr>
+            
+            <footer>
+                <p>&copy; Company 2012</p>
+            </footer>
+            
+        </div><!--/.fluid-container-->
+        
+        <!-- Le javascript
+         ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="/~guestuser/trialtracker/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/~guestuser/trialtracker/bootstrap/js/bootstrap.js"></script>
+        
+    </body>
+</html
