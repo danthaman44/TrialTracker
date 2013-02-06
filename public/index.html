@@ -15,6 +15,9 @@
                                 .sidebar-nav {
                                     padding: 9px 0;
                                 }
+                                #data_table th, #data_table td {
+                                  text-align: right;
+                                }
                                 </style>
                             <link href="./bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
                                 
@@ -298,7 +301,7 @@ function allTrials(query, process) {
             <tr style="border-top: 2px solid #ccc;"><th style = "font-size:14px;">Total Enrolled</th><td style = "font-size:14px; text-align: right;">4856</td></tr>
             <tr><th style = "font-size:14px">Avg/Month</th><td style = "font-size:14px; text-align: right;">43.5</td></tr>
             <tr><th style = "font-size:14px">Avg/Week</th><td style = "font-size:14px; text-align: right;">11.3</td></tr>
-            <tr><th>Est. by July 14th</th><td style = "font-size:14px; text-align: right;"> 5700</td></tr>
+            <tr><th style = "font-size:14px">Est. by July 14th</th><td style = "font-size:14px; text-align: right;"> 5700</td></tr>
 </table>
 </div>
 </div>
@@ -340,11 +343,11 @@ function allTrials(query, process) {
             
             
             
-            <table class = "table table-hover">
+            <table class = "table table-hover table-condensed table-bordered" style = "font-size:14px" id="data_table">
                 
                 <thead>
                     <tr>
-                        <th>Subject</th>
+                        <th style="text-align: left;">Subject</th>
                         <th>Enrolled</th>
                         <th>Vulnerable</th>
                         <th>Refused</th>
@@ -353,8 +356,9 @@ function allTrials(query, process) {
                     </tr>
                 </thead>
                 <tr>
-                    <td>D111</td>
-                    <td contenteditable style = "background-color:#dff0d8">Yes</td>
+                    <td style="text-align: left;">D111<a style = "float:right; font-size:13px" href="ff">edit</a>
+                      <i style = "float:right" class="icon-pencil"></i></td>
+                    <td style = "background-color:#D0F0C2">Yes</td>
                     <td style = "background-color:#d9edf7">No</td>
                     <td style = "background-color:#d9edf7">No</td>
                     <td style = "background-color:#d9edf7">No</td>
@@ -362,21 +366,86 @@ function allTrials(query, process) {
 
                 </tr>
                 <tr>
-                    <td>D112</td>
+                    <td style="text-align: left;">D112<a style = "float:right; font-size:13px" href="ff">edit  </a>
+                      <i style = "float:right " class="icon-pencil"></i></td>
                     <td style = "background-color:#d9edf7">No</td>
-                    <td style = "background-color:#dff0d8">Yes</td>
+                    <td style = "background-color:#D0F0C2">Yes</td>
                     <td style = "background-color:#d9edf7">No</td>
                     <td style = "background-color:#d9edf7">No</td>
-                    <td style = "background-color:#dff0d8">Yes</td>
+                    <td style = "background-color:#D0F0C2">Yes</td>
                 </tr>                                </tr>
-                <tr contenteditable>
-                    <td>D113</td>
-                    <td style = "background-color:#dff0d8">Yes</td>
+                <tr>
+                    <td style="text-align: left;">D113
+                      <a style = "float:right; font-size:13px" href="ff">edit</a>
+                      <i style = "float:right " class="icon-pencil"></i></td>
+                    <td style = "background-color:#D0F0C2">Yes</td>
                     <td style = "background-color:#d9edf7">No</td>
-                    <td style = "background-color:#dff0d8">Yes</td>
+                    <td style = "background-color:#D0F0C2">Yes</td>
                     <td style = "background-color:#d9edf7">No</td>
                     <td style = "background-color:#d9edf7">No</td>
                 </tr>
+                <tr>
+                    <td style="text-align: left;">D114<a style = "float:right; font-size:13px" href="ff">edit</a>
+                      <i style = "float:right " class="icon-pencil"></i></td>
+                    <td style = "background-color:#D0F0C2">Yes</td>
+                    <td style = "background-color:#d9edf7">No</td>
+                    <td style = "background-color:#D0F0C2">Yes</td>
+                    <td style = "background-color:#d9edf7">No</td>
+                    <td style = "background-color:#d9edf7">No</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">D115<a style = "float:right; font-size:13px" href="ff">edit</a>
+                      <i style = "float:right " class="icon-pencil"></i></td>
+                    <td style = "background-color:#D0F0C2">Yes</td>
+                    <td style = "background-color:#d9edf7">No</td>
+                    <td style = "background-color:#D0F0C2">Yes</td>
+                    <td style = "background-color:#d9edf7">No</td>
+                    <td style = "background-color:#d9edf7">No</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">D116<a style = "float:right; font-size:13px" href="ff">edit</a>
+                      <i style = "float:right " class="icon-pencil"></i></td>
+                    <td style = "background-color:#D0F0C2">Yes</td>
+                    <td style = "background-color:#d9edf7">No</td>
+                    <td style = "background-color:#D0F0C2">Yes</td>
+                    <td style = "background-color:#d9edf7">No</td>
+                    <td style = "background-color:#d9edf7">No</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">D117<a style = "float:right; font-size:13px" href="ff">edit</a>
+                      <i style = "float:right " class="icon-pencil"></i></td>
+                    <td style = "background-color:#D0F0C2">Yes</td>
+                    <td style = "background-color:#d9edf7">No</td>
+                    <td style = "background-color:#D0F0C2">Yes</td>
+                    <td style = "background-color:#d9edf7">No</td>
+                    <td style = "background-color:#d9edf7">No</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">D118<a style = "float:right; font-size:13px" href="ff">edit</a>
+                      <i style = "float:right " class="icon-pencil"></i></td>
+                    <td style = "background-color:#D0F0C2">Yes</td>
+                    <td style = "background-color:#d9edf7">No</td>
+                    <td style = "background-color:#D0F0C2">Yes</td>
+                    <td style = "background-color:#d9edf7">No</td>
+                    <td style = "background-color:#d9edf7">No</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">D119<a style = "float:right; font-size:13px" href="ff">edit</a>
+                      <i style = "float:right " class="icon-pencil"></i></td>
+                    <td style = "background-color:#D0F0C2">Yes</td>
+                    <td style = "background-color:#d9edf7">No</td>
+                    <td style = "background-color:#D0F0C2">Yes</td>
+                    <td style = "background-color:#d9edf7">No</td>
+                    <td style = "background-color:#d9edf7">No</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">D120<a style = "float:right; font-size:13px" href="ff">edit</a>
+                      <i style = "float:right " class="icon-pencil"></i></td>
+                    <td style = "background-color:#D0F0C2">Yes</td>
+                    <td style = "background-color:#d9edf7">No</td>
+                    <td style = "background-color:#D0F0C2">Yes</td>
+                    <td style = "background-color:#d9edf7">No</td>
+                    <td style = "background-color:#d9edf7">No</td>
                 </tr>
             </table>
             
@@ -400,23 +469,7 @@ function allTrials(query, process) {
            
 
                     
-                    <div class="row-fluid">
-                        <div class="span4">
-                            <h2>Heading</h2>
-                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                            <p><a class="btn" href="#">View details &raquo;</a></p>
-                        </div><!--/span-->
-                        <div class="span4">
-                            <h2>Heading</h2>
-                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                            <p><a class="btn" href="#">View details &raquo;</a></p>
-                        </div><!--/span-->
-                        <div class="span4">
-                            <h2>Heading</h2>
-                            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-                            <p><a class="btn" href="#">View details &raquo;</a></p>
-                        </div><!--/span-->
-                    </div><!--/row-->
+                    
                     
                 </div><!--/span-->
             </div><!--/row-->
