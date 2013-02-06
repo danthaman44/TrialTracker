@@ -6,7 +6,7 @@
                     <meta name="author" content="">
                         
                         <!-- Le styles -->
-                        <link href="/~guestuser/trialtracker/bootstrap/css/bootstrap.css" rel="stylesheet">
+                        <link href="./bootstrap/css/bootstrap.css" rel="stylesheet">
                             <style type="text/css">
                                 body {
                                     padding-top: 60px;
@@ -16,7 +16,7 @@
                                     padding: 9px 0;
                                 }
                                 </style>
-                            <link href="/~guestuser/trialtracker/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+                            <link href="./bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
                                 
                                 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
                                 <!--[if lt IE 9]>
@@ -35,13 +35,13 @@
                 var data = google.visualization.arrayToDataTable(
                     [
                     ['Total', 'Subjects'],
-                    [ 'Enrolled', 6336],
-                    [ 'Potentially Vulnerable', 1104] , 
-                    ['Refused', 974],
-                    ['Withdrawn', 3817],
-                    ['Lost', 2651],  
-                    ['Withdrawn by PI', 3017],
-                    ['Completed', 1651],  
+                    [ 'Enrolled', 633],
+                    [ 'Potentially Vulnerable', 110] , 
+                    ['Refused', 97],
+                    ['Withdrawn', 381],
+                    ['Lost', 265],  
+                    ['Withdrawn by PI', 301],
+                    ['Completed', 165],  
                     
                     ]);
                 
@@ -78,18 +78,27 @@
                   [new Date(2012, 0, 11),  210,      200],
                   [new Date(2012, 0, 12),  214,      210],
                   [new Date(2012, 0, 13),  218,      220],
-                  [new Date(2012, 0, 14),  226,      230]
+                  [new Date(2012, 0, 14),  ,      230],
+                  [new Date(2012, 0, 15),  ,      240],
+                  [new Date(2012, 0, 16),  ,      250],
+                  [new Date(2012, 0, 17),  ,      260],
+                  [new Date(2012, 0, 18),  ,      270],
+                  [new Date(2012, 0, 19),  ,      280]
                 ]);
 
                 var options = {
-                  width:700, height:400,
+                  width:500, height:400,
                   backgroundColor:'#EDEDED',
                   legend: {position: 'none'},
-                  chartArea: {top: 20, left: 60}
+                  chartArea: {top: 20, left: 60, width:400}
                 };
 
                 var chart = new google.visualization.LineChart(document.getElementById('line_chart'));
                 chart.draw(data, options);
+                var chart2 = new google.visualization.LineChart(document.getElementById('line_chart_withdrawn'));
+                chart2.draw(data, options);
+                var chart3 = new google.visualization.LineChart(document.getElementById('line_chart_vulnerable'));
+                chart3.draw(data, options);
             }
             
             </script>
@@ -124,77 +133,197 @@
         
         <div class="container-fluid">
             <div class="row-fluid">
-                <div class="span3">
-                    <div class="well sidebar-nav">
+                <div class="span3" >
+                    <div class="well sidebar-nav" data-spy="affix" style = "width:282px">
                         <ul class="nav nav-list">
+                            <li class="nav-header">dukeCRC24</li>
                             <li class="nav-header">My Trials</li>
                             <li class="active"><a href="#">Cancer</a></li>
                             <li><a href="#">Flesh Eating Bacteria</a></li>
                             <li><a href="#">Herpes</a></li>
                             <li><a href="#">Worms</a></li>
-                            <li class="nav-header">More Trials</li>
-                            <li><a href="#">AIDS</a></li>
                             <li><a href="#">Leukemia</a></li>
                             <li><a href="#">Lung Cancer</a></li>
-                            <li class="nav-header">Even More Trials</li>
+                            
                             <li><a href="#">Obesity</a></li>
                             <li><a href="#">Elephantitis</a></li>
-                            <li><a href="#">+ New Trial</a></li>
+                            <li class="nav-header">Add or join more Trials</li>
+                            <a href="#addTrialModal" role="button" class="btn btn-success" data-toggle="modal">New Trial</a>
                         </ul>
                     </div><!--/.well -->
                 </div><!--/span-->
+
+
+
+<!--************************ New Trial Modal ****************************-->
+
+<div id="addTrialModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3 id="myModalLabel">Add a trial</h3>
+  </div>
+
+  <div class="modal-body" height="500px">
+    <div class = "row-fluid">
+    <div class="span5" style ="padding-left:15px;">
+    <h4>Link an existing Trial</h4>
+    <input class="span8" type="text" placeholder="Trial Name" data-provide="typeahead" data-source='["sean", "nikhil", "dan", "ashwin", "shiv"]'>
+  </div>
+    
+
+  <div class="span6" style = "margin-bottom:15px; padding-left:30px; border-left: 1px solid #eeeeee">
+    <h4>Create a new Trial</h4>
+    <form>
+        <fieldset>
+            <input class="span8" type="text" placeholder="Trial Name">
+
+            <div class="input-append">
+                <input class="span8" type="text" placeholder="Invite Someone" id="appendedInputButton" type="text">
+                <button class="btn" type="button">+</button>
+            </div>
+
+            <span class="help-block">*Optional - Enter a valid email</span>
+
+
+<!-- ****************** Advanced Options ***********************-->
+
+
+<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">
+  Advanced Options
+</button>
+ 
+<div id="demo" class="collapse">
+    <p>Default Criteria:</p>
+        <p>Enrolled</p>
+    </div>
+    <p></p>
+
+<!-- ****************** End Advanced Options ***********************-->
+
+
+
+
+        </fieldset>
+    
+    <button type="submit" class="btn">Submit</button>
+</form>
+
+  </div>
+</div>
+
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-primary" id = "addTrial" data-dismiss="modal">Add Trial</button>
+  </div>
+</div>
+</div>
+
+<script type="text/javascript">
+
+function allTrials(query, process) {
+                var data = ["sean", "nikhil", "dan", "ashwin", "shiv"];
+                return data;
+
+}
+
+</script>
+<!--**************** End Modal  ************************************-->
+
                 <div class="span9">
                     
                     <div class="hero-unit">
                         
                         <ul class="nav nav-tabs" id="myTab">
                             <li class="active"><a href="#home" data-toggle="tab">View Trends</a></li>
-                            <li><a href="#profile" data-toggle="tab">Edit Data</a></li>
-                            <li><a href="#messages" data-toggle="tab">Report</a></li>
+                            <li><a href="#edit" data-toggle="tab">Edit Data</a></li>
+                            <li><a href="#report" data-toggle="tab">Report</a></li>
                             <li><a href="#settings" data-toggle="tab">Settings</a></li>
                         </ul>
                         
                         <div class="tab-content">
-                            
-                            
-        <!--**************** begin View Trends ******************** -->
-                            
-    <div class="tab-pane active" id="home">
 
-        <h4>Subjects</h4>           
+
+                            
+                            
+    <!--************************* begin View Trends ******************** -->
+                            
+    <div class="tab-pane fade in active" id="home">
+
+<div class="row-fluid">
+<div class= "span8">
+        <h4>Subjects</h4> 
+
         <div id="bar_chart" style="display:inline; float:left"></div>
+    </div>
+    <div class = "span4">
 
-        <table class="table table-condensed" style="display:inline; float:right; width:250px">
-            <tr><th>Total Subjects</th><td>4856</td></tr>
-            <tr><th>Trial Period</th><td>Jan 1st - July 14th</td></tr>
-            <tr><th>CRC's:</th><td>Harry Potter</td></tr>
-            <tr><th></th><td> Bob Loblaw</td></tr>
-            <tr><th></th><td> Jerry Garcia</td></tr>
+        <table class="table table-condensed table-hover" style="display:inline; float:right; margin-top:10px">
+            <tr style="border-top: 2px solid #ccc;"><th style = "font-size:14px;">Total Subjects</th><td style = "font-size:14px; text-align: right;">4856</td></tr>
+            <tr><th style = "font-size:14px">Trial Period</th><td style = "font-size:14px; text-align: right;">Jan 1st - July 14th</td></tr>
+            <tr><th style = "font-size:14px">CRC's:</th><td style = "font-size:14px; text-align: right;">Harry Potter</td></tr>
+            <tr><th></th><td style = "font-size:14px; text-align: right;"> Bob Loblaw</td></tr>
+            <tr><th></th><td style = "font-size:14px; text-align: right;"> Jerry Garcia</td></tr>
 </table>
+
+</div>
+</div> <!-- end row -->
 
         <div class = "span11" style="border-bottom: 1px solid #ddd; margin-bottom:20px;"> </div>
 
 
-        <ul class="nav nav-pills">
-  <li class="active">
-    <a href="#" data-toggle="tab">Enrolled</a>
-  </li>
-  <li><a href="#" data-toggle="tab">Withdrawn</a></li>
-  <li><a href="#" data-toggle="tab">Vulnerable</a></li>
-  <li><a href="#" data-toggle="tab">Refused</a></li>
-  <li><a href="#" data-toggle="tab">Lost</a></li>
-</ul>
-        
 
-<h4>Subjects Enrolled</h4> 
+
+<ul class="nav nav-pills">
+  <li class="active">
+    <a href="#enrolled" data-toggle="pill">Enrolled</a>
+  </li>
+  <li><a href="#withdrawn" data-toggle="pill">Withdrawn</a></li>
+  <li><a href="#vulnerable" data-toggle="pill">Vulnerable</a></li>
+</ul>
+
+<!-- start tab content -->
+
+<div class="tab-content">
+    <div class="tab-pane fade in active" id="enrolled">
+
+<div class="row-fluid">
+    <div class= "span8">
+
+        <h4>Subjects Enrolled</h4> 
          <div id="line_chart"></div>
+     </div>
+     <div class= "span4">
+
+         <table class="table table-condensed table-hover" style="display:inline; float:right; margin-top:10px">
+            <tr style="border-top: 2px solid #ccc;"><th style = "font-size:14px;">Total Enrolled</th><td style = "font-size:14px; text-align: right;">4856</td></tr>
+            <tr><th style = "font-size:14px">Avg/Month</th><td style = "font-size:14px; text-align: right;">43.5</td></tr>
+            <tr><th style = "font-size:14px">Avg/Week</th><td style = "font-size:14px; text-align: right;">11.3</td></tr>
+            <tr><th style = "font-size:14px">Est. by July 14th</th><td style = "font-size:14px; text-align: right;"> 5700</td></tr>
+</table>
+</div>
+</div>
+     </div> <!-- end Enrolled content -->
+
+
+     <div class="tab-pane fade" id="withdrawn">
+        <h4>Subjects Withdrawn</h4> 
+         <div id="line_chart_withdrawn"></div>
+     </div>
+
+
+     <div class="tab-pane fade" id="vulnerable">
+        <h4>Subjects Vulnerable</h4> 
+            <div id="line_chart_vulnerable"></div>
+     </div>
          
-    </div>
+    </div> <!-- end tab content -->
+
+</div>
                             
                             
-        <!--**************** begin Edit Data ******************** -->                     
+    <!--*************************** begin Edit Data ******************** -->                     
                             
-        <div class="tab-pane" id="profile">
+        <div class="tab-pane fade" id="edit">
                             
             <form class="form-inline">
                 <input type="text" class="input-small" placeholder="1">
@@ -258,28 +387,17 @@
           <!--**************** end Edit Data ******************** -->
                             
                             
-                            <div class="tab-pane" id="messages">...</div>
-                            <div class="tab-pane" id="settings">...</div>
+                            <div class="tab-pane fade" id="report">...</div>
+                            <div class="tab-pane fade" id="settings">...</div>
                         </div>
                         
-                        <script>
-                            $(function () {
-                              $('#myTab a:last').tab('show');
-                              })
-                            </script>
+                        
                         
                         
                                     
                                 
                     </div>
-                    
-                    <!--
-                    <div class="hero-unit">
-                        <iframe src="https://docs.google.com/spreadsheet/ccc?key=0AjbPpOm7eZrKdFN1bVlhWEk2NHRZUVdySXBYaE4zblE&rm=minimal" width="600" height="400" frameborder="1" scrolling="auto"></iframe>
-                        
-                        <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-                    </div>
-                    -->
+           
 
                     
                     <div class="row-fluid">
@@ -315,8 +433,7 @@
          ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="http://code.jquery.com/jquery-latest.js"></script>
-        <script src="/~guestuser/trialtracker/bootstrap/js/bootstrap.min.js"></script>
-        <script src="/~guestuser/trialtracker/bootstrap/js/bootstrap.js"></script>
+        <script src="./bootstrap/js/bootstrap.min.js"></script>
         
     </body>
 </html
