@@ -14,7 +14,7 @@ class SEED
 		@db = SQLite3::Database.open "development.sqlite3"
 	end
 
-	def crc_seed (cname="Ash Sundar", duuid = "0503312")
+	def crc_seed (cname, duuid)
 		@db.execute "CREATE TABLE IF NOT EXISTS CRC (crcName TEXT, dukeUniqueID TEXT PRIMARY KEY)"
     	@db.execute "INSERT INTO CRC VALUES ('#{cname}', '#{duuid}')"
     end
@@ -24,8 +24,8 @@ class SEED
 	    @db.execute "INSERT INTO Trial VALUES ('#{tname}', '#{tdate}','#{desc}')"
 	end
 
-	def study_seed (cname="Ash Sundar", tname="Cancer", pID="D112", 
-		enrol="yes", withd="no", vulner="no", ref="no", loss="no")
+	def study_seed (cname, tname, pID, 
+		enrol, withd, vulner, ref, loss)
 	    @db.execute "CREATE TABLE IF NOT EXISTS Study (crcName TEXT, trialName TEXT, 
 	    	pID TEXT, enrolled TEXT, withdrawn TEXT, vulnerable TEXT, refused TEXT, 
 	    	lost TEXT, PRIMARY KEY (crcName, trialName, pID))"
