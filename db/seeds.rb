@@ -15,21 +15,21 @@ class SEED
 	end
 
 	def crc_seed (cname="Ash Sundar", duuid = "0503312")
-		@db.execute "CREATE TABLE IF NOT EXISTS CRC (crcName TEXT PRIMARY KEY, dukeUniqueID TEXT)"
+		@db.execute "CREATE TABLE IF NOT EXISTS CRC (crcName TEXT, dukeUniqueID TEXT PRIMARY KEY)"
     	@db.execute "INSERT INTO CRC VALUES ('#{cname}', '#{duuid}')"
     end
 
-    def trial_seed (tname="Can", desc="A sample study needing treatment")
-	    @db.execute "CREATE TABLE IF NOT EXISTS Trial (trialName TEXT PRIMARY KEY, description TEXT)"
-	    @db.execute "INSERT INTO Trial VALUES ('#{tname}', '#{desc}')"
+    def trial_seed (tname, tdate, desc)
+	    @db.execute "CREATE TABLE IF NOT EXISTS Trial (trialName TEXT, tdate TEXT, description TEXT, PRIMARY KEY (trialName, tdate))"
+	    @db.execute "INSERT INTO Trial VALUES ('#{tname}', '#{tdate}','#{desc}')"
 	end
 
-	def study_seed (cname="Ash Sundar", tname="Cancer", pname="Sean Mill", 
+	def study_seed (cname="Ash Sundar", tname="Cancer", pID="D112", 
 		enrol="yes", withd="no", vulner="no", ref="no", loss="no")
 	    @db.execute "CREATE TABLE IF NOT EXISTS Study (crcName TEXT, trialName TEXT, 
-	    	patientName TEXT, enrolled TEXT, withdrawn TEXT, vulnerable TEXT, refused TEXT, 
-	    	lost TEXT)"
-		@db.execute "INSERT INTO Study VALUES ('#{cname}', '#{tname}', '#{pname}', '#{enrol}', 
+	    	pID TEXT, enrolled TEXT, withdrawn TEXT, vulnerable TEXT, refused TEXT, 
+	    	lost TEXT, PRIMARY KEY (crcName, trialName, pID))"
+		@db.execute "INSERT INTO Study VALUES ('#{cname}', '#{tname}', '#{pID}', '#{enrol}', 
 			'#{withd}', '#{vulner}', 
 			'#{ref}', '#{loss}')"
 	end

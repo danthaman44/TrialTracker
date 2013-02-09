@@ -5,5 +5,14 @@ require 'read.rb'
 
 begin
 	r = READ.new
-	r.read_table("CRC")
+	test = r.read_trialsforthiscrc("Sam")
+	test.each do |test|
+        puts test
+    end
+
+	dataArray = r.read_patientsfromtrialbyacrc("Cancer", "Sam")
+	dataArray.each do |dataArray|
+        puts dataArray
+    end
 end
+
