@@ -1,0 +1,74 @@
+<!--************************* begin View Trends ******************** -->
+                            
+    <div class="tab-pane fade in active" id="home">
+
+<div class="row-fluid">
+<div class= "span8">
+        <h4>Subjects</h4> 
+
+        <div id="bar_chart" style="display:inline; float:left"></div>
+    </div>
+    <div class = "span4">
+
+        <table class="table table-condensed table-hover" style="display:inline; float:right; margin-top:10px">
+            <tr style="border-top: 2px solid #ccc;"><th style = "font-size:14px;">Total Subjects</th><td style = "font-size:14px; text-align: right;">4856</td></tr>
+            <tr><th style = "font-size:14px">Trial Period</th><td style = "font-size:14px; text-align: right;">Jan 1st - July 14th</td></tr>
+            <tr><th style = "font-size:14px">CRC's:</th><td style = "font-size:14px; text-align: right;">Harry Potter</td></tr>
+            <tr><th></th><td style = "font-size:14px; text-align: right;"> Bob Loblaw</td></tr>
+            <tr><th></th><td style = "font-size:14px; text-align: right;"> Jerry Garcia</td></tr>
+</table>
+
+</div>
+</div> <!-- end row -->
+
+        <div class = "span11" style="border-bottom: 1px solid #ddd; margin-bottom:20px;"> </div>
+
+
+
+
+<ul class="nav nav-pills">
+  <li class="active">
+    <a href="#enrolled" data-toggle="pill">Enrolled</a>
+  </li>
+  <li><a href="#withdrawn" data-toggle="pill">Withdrawn</a></li>
+  <li><a href="#vulnerable" data-toggle="pill">Vulnerable</a></li>
+</ul>
+
+<!-- start tab content -->
+
+<div class="tab-content">
+    <div class="tab-pane fade in active" id="enrolled">
+
+<div class="row-fluid">
+    <div class= "span8">
+
+        <h4>Subjects Enrolled</h4> 
+         <div id="line_chart"></div>
+     </div>
+     <div class= "span4">
+
+         <table class="table table-condensed table-hover" style="display:inline; float:right; margin-top:10px">
+            <tr style="border-top: 2px solid #ccc;"><th style = "font-size:14px;">Total Enrolled</th><td style = "font-size:14px; text-align: right;">4856</td></tr>
+            <tr><th style = "font-size:14px">Avg/Month</th><td style = "font-size:14px; text-align: right;">43.5</td></tr>
+            <tr><th style = "font-size:14px">Avg/Week</th><td style = "font-size:14px; text-align: right;">11.3</td></tr>
+            <tr><th style = "font-size:14px">Est. by July 14th</th><td style = "font-size:14px; text-align: right;"> 5700</td></tr>
+</table>
+</div>
+</div>
+     </div> <!-- end Enrolled content -->
+
+
+     <div class="tab-pane fade" id="withdrawn">
+        <h4>Subjects Withdrawn</h4> 
+         <div id="line_chart_withdrawn"></div>
+     </div>
+
+
+     <div class="tab-pane fade" id="vulnerable">
+        <h4>Subjects Vulnerable</h4> 
+            <div id="line_chart_vulnerable"></div>
+     </div>
+         
+    </div> <!-- end tab content -->
+
+</div>
