@@ -1,11 +1,22 @@
   <!--*************************** begin Edit Data ******************** -->  
 
 <div class="tab-pane fade" id="edit">
-                            
-            <form class="form-inline">
-                <input type="text" class="input-small" placeholder="1">
+
+                            <%= form_tag('insert_subject', :method=> "get") do %>
+    <%= check_box_tag(:enrolled) %>
+<%= label_tag(:enrolled, "Enrolled") %>
+    <%= submit_tag "Submit" %>
+<% end %>
+
+
+
+
+
+
+            <form class="form-inline" action="/insert_subject" method="post">
+                <input id="quantity" type="text" class="input-small" placeholder="1" >
                     <div class="btn-group" data-toggle="buttons-checkbox">
-                        <button type="button" class="btn btn-primary">Enrolled</button>
+                        <button name="enrolled" type="button" class="btn btn-primary">Enrolled</button>
                         <button type="button" class="btn btn-primary">Vulnerable</button>
                         <button type="button" class="btn btn-primary">Refused</button>
                         <button type="button" class="btn btn-primary">Withdrawn</button>
