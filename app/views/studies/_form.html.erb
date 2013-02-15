@@ -1,0 +1,49 @@
+<%= form_for(@study) do |f| %>
+  <% if @study.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@study.errors.count, "error") %> prohibited this study from being saved:</h2>
+
+      <ul>
+      <% @study.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :crcName %><br />
+    <%= f.text_area :crcName %>
+  </div>
+  <div class="field">
+    <%= f.label :trialName %><br />
+    <%= f.text_area :trialName %>
+  </div>
+  <div class="field">
+    <%= f.label :pID %><br />
+    <%= f.text_area :pID %>
+  </div>
+  <div class="field">
+    <%= f.label :enrolled %><br />
+    <%= f.text_area :enrolled %>
+  </div>
+  <div class="field">
+    <%= f.label :withdrawn %><br />
+    <%= f.text_area :withdrawn %>
+  </div>
+  <div class="field">
+    <%= f.label :vulnerable %><br />
+    <%= f.text_area :vulnerable %>
+  </div>
+  <div class="field">
+    <%= f.label :refused %><br />
+    <%= f.text_area :refused %>
+  </div>
+  <div class="field">
+    <%= f.label :lost %><br />
+    <%= f.text_area :lost %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

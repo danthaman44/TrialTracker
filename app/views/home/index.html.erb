@@ -109,7 +109,36 @@
     </head>
     
     <body>
-        
+
+	<h1>DisplayTrialData Example -- display view</h1>
+
+	<table>
+	<tr> 
+	   <th>CRCName</th>
+	   <th>TrialName</th>
+	   <th>PatientID</th>	
+	   <th>Enrolled</th>
+	   <th>Withdrawn</th>
+	   <th>Vulnerable</th>
+	   <th>Refused</th>
+	   <th>Lost</th>
+	</tr>
+
+		<% @t.each do |rec| %>
+	<tr> 
+		<td> <%= rec.crcName       %> </td>
+   		<td> <%= rec.trialName     %> </td>
+  		<td> <%= rec.pID    %> </td>
+  		<td> <%= rec.enrolled %> </td>
+  		<td> <%= rec.withdrawn   %> </td>
+  		<td> <%= rec.vulnerable     %> </td>
+  		<td> <%= rec.refused  %> </td>
+  		<td> <%= rec.lost         %> </td>
+	</tr>
+	<% end %>
+
+	</table>
+
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container-fluid">
