@@ -1,4 +1,6 @@
 FirstApp::Application.routes.draw do
+  get "home/index"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -48,7 +50,10 @@ FirstApp::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+   root :to => 'home#index'
+
+   match '/join_event' => 'home#join_event', :as => 'join_event'
+   match '/insert_subject' => 'home#insert_subject', :as => 'insert_subject'
 
   # See how all your routes lay out with "rake routes"
 
