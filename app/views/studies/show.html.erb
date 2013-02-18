@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Crcname:</b>
+  <%= @study.crcName %>
+</p>
+
+<p>
+  <b>Trialname:</b>
+  <%= @study.trialName %>
+</p>
+
+<p>
+  <b>Pid:</b>
+  <%= @study.pID %>
+</p>
+
+<p>
+  <b>Enrolled:</b>
+  <%= @study.enrolled %>
+</p>
+
+<p>
+  <b>Withdrawn:</b>
+  <%= @study.withdrawn %>
+</p>
+
+<p>
+  <b>Vulnerable:</b>
+  <%= @study.vulnerable %>
+</p>
+
+<p>
+  <b>Refused:</b>
+  <%= @study.refused %>
+</p>
+
+<p>
+  <b>Lost:</b>
+  <%= @study.lost %>
+</p>
+
+
+<%= link_to 'Edit', edit_study_path(@study) %> |
+<%= link_to 'Back', studies_path %>

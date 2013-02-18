@@ -2,6 +2,7 @@ class HomeController < ApplicationController
   def index
       logger.info("testing!")
       puts("testing")
+      @t = TrialTable.all
   end
   def join_event
       logger.info("******** Joining Event!**********")
