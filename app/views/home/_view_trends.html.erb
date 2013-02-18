@@ -11,11 +11,12 @@
     <div class = "span4">
 
         <table class="table table-condensed table-hover" style="display:inline; float:right; margin-top:10px">
-            <tr style="border-top: 2px solid #ccc;"><th style = "font-size:14px;">Total Subjects</th><td style = "font-size:14px; text-align: right;">4856</td></tr>
+            <tr style="border-top: 2px solid #ccc;"><th style = "font-size:14px;">Total Subjects</th><td style = "font-size:14px; text-align: right;">4056</td></tr>
             <tr><th style = "font-size:14px">Trial Period</th><td style = "font-size:14px; text-align: right;">Jan 1st - July 14th</td></tr>
             <tr><th style = "font-size:14px">CRC's:</th><td style = "font-size:14px; text-align: right;">Harry Potter</td></tr>
             <tr><th></th><td style = "font-size:14px; text-align: right;"> Bob Loblaw</td></tr>
             <tr><th></th><td style = "font-size:14px; text-align: right;"> Jerry Garcia</td></tr>
+            <tr><th></th><td style = "font-size:14px; text-align: right;"> <a href= "#"> Invite Someone</a></td></tr>
 </table>
 
 </div>
@@ -31,7 +32,9 @@
     <a href="#enrolled" data-toggle="pill">Enrolled</a>
   </li>
   <li><a href="#withdrawn" data-toggle="pill">Withdrawn</a></li>
-  <li><a href="#vulnerable" data-toggle="pill">Vulnerable</a></li>
+  <li><a href="#" data-toggle="pill">Vulnerable</a></li>
+  <li><a href="#" data-toggle="pill">Refused</a></li>
+  <li><a href="#" data-toggle="pill">Lost</a></li>
 </ul>
 
 <!-- start tab content -->
@@ -48,24 +51,50 @@
      <div class= "span4">
 
          <table class="table table-condensed table-hover" style="display:inline; float:right; margin-top:10px">
-            <tr style="border-top: 2px solid #ccc;"><th style = "font-size:14px;">Total Enrolled</th><td style = "font-size:14px; text-align: right;">4856</td></tr>
-            <tr><th style = "font-size:14px">Avg/Month</th><td style = "font-size:14px; text-align: right;">43.5</td></tr>
-            <tr><th style = "font-size:14px">Avg/Week</th><td style = "font-size:14px; text-align: right;">11.3</td></tr>
-            <tr><th style = "font-size:14px">Est. by July 14th</th><td style = "font-size:14px; text-align: right;"> 5700</td></tr>
+            <tr style="border-top: 2px solid #ccc;"><th style = "font-size:14px;">Total Enrolled</th><td style = "font-size:14px; text-align: right;">218</td></tr>
+            <tr><th style = "font-size:14px;">Goal</th><td style = "font-size:14px; text-align: right;">300</td></tr>
+            <tr><th style = "font-size:14px">Avg/Month</th><td style = "font-size:14px; text-align: right;">62.5</td></tr>
+            <tr><th style = "font-size:14px">Avg/Week</th><td style = "font-size:14px; text-align: right;">19.3</td></tr>
+            <tr><th style = "font-size:14px">Est. by Jan 19th</th><td style = "font-size:14px; text-align: right;"> 280</td></tr>
+
 </table>
 </div>
 </div>
      </div> <!-- end Enrolled content -->
 
 
-     <div class="tab-pane fade" id="withdrawn">
+<div class="tab-pane fade" id="withdrawn">
+  <div class="row-fluid">
+    <div class= "span8">
         <h4>Subjects Withdrawn</h4> 
          <div id="line_chart_withdrawn"></div>
      </div>
 
+         <div class= "span4">
+
+         <table class="table table-condensed table-hover" style="display:inline; float:right; margin-top:10px">
+            <tr style="border-top: 2px solid #ccc;"><th style = "font-size:14px;">Total Withdrawn</th><td style = "font-size:14px; text-align: right;">113</td></tr>
+            <tr><th style = "font-size:14px;">Goal</th><td style = "font-size:14px; text-align: right;">NA</td></tr>
+            <tr><th style = "font-size:14px">Avg/Month</th><td style = "font-size:14px; text-align: right;">10.4</td></tr>
+            <tr><th style = "font-size:14px">Avg/Week</th><td style = "font-size:14px; text-align: right;">2.1</td></tr>
+            <tr><th style = "font-size:14px">Est. by Jan 19th</th><td style = "font-size:14px; text-align: right;"> 145</td></tr>
+
+        </table>
+        </div>
+     </div>
+ </div>
+
 
      <div class="tab-pane fade" id="vulnerable">
         <h4>Subjects Vulnerable</h4> 
+            <div id="line_chart_vulnerable"></div>
+     </div>
+     <div class="tab-pane fade" id="refused">
+        <h4>Subjects Refused</h4> 
+            <div id="line_chart_vulnerable"></div>
+     </div>
+     <div class="tab-pane fade" id="lost">
+        <h4>Subjects Lost</h4> 
             <div id="line_chart_vulnerable"></div>
      </div>
          
