@@ -21,4 +21,16 @@ ActiveRecord::Schema.define(:version => 0) do
         t.datetime "updated_at", :null => false
     end
 
+    create_table "entries", :force => true do |t|
+    	t.datetime "timestamp" 
+    	t.integer "enrolled"
+    	t.integer  "active"
+    	t.integer   "completed" 
+    	t.integer "withdrawn"
+    	t.integer "refused"
+    	t.integer "lost"
+        t.datetime "created_at", :null => false
+        t.datetime "updated_at", :null => false
+    end
+
 end

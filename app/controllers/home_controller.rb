@@ -4,11 +4,15 @@ class HomeController < ApplicationController
       puts("testing")
 
       @t = Trial.all
+      
+      logger.info(@t)
+
+      @entries = Entry.all
       respond_to do |format|
         format.html # index.html.erb
-        format.json { render json: @t }
+        format.json { render json: @entries }
       end
-      logger.info(@t)
+      logger.info(@entries)
       
   end
   def join_event

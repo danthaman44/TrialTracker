@@ -15,6 +15,9 @@ class SEED
 	t = Trial.create(:description => 'awesome', :tdate => 'today', :trialName => 'mytrial')
 	Trial.create(:description => 'great', :tdate => 'tomorrow', :trialName => 'histrial')
 
+	Entry.create(:timestamp => "2010-12-15 17:34:34", :enrolled => 232, :active => 23, :completed => 21, :withdrawn => 117, 
+		:refused => 23, :lost => 23)
+
 	def crc_seed (cname, duuid)
 		@db.execute "CREATE TABLE IF NOT EXISTS CRC (crcName TEXT, dukeUniqueID TEXT PRIMARY KEY)"
     	@db.execute "INSERT INTO CRC VALUES ('#{cname}', '#{duuid}')"
