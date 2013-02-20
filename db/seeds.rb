@@ -10,9 +10,10 @@
 require 'sqlite3'
 
 class SEED
-	def initialize
-		@db = SQLite3::Database.open "development.sqlite3"
-	end
+	
+	@db = SQLite3::Database.open "development.sqlite3"
+	t = Trial.create(:description => 'awesome', :tdate => 'today', :trialName => 'mytrial')
+	Trial.create(:description => 'great', :tdate => 'tomorrow', :trialName => 'histrial')
 
 	def crc_seed (cname, duuid)
 		@db.execute "CREATE TABLE IF NOT EXISTS CRC (crcName TEXT, dukeUniqueID TEXT PRIMARY KEY)"
@@ -20,7 +21,7 @@ class SEED
     end
 
     def trial_seed (tname, tdate, desc)
-	    @db.execute "CREATE TABLE IF NOT EXISTS Trial (trialName TEXT, tdate TEXT, description TEXT, PRIMARY KEY (trialName, tdate))"
+	    @db.execute "CREATE TABLE IF NOT EXISTS trials (trialName TEXT, tdate TEXT, description TEXT, PRIMARY KEY (trialName, tdate))"
 	    @db.execute "INSERT INTO Trial VALUES ('#{tname}', '#{tdate}','#{desc}')"
 	end
 

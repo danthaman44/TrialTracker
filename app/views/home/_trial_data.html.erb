@@ -1,27 +1,17 @@
-<h1>DisplayTrialData Example -- display view</h1>
+<h4>DisplayTrialData Example -- display view</h4>
 
 	<table>
 	<tr> 
-	   <th>CRCName</th>
-	   <th>TrialName</th>
-	   <th>PatientID</th>	
-	   <th>Enrolled</th>
-	   <th>Withdrawn</th>
-	   <th>Vulnerable</th>
-	   <th>Refused</th>
-	   <th>Lost</th>
+	   <th>Description</th>
+	   <th>Date</th>
+	   <th>Trial Name</th>	
 	</tr>
 
-		<% @t.each do |rec| %>
+		<% @t.each do |trial| %>
 	<tr> 
-		<td> <%=  rec.crcName       %> </td>
-   		<td> <%=  rec.trialName     %> </td>
-  		<td> <%=  rec.pID    %> </td>
-  		<td> <%=  rec.enrolled %> </td>
-  		<td> <%=  rec.withdrawn   %> </td>
-  		<td> <%=  rec.vulnerable     %> </td>
-  		<td> <%=  rec.refused  %> </td>
-  		<td> <%=  rec.lost         %> </td>
+		<td> <%=  trial.description       %> </td>
+   		<td> <%=  trial.tdate    %> </td>
+  		<td> <%=  trial.trialName    %> </td>
 	</tr>
 	<% end %>
 

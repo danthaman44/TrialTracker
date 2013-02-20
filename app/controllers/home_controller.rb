@@ -2,7 +2,14 @@ class HomeController < ApplicationController
   def index
       logger.info("testing!")
       puts("testing")
-      #@t = TrialTable.all
+
+      @t = Trial.all
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @t }
+      end
+      logger.info(@t)
+      
   end
   def join_event
       logger.info("******** Joining Event!**********")
