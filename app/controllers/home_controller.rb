@@ -14,11 +14,13 @@ class HomeController < ApplicationController
   def join_event
       logger.info("******** Joining Event!**********")
   end
-  def insert_subject
-      logger.info("****** Inserting Subject! ******")
+  def insert_trials
+      logger.info("****** Inserting Trials! ******")
+      Trial.create(:description => 'new', :tdate => 'Friday', :trialName => 'hers')
+      Trial.create(:description => 'newer', :tdate => 'Thursday', :trialName => 'yours')
       #// call ashwin's db stuff
-      enrolled = params['enrolled']
-      logger.info(enrolled)
+      #enrolled = params['enrolled']
+      redirect_to "localhost:3000"
       #redirect_to index
    end
 end
