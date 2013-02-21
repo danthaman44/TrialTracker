@@ -8,16 +8,26 @@ class HomeController < ApplicationController
       logger.info(@t)
 
       @entries = Entry.all
-      respond_to do |format|
-        format.html # index.html.erb
-        format.json { render json: @entries }
-      end
+      
       logger.info(@entries)
       
   end
   def join_event
       logger.info("******** Joining Event!**********")
   end
+  def insert_entry
+    #enrolled = params['enrolled']
+    #withdrawn = params['withdrawn']
+    #time = now()
+
+    #Entry.create(:enrolled => enrolled)
+  end
+  def update_entry
+    #enrolled = params['enrolled']
+    #withdrawn = params['withdrawn']
+
+  end
+
   def insert_trials
       logger.info("****** Inserting Trials! ******")
       Trial.create(:description => 'new', :tdate => 'Friday', :trialName => 'hers')
