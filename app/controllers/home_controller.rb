@@ -8,6 +8,8 @@ class HomeController < ApplicationController
 
       @entries = Entry.all
       logger.info(@entries)
+
+      @entry = Entry.new
       
   end
   def join_event

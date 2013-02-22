@@ -15,7 +15,7 @@ class SEED
 	Trial.create(:description => 'awesome', :tdate => 'today', :trialName => 'mytrial')
 	Trial.create(:description => 'great', :tdate => 'tomorrow', :trialName => 'histrial')
 
-	Entry.create(:timestamp => "2010-12-15 17:34:34", :enrolled => 232, :active => 23, :completed => 21, :withdrawn => 117, 
+	Entry.create(:enrolled => 232, :active => 23, :completed => 21, :withdrawn => 117, 
 		:refused => 23, :lost => 23)
 
 	def crc_seed (cname, duuid)

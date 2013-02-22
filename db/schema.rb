@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(:version => 0) do
     end
 
     create_table "entries", :force => true do |t|
-    	t.datetime "timestamp" 
     	t.integer "enrolled"
     	t.integer  "active"
     	t.integer   "completed" 

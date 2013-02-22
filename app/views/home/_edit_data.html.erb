@@ -8,29 +8,56 @@
       </div>
     </div>
 
+<%= form_for @entry  do |f| %>
 
-<form>
+
   <fieldset>
 <div class="input-append">
-  <input class="span2" id="appendedInput" type="text" placeholder="0">
+  <%= f.text_field :enrolled,  :class => "span2", :type => 'number',
+              :placeholder => "0" %>
   <span class="add-on">Enrolled</span>
 </div>
 
+
 <div class="input-append">
-  <input class="span2" id="appendedInput" type="text" placeholder="0">
+  <%= f.text_field :active, :class => "span2" , :type => 'number',
+              :placeholder => "0" %>
+  <span class="add-on">Active</span>
+</div>
+<div class="input-append">
+  <%= f.text_field :completed, :class => "span2" , :type => 'number',
+              :placeholder => "0" %>
+  <span class="add-on">Completed</span>
+</div>
+<div class="input-append">
+  <%= f.text_field :withdrawn, :class => "span2" , :type => 'number',
+              :placeholder => "0" %>
+  <span class="add-on">Withdrawn</span>
+</div>
+<div class="input-append">
+  <%= f.text_field :refused, :class => "span2" , :type => 'number',
+              :placeholder => "0" %>
   <span class="add-on">Refused</span>
 </div>
 <div class="input-append">
-  <input class="span2" id="appendedInput" type="text" placeholder="0">
-  <span class="add-on">Withdrawn</span>
+  <%= f.text_field :lost, :class => "span2" , :type => 'number',
+              :placeholder => "0" %>
+  <span class="add-on">Lost</span>
 </div>
+<%= f.submit "Create" %>
+<% end %>
+
+<!--
+<form>
 <div class="input-append">
   <input class="span2" id="appendedInput" type="text" placeholder="0">
   <span class="add-on">Vulnerable</span>
 </div>
-</fieldset>
-<button type="submit" class="btn btn-success">Submit</button>
 </form>
+<button type="submit" class="btn btn-success">Submit</button>
+
+-->
+
 
 <div class="row-fluid">
 <div class= "span8">
@@ -65,7 +92,7 @@
                 </tr>
                 <% @entries.each do |entry| %>
                 <tr>
-                    <td style="text-align: left;"><%= entry.timestamp %><a style = "float:right; font-size:13px" href="#">edit  </a></td>
+                    <td style="text-align: left;"><%= entry.created_at %><a style = "float:right; font-size:13px" href="#">edit  </a></td>
                     
                     <td><%= entry.enrolled %></td>
                     <td><%= entry.active %></td>
