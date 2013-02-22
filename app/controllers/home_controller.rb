@@ -4,11 +4,9 @@ class HomeController < ApplicationController
       puts("testing")
 
       @t = Trial.all
-      
       logger.info(@t)
 
       @entries = Entry.all
-      
       logger.info(@entries)
       
   end
