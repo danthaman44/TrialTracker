@@ -104,7 +104,8 @@
                     <td><%= entry.withdrawn %></td>
                     <td><%= entry.refused %></td>
                     <td><%= entry.lost %></td>
-                </tr>   
+                    <td ><%= link_to "delete", :controller => "entries", :action => "delete", :date => entry.created_at %></td>
+                </tr> 
                 <% end %>                             
             </table>
 

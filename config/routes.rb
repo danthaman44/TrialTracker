@@ -53,6 +53,7 @@ FirstApp::Application.routes.draw do
 
    resources :entries
 
+   match '/entries/delete' => 'entries#delete'
 
    root :to => 'home#index'
 

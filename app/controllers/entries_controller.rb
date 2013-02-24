@@ -2,12 +2,14 @@ class EntriesController < ApplicationController
 	def new
 		@entry = Entry.new
 	end
+
 	def create
     
-logger.info(params[:entry])
-logger.info(params["enrolled"])
-logger.info("test")
-@entry = Entry.new(params[:entry])
+    logger.info("--------") 
+    logger.info(params[:entry])
+    logger.info(params[:entry]["enrolled"])
+    logger.info("test")
+    @entry = Entry.new(params[:entry])
 		
 	  if @entry.save
       redirect_to 'localhost:3000'
@@ -17,5 +19,14 @@ logger.info("test")
         #format.html { render :action => "new" }
         #format.json { render :json => @article.errors, :status => :unprocessable_entity }
       end
+  end
+
+  def show
+    logger.info (params[:date])
+    s = Entry.where("created_at = ?", params[:date])
+    logger.info ("------------------------------")
+    logger.info (s)
+    s.delete_all
+    redirect_to 'localhost:3000'
   end
 end
