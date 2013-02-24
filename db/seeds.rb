@@ -7,41 +7,29 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #!/usr/bin/ruby 
 
-require 'sqlite3'
+g = Entry.new
+g.enrolled = 177
+g.active = 117
+g.withdrawn = 117
+g.completed = 117
+g.refused = 34
+g.lost = 4
+g.save
 
-class SEED
-	
-	@db = SQLite3::Database.open "development.sqlite3"
-	Trial.create(:description => 'awesome', :tdate => 'today', :trialName => 'mytrial')
-	Trial.create(:description => 'great', :tdate => 'tomorrow', :trialName => 'histrial')
+g = Entry.new
+g.enrolled = 723
+g.active = 512
+g.withdrawn = 122
+g.completed = 464
+g.refused = 644
+g.lost = 43
+g.save
 
-	Entry.create(:enrolled => 232, :active => 23, :completed => 21, :withdrawn => 117, 
-		:refused => 23, :lost => 23)
-
-	def crc_seed (cname, duuid)
-		@db.execute "CREATE TABLE IF NOT EXISTS CRC (crcName TEXT, dukeUniqueID TEXT PRIMARY KEY)"
-    	@db.execute "INSERT INTO CRC VALUES ('#{cname}', '#{duuid}')"
-    end
-
-    def trial_seed (tname, tdate, desc)
-	    @db.execute "CREATE TABLE IF NOT EXISTS trials (trialName TEXT, tdate TEXT, description TEXT, PRIMARY KEY (trialName, tdate))"
-	    @db.execute "INSERT INTO Trial VALUES ('#{tname}', '#{tdate}','#{desc}')"
-	end
-
-	def study_seed (cname, tname, pID, 
-		enrol, withd, vulner, ref, loss)
-	    @db.execute "CREATE TABLE IF NOT EXISTS Study (crcName TEXT, trialName TEXT, 
-	    	pID TEXT, enrolled TEXT, withdrawn TEXT, vulnerable TEXT, refused TEXT, 
-	    	lost TEXT, PRIMARY KEY (crcName, trialName, pID))"
-		@db.execute "INSERT INTO Study VALUES ('#{cname}', '#{tname}', '#{pID}', '#{enrol}', 
-			'#{withd}', '#{vulner}', 
-			'#{ref}', '#{loss}')"
-	end
-
-	rescue SQLite3::Exception => e 
-   		puts "Exception occured"
-    	puts e
-	ensure
- 	   @db.close if @db
-end
-
+g = Entry.new
+g.enrolled = 544
+g.active = 76
+g.withdrawn = 5
+g.completed = 5
+g.refused = 5
+g.lost = 5
+g.save

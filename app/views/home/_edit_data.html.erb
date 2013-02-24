@@ -93,75 +93,20 @@
                         <th>Lost</th>
                     </tr>
                 </thead>
-
-                <tr>
-                    <td style="text-align: left;"><b>Total</b>
-                      </td>
-                    <td><b>390</b></td>
-                    <td ><b>140</b></td>
-                    <td ><b>108</b></td>
-                    <td ><b>57</b></td>
-                    <td ><b>83</b></td>
-                    <td ><b>33</b></td>
-
-                </tr>
+                
                 <% @entries.each do |entry| %>
                 <tr>
                     <td style="text-align: left;"><%= entry.created_at %><a style = "float:right; font-size:13px" href="#">edit  </a></td>
                     
                     <td><%= entry.enrolled %></td>
                     <td><%= entry.active %></td>
+                    <td><%= entry.completed %></td>
                     <td><%= entry.withdrawn %></td>
                     <td><%= entry.refused %></td>
-                    <td>1</td>
                     <td><%= entry.lost %></td>
                 </tr>   
-                <% end %>
-
-                <tr>
-                    <td style="text-align: left;">11/14<a style = "float:right; font-size:13px" href="#">edit  </a>
-                      <i style = "float:right " class="icon-pencil"></i></td>
-                    <td>44</td>
-                    <td>12</td>
-                    <td>10</td>
-                    <td>3</td>
-                    <td>24</td>
-                    <td>4</td>
-                </tr>    
-                <tr>
-                    <td style="text-align: left;">11/07<a style = "float:right; font-size:13px" href="#">edit  </a>
-                      <i style = "float:right " class="icon-pencil"></i></td>
-                    <td>28</td>
-                    <td>44</td>
-                    <td>38</td>
-                    <td>25</td>
-                    <td>24</td>
-                    <td>5</td>
-                </tr>  
-                <tr>
-                    <td style="text-align: left;">10/31<a style = "float:right; font-size:13px" href="#">edit  </a>
-                      <i style = "float:right " class="icon-pencil"></i></td>
-                    <td>28</td>
-                    <td>44</td>
-                    <td>38</td>
-                    <td>25</td>
-                    <td>24</td>
-                    <td>4</td>
-                </tr>    
-                <tr>
-                    <td style="text-align: left;">10/24<a style = "float:right; font-size:13px" href="#">edit  </a>
-                      <i style = "float:right " class="icon-pencil"></i></td>
-                    <td>210</td>
-                    <td>242</td>
-                    <td>121</td>
-                    <td>56</td>
-                    <td>55</td>
-                    <td>88</td>
-                </tr>                             
+                <% end %>                             
             </table>
-
-
-
 
 
             <form class="form-inline" action="#" method="post">
