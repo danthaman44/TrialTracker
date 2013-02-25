@@ -9,30 +9,70 @@
 
 g = Entry.new
 g.input_at = Date.new(2012, 5, 12)
-g.enrolled = 177
-g.active = 117
-g.withdrawn = 117
-g.completed = 117
+g.enrolled = 17
+g.active = 12
+g.withdrawn = 3
+g.completed = 11
 g.refused = 34
 g.lost = 4
 g.save
 
 g = Entry.new
-g.input_at = Date.new(2012, 5, 12)
-g.enrolled = 723
-g.active = 512
-g.withdrawn = 122
-g.completed = 464
-g.refused = 644
-g.lost = 43
+g.input_at = Date.new(2012, 5, 13)
+g.enrolled = 23
+g.active = 12
+g.withdrawn = 8
+g.completed = 4
+g.refused = 4
+g.lost = 3
 g.save
 
 g = Entry.new
-g.input_at = Date.new(2012, 5, 12)
-g.enrolled = 544
-g.active = 76
+g.input_at = Date.new(2012, 5, 14)
+g.enrolled = 44
+g.active = 17
 g.withdrawn = 5
 g.completed = 5
 g.refused = 5
 g.lost = 5
+g.save
+
+g = Entry.new
+g.input_at = Date.new(2012, 5, 15)
+g.enrolled = 32
+g.active = 16
+g.withdrawn = 5
+g.completed = 5
+g.refused = 5
+g.lost = 5
+g.save
+
+g = Entry.new
+g.input_at = Date.new(2012, 5, 16)
+g.enrolled = 22
+g.active = 36
+g.withdrawn = 25
+g.completed = 8
+g.refused = 5
+g.lost = 2
+g.save
+
+g = Entry.new
+g.input_at = Date.new(2012, 5, 17)
+g.enrolled = 24
+g.active = 26
+g.withdrawn = 14
+g.completed = 3
+g.refused = 8
+g.lost = 12
+g.save
+
+g = Entry.new
+g.input_at = Date.new(2012, 5, 18)
+g.enrolled = 12
+g.active = 16
+g.withdrawn = 5
+g.completed = 8
+g.refused = 5
+g.lost = 4
 g.save

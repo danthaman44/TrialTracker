@@ -32,7 +32,7 @@
         <script type="text/javascript">
             google.load("visualization", "1", {packages:["corechart"]});
             google.setOnLoadCallback(drawBarChart);
-            google.setOnLoadCallback(drawLineChart);
+            google.setOnLoadCallback(drawLineCharts);
                         
             function drawBarChart() {
                 // Create and populate the data table.
@@ -56,20 +56,28 @@
                      );
             }
 
-            function drawLineChart() {
-                var data = new google.visualization.DataTable();
+            function drawLineCharts() {
 
-                data.addColumn('date', 'Day');
-                data.addColumn('number', 'Enrolled');
-                data.addColumn('number', 'Projected');
-                  data.addRows([
-                    <% @entries.each do |entry| %> 
-                    [new Date (<%= entry.input_at.year%>, <%= entry.input_at.mon%>, <%= entry.input_at.mday%>),  
-                      <%= entry.enrolled %>,  100],
-                  //[new Date(2012, 0, 2),  130,      110],
-                  //[new Date(2012, 0, 3),  142,      120],
-                  //[new Date(2012, 0, 4),  146,      130],
-                  //[new Date(2012, 0, 5),  150,      140]
+                    //totals_by_week is a Hash of the form:
+                    //{'enrolled'=> [:entry => 12, :entry => 23], 'active'=> [:entry=> 11, :entry=>20]}
+               <% @totals_by_week.each_pair do |category, data| %> 
+
+                var <%= category + '_data' %> = new google.visualization.DataTable();
+
+                <%= category + '_data' %>.addColumn('date', 'Day');
+                <%= category + '_data' %>.addColumn('number', '<%= category %>');
+               <%= category + '_data' %>.addColumn('number', 'Projected');
+                  <%= category + '_data' %>.addRows([
+                    <% $i = 1 %>
+                    <% data.each do |data_point| %>  //data_point is like {:entry => 12}
+                    
+                      <% data_point.each_pair do |entry_date, total_this_week| %> 
+                        //In JS this would look like: [new Date(2012, 0, 3),  142,      120],
+                        [new Date (<%= entry_date.year%>, <%= entry_date.mon%>, <%= entry_date.mday%>),  
+                        <%= total_this_week %>,  <%= ($i * 10) %>],
+                        
+                      <% end%>
+                      <% $i +=1 %> 
                     <% end%>
                   ]);
 
@@ -80,9 +88,10 @@
                   chartArea: {top: 20, left: 60, width:400}
                 };
 
-                var chart = new google.visualization.LineChart(document.getElementById('line_chart'));
-                chart.draw(data, options);
+                new google.visualization.LineChart(document.getElementById("<%= category + '_chart'%>")).draw(<%= category + '_data' %>, options);
 
+            <% end %>
+/*
 
 var data2 = new google.visualization.DataTable();
 
@@ -102,7 +111,7 @@ var data2 = new google.visualization.DataTable();
                 var chart2 = new google.visualization.LineChart(document.getElementById('line_chart_withdrawn'));
                 chart2.draw(data2, options);
                 var chart3 = new google.visualization.LineChart(document.getElementById('line_chart_vulnerable'));
-                chart3.draw(data, options);
+                chart3.draw(data, options);*/
             }
             
             </script>

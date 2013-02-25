@@ -7,14 +7,27 @@ class HomeController < ApplicationController
 
       @categories = ["enrolled", "active", "completed", "withdrawn", "refused", "lost"]
       @totals = Hash.new
+      @totals_by_week = Hash.new
+
       @categories.each do |category|
         total = 0
+        @totals_by_week[category] = []
         @entries.each do |entry|
           total = total + entry[category]
+          @totals_by_week[category] << {entry.input_at => total}
+          logger.info('*********************')
+          logger.info(@totals_by_week[category])
+          logger.info('*********************')
         end
         @totals[category] = total
       end
-logger.info(@totals)
+    logger.info(@totals)
+    logger.info(@totals_by_week)
+
+    #totals_by_week is a Hash of the form:
+    # {'enrolled'=> [:entry => 12, :entry => 23], 'active'=> [:entry=> 11, :entry=>20]}
+    #totals is a Hash of the form:
+    # {'enrolled': 33, 'active': 31}
 
       
       
