@@ -14,40 +14,39 @@
   <fieldset>
 <div class="input-append">
   <%= f.text_field :enrolled,  :class => "span2", :type => 'number',
-              :placeholder => "0" %>
+              :value => "0" %>
   <span class="add-on">Enrolled</span>
 </div>
 
 <div class="input-append">
   <%= f.text_field :active, :class => "span2" , :type => 'number',
-              :placeholder => "0" %>
+              :value => "0" %>
   <span class="add-on">Active</span>
 </div>
 <div class="input-append">
   <%= f.text_field :completed, :class => "span2" , :type => 'number',
-              :placeholder => "0" %>
+              :value => "0" %>
   <span class="add-on">Completed</span>
 </div>
 <div class="input-append">
   <%= f.text_field :withdrawn, :class => "span2" , :type => 'number',
-              :placeholder => "0" %>
+              :value => "0" %>
   <span class="add-on">Withdrawn</span>
 </div>
 <div class="input-append">
   <%= f.text_field :refused, :class => "span2" , :type => 'number',
-              :placeholder => "0" %>
+              :value => "0" %>
   <span class="add-on">Refused</span>
 </div>
 <div class="input-append">
   <%= f.text_field :lost, :class => "span2" , :type => 'number',
-              :placeholder => "0" %>
+              :value => "0" %>
   <span class="add-on">Lost</span>
 </div>
-<%= hidden_field :input_at, :name=>"input_at", :value =>Date.current() %>
 <%= f.submit "Create" %>
 <% end %>
 <br />
-<button type="submit" class="btn btn-success">Create new category</button>
+
 
 <!--
 <form>
@@ -58,7 +57,7 @@
 </form>
 <button type="submit" class="btn btn-success">Submit</button>
 
--->
+
 
 <form class="form-inline" action="#" method="post">
                 <input id="quantity" type="text" class="input-small" placeholder="1" >
@@ -73,7 +72,7 @@
                     <button type="submit" class="btn btn-success">Add Subject(s)</button>
                     </form>
 
-
+-->
 <div class="row-fluid">
 <div class= "span8">
         <h4>My Data</h4> 
