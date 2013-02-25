@@ -43,7 +43,7 @@
               :placeholder => "0" %>
   <span class="add-on">Lost</span>
 </div>
-<%= hidden_field :input_at, 0, :value =>Date.current() %>
+<%= hidden_field :input_at, :name=>"input_at", :value =>Date.current() %>
 <%= f.submit "Create" %>
 <% end %>
 <br />
