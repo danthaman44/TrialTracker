@@ -1,6 +1,6 @@
 class EntriesController < ApplicationController
 	def new
-		@entry = Entry.new
+		@entry = Entry.new :input_at => Date.current()
 	end
 
 	def create
@@ -10,6 +10,7 @@ class EntriesController < ApplicationController
     logger.info(params[:entry]["enrolled"])
     logger.info("test")
     @entry = Entry.new(params[:entry])
+
 		
 	  if @entry.save
       redirect_to 'localhost:3000'
@@ -21,9 +22,16 @@ class EntriesController < ApplicationController
       end
   end
 
+  def update
+
+
+  end
+
   def show
-    logger.info (params[:date])
-    s = Entry.where("created_at = ?", params[:date])
+    logger.info (params[:toDelete])
+    logger.info (params[:toDelete])
+    #params[:toDelete].delete_all;
+    s = Entry.where("id = ?", params[:toDelete])
     logger.info ("------------------------------")
     logger.info (s)
     s.delete_all

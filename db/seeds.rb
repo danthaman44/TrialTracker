@@ -8,6 +8,7 @@
 #!/usr/bin/ruby 
 
 g = Entry.new
+g.input_at = Date.new(2012, 5, 12)
 g.enrolled = 177
 g.active = 117
 g.withdrawn = 117
@@ -17,6 +18,7 @@ g.lost = 4
 g.save
 
 g = Entry.new
+g.input_at = Date.new(2012, 5, 12)
 g.enrolled = 723
 g.active = 512
 g.withdrawn = 122
@@ -26,6 +28,7 @@ g.lost = 43
 g.save
 
 g = Entry.new
+g.input_at = Date.new(2012, 5, 12)
 g.enrolled = 544
 g.active = 76
 g.withdrawn = 5

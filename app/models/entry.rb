@@ -1,5 +1,5 @@
 class Entry < ActiveRecord::Base
-  attr_accessible :enrolled, :active, :completed, :withdrawn, :refused, :lost
+  attr_accessible :input_at, :enrolled, :active, :completed, :withdrawn, :refused, :lost
 
     
 end

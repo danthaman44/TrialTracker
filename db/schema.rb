@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 0) do
     	t.integer "withdrawn"
     	t.integer "refused"
     	t.integer "lost"
-        t.datetime "created_at", :null => false
+        t.date "input_at", :null => false
         t.datetime "updated_at", :null => false
     end
 
