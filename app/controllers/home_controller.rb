@@ -1,33 +1,32 @@
 class HomeController < ApplicationController
   def index
-      logger.info("testing!")
-      puts("testing")
 
       @t = Trial.all
-      logger.info(@t)
-
       @entries = Entry.all
-      logger.info(@entries)
-
       @entry = Entry.new
+
+      @categories = ["enrolled", "active", "completed", "withdrawn", "refused", "lost"]
+      @totals = Hash.new
+      @categories.each do |category|
+        total = 0
+        @entries.each do |entry|
+          total = total + entry[category]
+        end
+        @totals[category] = total
+      end
+logger.info(@totals)
+
+      
       
   end
-  def join_event
-      logger.info("******** Joining Event!**********")
-  end
-  def insert_entry
-    #enrolled = params['enrolled']
-    #withdrawn = params['withdrawn']
-    #time = now()
+  def Show
+    @data = [["harry", 10], ["sue", 19]]
 
-    #Entry.create(:enrolled => enrolled)
+    respond_to do |format|
+      format.js
+    end
   end
-  def update_entry
-    #enrolled = params['enrolled']
-    #withdrawn = params['withdrawn']
-
-  end
-
+  
   def insert_trials
       logger.info("****** Inserting Trials! ******")
       Trial.create(:description => 'new', :tdate => 'Friday', :trialName => 'hers')

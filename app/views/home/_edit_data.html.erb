@@ -92,12 +92,20 @@
                         <th>Lost</th>
                     </tr>
                 </thead>
-                
+                <tr>
+                    <td style="text-align: left;"><b>Total</b></td>
+                   <% @totals.each_pair do |k,v| %>
+                    <td ><b><%= v %></b></td>
+                <% end %> 
+                </tr>
+
+
                 <% @entries.each do |entry| %>
                 <tr>
                     <td style="text-align: left;"><%= entry.input_at %><a style = "float:right; font-size:13px" href="#">edit  </a></td>
                     
                     <td><%= entry.enrolled %></td>
+
                     <td><%= entry.active %></td>
                     <td><%= entry.completed %></td>
                     <td><%= entry.withdrawn %></td>
@@ -108,7 +116,7 @@
                 <% end %>                             
             </table>
 
-
+<!--
             <form class="form-inline" action="#" method="post">
                 <input id="quantity" type="text" class="input-small" placeholder="1" >
                     <div class="btn-group" data-toggle="buttons-checkbox">
@@ -121,113 +129,10 @@
                     
                     <button type="submit" class="btn btn-success">Add Subject(s)</button>
                     </form>
-            <!--
             
             
-            <table class = "table table-hover table-condensed table-bordered" style = "font-size:14px" id="data_table">
-                
-                <thead>
-                    <tr>
-                        <th style="text-align: left;">Subject</th>
-                        <th>Enrolled</th>
-                        <th>Vulnerable</th>
-                        <th>Refused</th>
-                        <th>Withdrawn</th>
-                        <th>Lost</th>
-                    </tr>
-                </thead>
-                <tr>
-                    <td style="text-align: left;">D111<a style = "float:right; font-size:13px" href="#">edit</a>
-                      <i style = "float:right" class="icon-pencil"></i></td>
-                    <td style = "background-color:#D0F0C2">Yes</td>
-                    <td style = "background-color:#d9edf7">No</td>
-                    <td style = "background-color:#d9edf7">No</td>
-                    <td style = "background-color:#d9edf7">No</td>
-                    <td style = "background-color:#d9edf7">No</td>
-
-                </tr>
-                <tr>
-                    <td style="text-align: left;">D112<a style = "float:right; font-size:13px" href="#">edit  </a>
-                      <i style = "float:right " class="icon-pencil"></i></td>
-                    <td style = "background-color:#d9edf7">No</td>
-                    <td style = "background-color:#D0F0C2">Yes</td>
-                    <td style = "background-color:#d9edf7">No</td>
-                    <td style = "background-color:#d9edf7">No</td>
-                    <td style = "background-color:#D0F0C2">Yes</td>
-                </tr>                                </tr>
-                <tr>
-                    <td style="text-align: left;">D113<a style = "float:right; font-size:13px" href="ff">edit</a>
-                      <i style = "float:right " class="icon-pencil"></i></td>
-                    <td style = "background-color:#D0F0C2">Yes</td>
-                    <td style = "background-color:#d9edf7">No</td>
-                    <td style = "background-color:#D0F0C2">Yes</td>
-                    <td style = "background-color:#d9edf7">No</td>
-                    <td style = "background-color:#d9edf7">No</td>
-                </tr>
-                <tr>
-                    <td style="text-align: left;">D114<a style = "float:right; font-size:13px" href="#">edit</a>
-                      <i style = "float:right " class="icon-pencil"></i></td>
-                    <td style = "background-color:#D0F0C2">Yes</td>
-                    <td style = "background-color:#d9edf7">No</td>
-                    <td style = "background-color:#D0F0C2">Yes</td>
-                    <td style = "background-color:#d9edf7">No</td>
-                    <td style = "background-color:#d9edf7">No</td>
-                </tr>
-                <tr>
-                    <td style="text-align: left;">D115<a style = "float:right; font-size:13px" href="#">edit</a>
-                      <i style = "float:right " class="icon-pencil"></i></td>
-                    <td style = "background-color:#D0F0C2">Yes</td>
-                    <td style = "background-color:#d9edf7">No</td>
-                    <td style = "background-color:#D0F0C2">Yes</td>
-                    <td style = "background-color:#d9edf7">No</td>
-                    <td style = "background-color:#d9edf7">No</td>
-                </tr>
-                <tr>
-                    <td style="text-align: left;">D116<a style = "float:right; font-size:13px" href="#">edit</a>
-                      <i style = "float:right " class="icon-pencil"></i></td>
-                    <td style = "background-color:#D0F0C2">Yes</td>
-                    <td style = "background-color:#d9edf7">No</td>
-                    <td style = "background-color:#D0F0C2">Yes</td>
-                    <td style = "background-color:#d9edf7">No</td>
-                    <td style = "background-color:#d9edf7">No</td>
-                </tr>
-                <tr>
-                    <td style="text-align: left;">D117<a style = "float:right; font-size:13px" href="#">edit</a>
-                      <i style = "float:right " class="icon-pencil"></i></td>
-                    <td style = "background-color:#D0F0C2">Yes</td>
-                    <td style = "background-color:#d9edf7">No</td>
-                    <td style = "background-color:#D0F0C2">Yes</td>
-                    <td style = "background-color:#d9edf7">No</td>
-                    <td style = "background-color:#d9edf7">No</td>
-                </tr>
-                <tr>
-                    <td style="text-align: left;">D118<a style = "float:right; font-size:13px" href="#">edit</a>
-                      <i style = "float:right " class="icon-pencil"></i></td>
-                    <td style = "background-color:#D0F0C2">Yes</td>
-                    <td style = "background-color:#d9edf7">No</td>
-                    <td style = "background-color:#D0F0C2">Yes</td>
-                    <td style = "background-color:#d9edf7">No</td>
-                    <td style = "background-color:#d9edf7">No</td>
-                </tr>
-                <tr>
-                    <td style="text-align: left;">D119<a style = "float:right; font-size:13px" href="#">edit</a>
-                      <i style = "float:right " class="icon-pencil"></i></td>
-                    <td style = "background-color:#D0F0C2">Yes</td>
-                    <td style = "background-color:#d9edf7">No</td>
-                    <td style = "background-color:#D0F0C2">Yes</td>
-                    <td style = "background-color:#d9edf7">No</td>
-                    <td style = "background-color:#d9edf7">No</td>
-                </tr>
-                <tr>
-                    <td style="text-align: left;">D120<a style = "float:right; font-size:13px" href="#">edit</a>
-                      <i style = "float:right " class="icon-pencil"></i></td>
-                    <td style = "background-color:#D0F0C2">Yes</td>
-                    <td style = "background-color:#d9edf7">No</td>
-                    <td style = "background-color:#D0F0C2">Yes</td>
-                    <td style = "background-color:#d9edf7">No</td>
-                    <td style = "background-color:#d9edf7">No</td>
-                </tr>
-            </table>
+            
+            
             -->
             
         </div>

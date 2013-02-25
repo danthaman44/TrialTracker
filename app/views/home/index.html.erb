@@ -39,13 +39,15 @@
                 var data = google.visualization.arrayToDataTable(
                     [
                     ['Total', 'Subjects'],
-                    [ 'Enrolled', 633],
-                    [ 'Potentially Vulnerable', 110] , 
-                    ['Refused', 97],
-                    ['Withdrawn', 381],
-                    ['Lost', 265],  
-                    ['Withdrawn by PI', 301],
-                    ['Completed', 165],  
+                    <% @totals.each_pair do |k,v| %>
+                    [ '<%= k.capitalize %>', <%= v %> ],
+                    <% end %>
+                    //[ 'Potentially Vulnerable', 110] , 
+                    //['Refused', 97],
+                    //['Withdrawn', 381],
+                    //['Lost', 265],  
+                    //['Withdrawn by PI', 301],
+                    //['Completed', 165],  
                     
                     ]);
                 
