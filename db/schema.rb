@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(:version => 0) do
     create_table "entries", :force => true do |t|
     	t.integer "enrolled"
     	t.integer  "active"
-    	t.integer   "completed" 
+    	t.integer   "completed"
     	t.integer "withdrawn"
     	t.integer "refused"
     	t.integer "lost"
