@@ -11,25 +11,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
-    
-    create_table "trials", :force => true do |t|
-    	t.text "trialName"
-    	t.text  "tdate"
-    	t.text   "description" 
-        t.datetime "created_at", :null => false
-        t.datetime "updated_at", :null => false
-    end
+ActiveRecord::Schema.define(:version => 20130225030732) do
 
-    create_table "entries", :force => true do |t|
-    	t.integer "enrolled"
-    	t.integer  "active"
-    	t.integer   "completed"
-    	t.integer "withdrawn"
-    	t.integer "refused"
-    	t.integer "lost"
-        t.date "input_at", :null => false
-        t.datetime "updated_at", :null => false
-    end
+  create_table "entries", :force => true do |t|
+    t.integer  "enrolled"
+    t.integer  "active"
+    t.integer  "completed"
+    t.integer  "withdrawn"
+    t.integer  "refused"
+    t.integer  "lost"
+    t.date     "input_at",   :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "trials", :force => true do |t|
+    t.string   "trialName"
+    t.date     "endDate"
+    t.integer  "enrolledGoal"
+    t.integer  "completedGoal"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
 
 end

@@ -2,7 +2,9 @@ class CreateTrials < ActiveRecord::Migration
   def change
     create_table :trials do |t|
       t.string :trialName
-      t.integer :trialID
+      t.date :endDate
+      t.integer :enrolledGoal
+      t.integer :completedGoal
 
       t.timestamps
     end

@@ -1,4 +1,4 @@
-
+ 
 <html>
     <head>
         <meta charset="utf-8">
@@ -58,15 +58,19 @@
 
             function drawLineCharts() {
 
+               
+                
                     //totals_by_week is a Hash of the form:
                     //{'enrolled'=> [:entry => 12, :entry => 23], 'active'=> [:entry=> 11, :entry=>20]}
                <% @totals_by_week.each_pair do |category, data| %> 
+                var <%= category + '_button'%> = document.getElementById("<%= category + '_button'%>");
+
 
                 var <%= category + '_data' %> = new google.visualization.DataTable();
 
                 <%= category + '_data' %>.addColumn('date', 'Day');
                 <%= category + '_data' %>.addColumn('number', '<%= category %>');
-               <%= category + '_data' %>.addColumn('number', 'Projected');
+               <%= category + '_data' %>.addColumn('number', 'Target');
                   <%= category + '_data' %>.addRows([
                     <% $i = 1 %>
                     <% data.each do |data_point| %>  //data_point is like {:entry => 12}
@@ -81,37 +85,56 @@
                     <% end%>
                   ]);
 
+                var <%= category + '_data2' %> = new google.visualization.DataTable();
+
+                <%= category + '_data2' %>.addColumn('date', 'Day');
+                <%= category + '_data2' %>.addColumn('number', '<%= category %>');
+               <%= category + '_data2' %>.addColumn('number', 'Target');
+               <%= category + '_data2' %>.addColumn('number', 'Projected');
+                  <%= category + '_data2' %>.addRows([
+                    <% $i = 1 %>
+                    <% data.each do |data_point| %>  //data_point is like {:entry => 12}
+                    
+                      <% data_point.each_pair do |entry_date, total_this_week| %> 
+                        //In JS this would look like: [new Date(2012, 0, 3),  142,      120],
+                        [new Date (<%= entry_date.year%>, <%= entry_date.mon%>, <%= entry_date.mday%>),  
+                        <%= total_this_week %>,  <%= ($i * 10) %>, <%= @averages[category] %>],
+                        
+                      <% end%>
+                      <% $i +=1 %> 
+                    <% end%>
+                  ]);
+
                 var options = {
                   width:500, height:400,
                   backgroundColor:'#EDEDED',
-                  legend: {position: 'none'},
-                  chartArea: {top: 20, left: 60, width:400}
+                  //legend: {position: 'none'},
+                  chartArea: {top: 20, left: 60, width:400},
+                  animation: {duration: 1000, easing: 'in'}
                 };
 
-                new google.visualization.LineChart(document.getElementById("<%= category + '_chart'%>")).draw(<%= category + '_data' %>, options);
+                var <%= category + '_chart'%> = new google.visualization.LineChart(document.getElementById("<%= category + '_chart'%>"))
 
+                function draw<%= category + '_chart'%>(data) {
+      // Disabling the button while the chart is drawing.
+      <%= category + '_button'%>.disabled = true;
+      google.visualization.events.addListener(<%= category + '_chart'%>, 'ready',
+          function() {
+            <%= category + '_button'%>.disabled = false;
+          });
+      <%= category + '_chart'%>.draw(data, options);
+    }
+                
+
+
+
+            <%= category + '_button'%>.onclick = function() {
+                draw<%= category + '_chart'%>(<%= category + '_data2' %>);
+                }
+            
+            draw<%= category + '_chart'%>(<%= category + '_data' %>);
             <% end %>
-/*
 
-var data2 = new google.visualization.DataTable();
-
-                data2.addColumn('date', 'Day');
-                data2.addColumn('number', 'Withdrawn');
-                data2.addColumn('number', 'Projected');
-
-                data2.addRows([
-                 <% @entries.each do |entry| %> 
-                    [new Date (<%= entry.input_at.year%>, <%= entry.input_at.mon%>, <%= entry.input_at.mday%>),  
-                      <%= entry.withdrawn %>,  100],
-                  <% end%>
-                ]);
-
-
-
-                var chart2 = new google.visualization.LineChart(document.getElementById('line_chart_withdrawn'));
-                chart2.draw(data2, options);
-                var chart3 = new google.visualization.LineChart(document.getElementById('line_chart_vulnerable'));
-                chart3.draw(data, options);*/
             }
             
             </script>

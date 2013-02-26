@@ -7,6 +7,13 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #!/usr/bin/ruby 
 
+t = Trial.new
+t.trialName = 'Cancer'
+t.endDate = Date.new(2012, 7, 30) 
+t.enrolledGoal = 500
+t.completedGoal = 250
+t.save
+
 g = Entry.new
 g.input_at = Date.new(2012, 5, 12)
 g.enrolled = 17
@@ -18,7 +25,7 @@ g.lost = 4
 g.save
 
 g = Entry.new
-g.input_at = Date.new(2012, 5, 13)
+g.input_at = Date.new(2012, 5, 19)
 g.enrolled = 23
 g.active = 12
 g.withdrawn = 8
@@ -28,7 +35,7 @@ g.lost = 3
 g.save
 
 g = Entry.new
-g.input_at = Date.new(2012, 5, 14)
+g.input_at = Date.new(2012, 5, 26)
 g.enrolled = 44
 g.active = 17
 g.withdrawn = 5
@@ -38,7 +45,7 @@ g.lost = 5
 g.save
 
 g = Entry.new
-g.input_at = Date.new(2012, 5, 15)
+g.input_at = Date.new(2012, 6, 1)
 g.enrolled = 32
 g.active = 16
 g.withdrawn = 5
@@ -48,7 +55,7 @@ g.lost = 5
 g.save
 
 g = Entry.new
-g.input_at = Date.new(2012, 5, 16)
+g.input_at = Date.new(2012, 6, 8)
 g.enrolled = 22
 g.active = 36
 g.withdrawn = 25
@@ -58,7 +65,7 @@ g.lost = 2
 g.save
 
 g = Entry.new
-g.input_at = Date.new(2012, 5, 17)
+g.input_at = Date.new(2012, 6, 15)
 g.enrolled = 24
 g.active = 26
 g.withdrawn = 14
@@ -68,7 +75,7 @@ g.lost = 12
 g.save
 
 g = Entry.new
-g.input_at = Date.new(2012, 5, 18)
+g.input_at = Date.new(2012, 6, 22)
 g.enrolled = 12
 g.active = 16
 g.withdrawn = 5

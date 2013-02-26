@@ -48,17 +48,17 @@
     <div class="row-fluid">
         <div class= "span8">
 
-        <h4>Subjects <%=category %></h4> 
+        <h4>Subjects <%=category.capitalize %></h4> 
          <div id="<%=category + '_chart' %>"></div>
         </div>
 
     <div class= "span4">
 
          <table class="table table-condensed table-hover" style="display:inline; float:right; margin-top:10px">
-            <tr style="border-top: 2px solid #ccc;"><th style = "font-size:14px;">Total <%=category %></th><td style = "font-size:14px; text-align: right;">218</td></tr>
+            <tr style="border-top: 2px solid #ccc;"><th style = "font-size:14px;">Total <%=category.capitalize %></th><td style = "font-size:14px; text-align: right;">218</td></tr>
 
-            <% if trial.enrolledGoal != null %>
-            <tr><th style = "font-size:14px;">Goal<a href = "#">change</a></th><td style = "font-size:14px; text-align: right;"><%= trial.enrolledGoal %></td></tr>
+            <% if (@first_trial.enrolledGoal != nil) %>
+            <tr><th style = "font-size:14px;">Goal <a style = "font-size:13px; font-weight:normal" href = "#">change</a></th><td style = "font-size:14px; text-align: right;"><%= @first_trial.enrolledGoal %></td></tr>
 
             <% else %>
             <tr><th><a href="#addTrialModal" role="button" class="btn btn-success" data-toggle="modal">Set Goal</a></th><td></td></tr>
@@ -70,6 +70,19 @@
 
          </table>
     </div>
+    </div>
+    <div class="row-fluid">
+        <div class= "span8">
+            <form class="form-inline" action="#" method="post">
+                    <div class="btn-group" data-toggle="buttons-checkbox">
+                        <button type="button" class="btn btn-primary" id = <%= category + 'progess_button'%>>Progress</button>
+                        <button type="button" class="btn btn-primary" id =<%= category + 'projected_button'%>>Projected</button>
+                        <button type="button" class="btn btn-primary" id= <%= category + 'target_button'%>>Target</button>
+                    </div>
+                    
+                    </form>
+            <button id = <%= category + '_button'%>>Add target</button>
+        </div>
     </div>
 </div> <!-- end Category content -->
 
