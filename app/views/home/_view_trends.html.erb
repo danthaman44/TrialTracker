@@ -56,7 +56,14 @@
 
          <table class="table table-condensed table-hover" style="display:inline; float:right; margin-top:10px">
             <tr style="border-top: 2px solid #ccc;"><th style = "font-size:14px;">Total <%=category %></th><td style = "font-size:14px; text-align: right;">218</td></tr>
-            <tr><th style = "font-size:14px;">Goal</th><td style = "font-size:14px; text-align: right;">300</td></tr>
+
+            <% if trial.enrolledGoal != null %>
+            <tr><th style = "font-size:14px;">Goal<a href = "#">change</a></th><td style = "font-size:14px; text-align: right;"><%= trial.enrolledGoal %></td></tr>
+
+            <% else %>
+            <tr><th><a href="#addTrialModal" role="button" class="btn btn-success" data-toggle="modal">Set Goal</a></th><td></td></tr>
+            <% end %>
+
             <tr><th style = "font-size:14px">Avg/Month</th><td style = "font-size:14px; text-align: right;">62.5</td></tr>
             <tr><th style = "font-size:14px">Avg/Week</th><td style = "font-size:14px; text-align: right;">19.3</td></tr>
             <tr><th style = "font-size:14px">Est. by Jan 19th</th><td style = "font-size:14px; text-align: right;"> 280</td></tr>
