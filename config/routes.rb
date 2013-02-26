@@ -1,4 +1,7 @@
 FirstApp::Application.routes.draw do
+  resources :splashes
+
+
   get "home/index"
 
   # The priority is based upon order of creation:
@@ -55,9 +58,13 @@ FirstApp::Application.routes.draw do
 
    resources :trials
 
+   resources :splash
+
    match '/entries/delete' => 'entries#delete'
 
    root :to => 'home#index'
+
+   match '/' => "home#index", :as => :home
 
    match '/join_event' => 'home#join_event', :as => 'join_event'
    match '/insert_trials' => 'home#insert_trials', :as => 'insert_trials'
