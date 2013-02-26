@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  trialName: 
+  trialID: 1
+
+two:
+  trialName: 
+  trialID: 1
