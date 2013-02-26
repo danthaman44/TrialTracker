@@ -41,7 +41,9 @@
 
 <% @totals_by_week.each_pair do |category, data| %> 
 
-<div class="tab-pane fade in active" id="<%=category %>">
+<div class="tab-pane fade in<% if category== 'enrolled' %> 
+    <%= 'active' %>
+    <% end %>" id="<%=category %>">
 
     <div class="row-fluid">
         <div class= "span8">
