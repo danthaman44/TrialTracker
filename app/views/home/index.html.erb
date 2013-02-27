@@ -98,7 +98,7 @@
                       <% data_point.each_pair do |entry_date, total_this_week| %> 
                         //In JS this would look like: [new Date(2012, 0, 3),  142,      120],
                         [new Date (<%= entry_date.year%>, <%= entry_date.mon%>, <%= entry_date.mday%>),  
-                        <%= total_this_week %>,  <%= ($i * 10) %>, <%= @averages[category] %>],
+                        <%= total_this_week %>,  <%= ($i * 10) %>, <%= (@averages[category] * $i) %>],
                         
                       <% end%>
                       <% $i +=1 %> 
