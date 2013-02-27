@@ -1,7 +1,8 @@
 class HomeController < ApplicationController
   def index
 
-      @t = Trial.all
+   
+      @trial = Trial.new
       @entries = Entry.all
 
       @first_trial = Trial.all
@@ -59,4 +60,11 @@ class HomeController < ApplicationController
       redirect_to "localhost:3000"
       #redirect_to index
    end
+
+   def showSplash 
+      redirect_to "localhost:3000"
+  
+   end
+
+
 end

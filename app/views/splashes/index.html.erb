@@ -1,0 +1,139 @@
+<html>
+
+<head>
+	<link href="/assets/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
+	<link href="/assets/bootstrap-responsive.css" rel="stylesheet">
+	<style type="text/css">
+		body {background-image:url('/assets/medical_billing.png');}
+		h1 {font-size:500%;
+			color: black ;}
+                               
+     </style>
+</head>
+
+
+<body>
+	   <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="#">TrialTracker</a>
+                    <div class="nav-collapse collapse">
+                       <!--  <p class="navbar-text pull-right">
+                        Logged in as <a href="#" class="navbar-link">Username</a>
+                        </p> -->
+                        <form class = "navbar-form pull-right"  method = "post">
+											<input style = "width: 140px; height: 30px" class="input-small" id = "email" type="text" name = "email" placeholder="Email" />
+											<input style = "width: 140px; height: 30px" class="input-small" id = "password" type="password" name = "password" placeholder= "Password" />
+											<input type = "hidden" name = "activationkey" value = "" />
+						<button class = "btn" type = "submit">Sign In</button>
+			          </form>	
+
+                        <ul class="nav">
+                            <li> <%=link_to("Home", home_path) %> </li>
+                     
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+        <div>
+        	&nbsp
+        </div>
+        <div>
+        	&nbsp
+        </div>
+          <div>
+        	&nbsp
+        </div>
+    
+
+        <div class="container-fluid">
+			  <div class="row-fluid">
+
+
+			  	<div class = "span8">
+			  		<div class = "offset2">
+			  		<h1> &nbsp <h1>
+			  				
+			  		<h1> Clinical Research.</h1>
+			  		<h1> &nbsp <h1>
+			  		<h1> Simplified </h1>
+
+		
+			  		</div>
+
+			  	</div>
+		
+
+			<div class = "span4">
+			  
+			 
+
+			<div style="-moz-border-radius: 19px;
+				-webkit-border-radius: 19px;
+				border-radius: 19px;
+				/*IE 7 AND 8 DO NOT SUPPORT BORDER RADIUS*/
+				-moz-box-shadow: 0px 0px 17px #777;
+				-webkit-box-shadow: 0px 0px 17px #777;
+				box-shadow: 0px 0px 17px #777;
+				/*IE 7 AND 8 DO NOT SUPPORT BLUR PROPERTY OF SHADOWS*/
+				opacity: 0.9;
+				-ms-filter: progid: DXImageTransform.Microsoft.Alpha(Opacity = 90);
+				/*-ms-filter must come before filter*/
+				filter: alpha(opacity = 90);padding-top: 30px; padding-left: 30px; padding-right: 30px; padding-bottom: 50px; background-color:#FFF"><h3 style="
+				margin-bottom: 10px;
+				">New to TrialTracker?<br><span style="font-size: 26px;">Sign up</span></h3>
+					<form method="post">
+					<input style="height: 30px; width: 255px" class="xlarge" id="xlInput" name="fullname" size="25" type="text" value="" placeholder="First Name">
+					<input style="height: 30px; width: 255px" class="xlarge" type="password" id="xlInput" name="password1" size="25" value="" placeholder="Last Name">
+					<input style="height: 30px; width: 255px" class="xlarge" type="password" id="xlInput" name="password2" size="25" placeholder="Password (at least 6 characters)">
+					<input style="height: 30px; width: 255px" class="xlarge" id="xlInput" name="emailaddress" size="25" type="text" value="" placeholder="Retype Password">
+					<input style="height: 30px; width: 255px" class="xlarge" id="xlInput" name="cellnumber" maxlength="10" size="25" type="text" value="" placeholder="Email Address">
+								<!-- <p style="font-family: Delius">Cell Phone Service Provider (For FREE text message cab updates)</p> -->
+								<!-- <p><select class="medium" name="service_provider" id="service_provider">
+									<option> Verizon Wireless </option>
+									<option> AT&amp;T </option>
+									<option> T-Mobile </option>
+									<option> Sprint </option>
+									<option> I would rather not </option>
+									
+								</select></p> -->
+					<p><input type="checkbox" id="emailupdates" name="emailupdates" value="emailupdates" checked="checked"> Receive Email Updates</p>
+						<h5>By clicking Sign Up, you agree to our <a href="http://koalacab.com/index.php/site/terms_of_use">Terms</a> and <a href="http://koalacab.com/index.php/site/privacy_policy">Privacy Policy</a>.</h5>
+						<br>
+						<input type="hidden" name="form_submitted" value="1">
+						<button style="width: 240px; height: 50px" class="btn btn-primary" type="submit"><h2 style="font-family: Delius">Sign Up</h2>
+						<div style="text-align: center; padding-top: 25px" class="fb-like fb_edge_widget_with_comment fb_iframe_widget" data-href="https://www.facebook.com/pages/KoalaCab/171718282927467" data-send="true" data-width="10" data-show-faces="false" data-font="verdana" fb-xfbml-state="rendered"><span style="height: 28px; width: 285px;"><iframe id="f1ca5853e" name="f79f26ea" scrolling="no" style="border: none; overflow: hidden; height: 28px; width: 285px;" title="Like this content on Facebook." class="fb_ltr" src="http://www.facebook.com/plugins/like.php?api_key=216543338370998&amp;locale=en_GB&amp;sdk=joey&amp;channel_url=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter.php%3Fversion%3D18%23cb%3Df36f2ba9%26origin%3Dhttp%253A%252F%252Fkoalacab.com%252Ff42f7966%26domain%3Dkoalacab.com%26relation%3Dparent.parent&amp;href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FKoalaCab%2F171718282927467&amp;node_type=link&amp;width=285&amp;font=verdana&amp;layout=standard&amp;colorscheme=light&amp;show_faces=false&amp;send=true&amp;extended_social_context=false"></iframe></span></div>
+	
+				</button></form></div>
+
+				  </div>
+			  </div>
+			</div>
+			<div>
+				&nbsp
+			<div>
+			<div>
+				&nbsp
+			<div>
+
+			<footer>
+                <p>&copy; Company 2012</p>
+            </footer>
+
+
+
+         <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="/assets/bootstrap.min.js"></script>
+</body>
+
+
+
+</html>
