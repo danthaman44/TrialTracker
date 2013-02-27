@@ -13,7 +13,12 @@
 
 ActiveRecord::Schema.define(:version => 20130226052437) do
 
-  create_table "entries", :force => true do |t|
+  create_table "splashes", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+create_table "entries", :force => true do |t|
     t.integer  "enrolled"
     t.integer  "active"
     t.integer  "completed"
@@ -23,12 +28,7 @@ ActiveRecord::Schema.define(:version => 20130226052437) do
     t.date     "input_at",   :null => false
     t.datetime "updated_at", :null => false
   end
-
-  create_table "splashes", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
+  
   create_table "trials", :force => true do |t|
     t.integer  "trialID"
     t.string   "trialName"
