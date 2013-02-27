@@ -1,0 +1,185 @@
+<% @totals_by_week.each_pair do |category, data| %>
+var <%= category + '_data'%> = new Array();
+
+var <%= category + '_0_data' %> = new google.visualization.DataTable();
+
+                <%= category + '_0_data' %>.addColumn('date', 'Day');
+                <%= category + '_0_data' %>.addColumn('number', '<%= category %>');
+               <%= category + '_0_data' %>.addColumn('number', 'Target');
+               <%= category + '_0_data' %>.addColumn('number', 'Projected');
+                  <%= category + '_0_data' %>.addRows([
+                    <% $i = 1 %>
+                    <% data.each do |data_point| %>  //data_point is like {:entry => 12}
+                    
+                      <% data_point.each_pair do |entry_date, total_this_week| %> 
+                        //In JS this would look like: [new Date(2012, 0, 3),  142,      120],
+                        
+                        [new Date (<%= entry_date.year%>, <%= entry_date.mon%>, <%= entry_date.mday%>),  
+                        ,  , ,],
+                        
+                      <% end%>
+                      <% $i +=1 %> 
+                    <% end%>
+                  ]);
+<%= category + '_data' %>[0] = <%= category + '_0_data' %>
+
+var <%= category + '_1_data' %> = new google.visualization.DataTable();
+
+                <%= category + '_1_data' %>.addColumn('date', 'Day');
+                <%= category + '_1_data' %>.addColumn('number', '<%= category %>');
+               <%= category + '_1_data' %>.addColumn('number', 'Target');
+               <%= category + '_1_data' %>.addColumn('number', 'Projected');
+                  <%= category + '_1_data' %>.addRows([
+                    <% $i = 1 %>
+                    <% data.each do |data_point| %>  //data_point is like {:entry => 12}
+                    
+                      <% data_point.each_pair do |entry_date, total_this_week| %> 
+                        //In JS this would look like: [new Date(2012, 0, 3),  142,      120],
+                        
+                        [new Date (<%= entry_date.year%>, <%= entry_date.mon%>, <%= entry_date.mday%>),  
+                        ,  , <%= (@averages[category] * $i) %>],
+                        
+                      <% end%>
+                      <% $i +=1 %> 
+                    <% end%>
+                  ]);
+<%= category + '_data' %>[1] = <%= category + '_1_data' %>
+
+
+var <%= category + '_2_data' %> = new google.visualization.DataTable();
+
+                <%= category + '_2_data' %>.addColumn('date', 'Day');
+                <%= category + '_2_data' %>.addColumn('number', '<%= category %>');
+               <%= category + '_2_data' %>.addColumn('number', 'Target');
+               <%= category + '_2_data' %>.addColumn('number', 'Projected');
+                  <%= category + '_2_data' %>.addRows([
+                    <% $i = 1 %>
+                    <% data.each do |data_point| %>  //data_point is like {:entry => 12}
+                    
+                      <% data_point.each_pair do |entry_date, total_this_week| %> 
+                        //In JS this would look like: [new Date(2012, 0, 3),  142,      120],
+                        [new Date (<%= entry_date.year%>, <%= entry_date.mon%>, <%= entry_date.mday%>),  
+                        ,  <%= ($i * 10) %>, , ],
+                        
+                      <% end%>
+                      <% $i +=1 %> 
+                    <% end%>
+                  ]);
+<%= category + '_data' %>[2] = <%= category + '_2_data' %>
+
+
+var <%= category + '_3_data' %> = new google.visualization.DataTable();
+
+                <%= category + '_3_data' %>.addColumn('date', 'Day');
+                <%= category + '_3_data' %>.addColumn('number', '<%= category %>');
+               <%= category + '_3_data' %>.addColumn('number', 'Target');
+               <%= category + '_3_data' %>.addColumn('number', 'Projected');
+                  <%= category + '_3_data' %>.addRows([
+                    <% $i = 1 %>
+                    <% data.each do |data_point| %>  //data_point is like {:entry => 12}
+                    
+                      <% data_point.each_pair do |entry_date, total_this_week| %> 
+                        //In JS this would look like: [new Date(2012, 0, 3),  142,      120],
+                        [new Date (<%= entry_date.year%>, <%= entry_date.mon%>, <%= entry_date.mday%>),  
+                         ,  <%= ($i * 10) %>, <%= (@averages[category] * $i) %>],
+                        
+                      <% end%>
+                      <% $i +=1 %> 
+                    <% end%>
+                  ]);
+<%= category + '_data' %>[3] = <%= category + '_3_data' %>
+
+
+var <%= category + '_4_data' %> = new google.visualization.DataTable();
+
+                <%= category + '_4_data' %>.addColumn('date', 'Day');
+                <%= category + '_4_data' %>.addColumn('number', '<%= category %>');
+               <%= category + '_4_data' %>.addColumn('number', 'Target');
+               <%= category + '_4_data' %>.addColumn('number', 'Projected');
+                  <%= category + '_4_data' %>.addRows([
+                    <% $i = 1 %>
+                    <% data.each do |data_point| %>  //data_point is like {:entry => 12}
+                    
+                      <% data_point.each_pair do |entry_date, total_this_week| %> 
+                        //In JS this would look like: [new Date(2012, 0, 3),  142,      120],
+                        [new Date (<%= entry_date.year%>, <%= entry_date.mon%>, <%= entry_date.mday%>),  
+                        
+                        <%= total_this_week %>,  , ,],
+                        
+                      <% end%>
+                      <% $i +=1 %> 
+                    <% end%>
+                  ]);
+<%= category + '_data' %>[4] = <%= category + '_4_data' %>
+
+
+var <%= category + '_5_data' %> = new google.visualization.DataTable();
+
+                <%= category + '_5_data' %>.addColumn('date', 'Day');
+                <%= category + '_5_data' %>.addColumn('number', '<%= category %>');
+               <%= category + '_5_data' %>.addColumn('number', 'Target');
+               <%= category + '_5_data' %>.addColumn('number', 'Projected');
+                  <%= category + '_5_data' %>.addRows([
+                    <% $i = 1 %>
+                    <% data.each do |data_point| %>  //data_point is like {:entry => 12}
+                    
+                      <% data_point.each_pair do |entry_date, total_this_week| %> 
+                        //In JS this would look like: [new Date(2012, 0, 3),  142,      120],
+                        [new Date (<%= entry_date.year%>, <%= entry_date.mon%>, <%= entry_date.mday%>),  
+                        
+                        <%= total_this_week %>,  , <%= (@averages[category] * $i) %>],
+                        
+                      <% end%>
+                      <% $i +=1 %> 
+                    <% end%>
+                  ]);
+<%= category + '_data' %>[5] = <%= category + '_5_data' %>
+
+
+
+
+var <%= category + '_6_data' %> = new google.visualization.DataTable();
+
+                <%= category + '_6_data' %>.addColumn('date', 'Day');
+                <%= category + '_6_data' %>.addColumn('number', '<%= category %>');
+               <%= category + '_6_data' %>.addColumn('number', 'Target');
+                <%= category + '_6_data' %>.addColumn('number', 'Projected');
+                  <%= category + '_6_data' %>.addRows([
+                    <% $i = 1 %>
+                    <% data.each do |data_point| %>  //data_point is like {:entry => 12}
+                    
+                      <% data_point.each_pair do |entry_date, total_this_week| %> 
+                        //In JS this would look like: [new Date(2012, 0, 3),  142,      120],
+                        [new Date (<%= entry_date.year%>, <%= entry_date.mon%>, <%= entry_date.mday%>),  
+                        <%= total_this_week %>,  <%= ($i * 10) %>, ,],
+                        
+                      <% end%>
+                      <% $i +=1 %> 
+                    <% end%>
+                  ]);
+
+                  <%= category + '_data' %>[6] = <%= category + '_6_data' %>
+
+var <%= category + '_7_data' %> = new google.visualization.DataTable();
+
+                <%= category + '_7_data' %>.addColumn('date', 'Day');
+                <%= category + '_7_data' %>.addColumn('number', '<%= category %>');
+               <%= category + '_7_data' %>.addColumn('number', 'Target');
+               <%= category + '_7_data' %>.addColumn('number', 'Projected');
+                  <%= category + '_7_data' %>.addRows([
+                    <% $i = 1 %>
+                    <% data.each do |data_point| %>  //data_point is like {:entry => 12}
+                    
+                      <% data_point.each_pair do |entry_date, total_this_week| %> 
+                        //In JS this would look like: [new Date(2012, 0, 3),  142,      120],
+                        [new Date (<%= entry_date.year%>, <%= entry_date.mon%>, <%= entry_date.mday%>),  
+                        <%= total_this_week %>,  <%= ($i * 10) %>, <%= (@averages[category] * $i) %>],
+                        
+                      <% end%>
+                      <% $i +=1 %> 
+                    <% end%>
+                  ]);
+<%= category + '_data' %>[7] = <%= category + '_7_data' %>
+
+
+                  <%end %>

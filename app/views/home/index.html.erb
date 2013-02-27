@@ -57,82 +57,83 @@
             }
 
             function drawLineCharts() {
-
-               
+              
+               <%= render "make_graph_data" %> // makes 7 data sets, for every combination of the three buttons
+               // they are called enrolled_1_data, enrolled_2_data, etc
                 
                     //totals_by_week is a Hash of the form:
                     //{'enrolled'=> [:entry => 12, :entry => 23], 'active'=> [:entry=> 11, :entry=>20]}
                <% @totals_by_week.each_pair do |category, data| %> 
-                var <%= category + '_button'%> = document.getElementById("<%= category + '_button'%>");
+                var <%= category + '_total' %> = 4; // we start with just the 4 button pressed
+                var <%= category + '_button'%> = document.getElementById("<%= category + '_4_button'%>");
+                var <%= category + '_button'%> = document.getElementById("<%= category + '_2_button'%>");
+                var <%= category + '_button'%> = document.getElementById("<%= category + '_1_button'%>");
 
-
-                var <%= category + '_data' %> = new google.visualization.DataTable();
-
-                <%= category + '_data' %>.addColumn('date', 'Day');
-                <%= category + '_data' %>.addColumn('number', '<%= category %>');
-               <%= category + '_data' %>.addColumn('number', 'Target');
-                  <%= category + '_data' %>.addRows([
-                    <% $i = 1 %>
-                    <% data.each do |data_point| %>  //data_point is like {:entry => 12}
-                    
-                      <% data_point.each_pair do |entry_date, total_this_week| %> 
-                        //In JS this would look like: [new Date(2012, 0, 3),  142,      120],
-                        [new Date (<%= entry_date.year%>, <%= entry_date.mon%>, <%= entry_date.mday%>),  
-                        <%= total_this_week %>,  <%= ($i * 10) %>],
-                        
-                      <% end%>
-                      <% $i +=1 %> 
-                    <% end%>
-                  ]);
-
-                var <%= category + '_data2' %> = new google.visualization.DataTable();
-
-                <%= category + '_data2' %>.addColumn('date', 'Day');
-                <%= category + '_data2' %>.addColumn('number', '<%= category %>');
-               <%= category + '_data2' %>.addColumn('number', 'Target');
-               <%= category + '_data2' %>.addColumn('number', 'Projected');
-                  <%= category + '_data2' %>.addRows([
-                    <% $i = 1 %>
-                    <% data.each do |data_point| %>  //data_point is like {:entry => 12}
-                    
-                      <% data_point.each_pair do |entry_date, total_this_week| %> 
-                        //In JS this would look like: [new Date(2012, 0, 3),  142,      120],
-                        [new Date (<%= entry_date.year%>, <%= entry_date.mon%>, <%= entry_date.mday%>),  
-                        <%= total_this_week %>,  <%= ($i * 10) %>, <%= (@averages[category] * $i) %>],
-                        
-                      <% end%>
-                      <% $i +=1 %> 
-                    <% end%>
-                  ]);
-
+              
+                //set options
                 var options = {
-                  width:500, height:400,
+                  width:500, height:350,
                   backgroundColor:'#EDEDED',
                   //legend: {position: 'none'},
-                  chartArea: {top: 20, left: 60, width:400},
-                  animation: {duration: 1000, easing: 'in'}
+                  chartArea: {top: 20, left: 60, width:400, height:250},
                 };
 
+                // make the chart
                 var <%= category + '_chart'%> = new google.visualization.LineChart(document.getElementById("<%= category + '_chart'%>"))
 
+                // each category has a function draw_enrolled_chart(data)
                 function draw<%= category + '_chart'%>(data) {
       // Disabling the button while the chart is drawing.
-      <%= category + '_button'%>.disabled = true;
-      google.visualization.events.addListener(<%= category + '_chart'%>, 'ready',
-          function() {
-            <%= category + '_button'%>.disabled = false;
-          });
-      <%= category + '_chart'%>.draw(data, options);
-    }
+                <%= category + '_chart'%>.draw(data, options);
+                }
                 
 
 
 
-            <%= category + '_button'%>.onclick = function() {
-                draw<%= category + '_chart'%>(<%= category + '_data2' %>);
-                }
+            <%= category + '_4_button'%>.onclick = function() {
+              console.log('clicked a 4 button!')
+              console.log(<%= category + '_total' %>)
+              if (<%= category + '_total' %> >= 4){
+                draw<%= category + '_chart'%>(<%= category + '_data' %>[<%= category + '_total' %>-4]);
+                <%= category + '_total' %> -=4;
+              }
+              else {
+                draw<%= category + '_chart'%>(<%= category + '_data' %>[<%= category + '_total' %>+4]);
+                <%= category + '_total' %> +=4;
+              }
+              }
+
+              <%= category + '_2_button'%>.onclick = function() {
+              console.log('clicked a 2 button!')
+              console.log(<%= category + '_total' %>)
+              if (<%= category + '_total' %> ==2 || <%= category + '_total' %> ==6 || <%= category + '_total' %> ==7){ // 2 is currently pressed
+                draw<%= category + '_chart'%>(<%= category + '_data' %>[<%= category + '_total' %>-2]);
+                <%= category + '_total' %> -=2;
+              }
+              else { // 2 is not pressed
+                draw<%= category + '_chart'%>(<%= category + '_data' %>[<%= category + '_total' %>+2]);
+                <%= category + '_total' %> +=2;
+              }
+              }
+
+              <%= category + '_1_button'%>.onclick = function() {
+              console.log('clicked a 2 button!')
+              console.log(<%= category + '_total' %>)
+              if (<%= category + '_total' %> % 2 ==1 ){ // 1 is currently pressed
+                draw<%= category + '_chart'%>(<%= category + '_data' %>[<%= category + '_total' %>-1]);
+                <%= category + '_total' %> -=1;
+              }
+              else { // 1 is not pressed
+                draw<%= category + '_chart'%>(<%= category + '_data' %>[<%= category + '_total' %>+1]);
+                <%= category + '_total' %> +=1;
+              }
+              }
+
+
+
+
             
-            draw<%= category + '_chart'%>(<%= category + '_data' %>);
+            draw<%= category + '_chart'%>(<%= category + '_data' %>[4]);
             <% end %>
 
             }
@@ -141,8 +142,6 @@
     </head>
     
     <body>
-
-<!-- Ashwin your thing is in _trial_data.html.erb, so just add a render 'trial_data' here to see it-->
 
 
 
