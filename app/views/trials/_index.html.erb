@@ -1,8 +1,10 @@
-<h1>Listing trials</h1>
+
+<h1>My Trials</h1>
 
 <table>
   <tr>
     <th>Trialname</th>
+    <th> &nbsp &nbsp &nbsp </th>
     <th>Trialid</th>
     <th></th>
     <th></th>
@@ -11,15 +13,20 @@
 
 <% @trials.each do |trial| %>
   <tr>
-    <td><%= trial.trialName %></td>
+    <td><%= trial.trialName %> </td>
+    <td> &nbsp &nbsp &nbsp </td>
     <td><%= trial.trialID %></td>
-    <!--<td><%=  link_to 'Show', trial %></td> -->
+    <!--<td><%= link_to 'Show', trial %></td> 
     <td><%= link_to 'Edit', edit_trial_path(trial) %></td>
     <td><%= link_to 'Destroy', trial, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= button_to "Delete", trial, :method=>:delete,  :class=>:destroy %></td> -->
+    <td> <div class = "btn btn-link" data-target="#editModal" data-toggle="modal"> Edit </div> </td>
+
   </tr>
 <% end %>
 </table>
 
 <br />
-
+<!--
 <%= link_to 'New Trial', new_trial_path %>
+-->

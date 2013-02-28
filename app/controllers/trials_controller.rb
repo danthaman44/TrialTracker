@@ -3,6 +3,7 @@ class TrialsController < ApplicationController
   # GET /trials.json
   def index
     @trials = Trial.all
+    @trial = Trial.new
 
     respond_to do |format|
       format.html # index.html.erb
@@ -77,6 +78,7 @@ class TrialsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to trials_url }
+      format.html { redirect_to "localhost:3000" }
       format.json { head :no_content }
     end
   end

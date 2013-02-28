@@ -3,6 +3,7 @@ class HomeController < ApplicationController
 
    
       @trial = Trial.new
+      @trials = Trial.all
       @entries = Entry.all
 
       @first_trial = Trial.all
