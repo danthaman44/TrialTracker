@@ -106,7 +106,7 @@
               <%= category + '_2_button'%>.onclick = function() {
               console.log('clicked a 2 button!')
               console.log(<%= category + '_total' %>)
-              if (<%= category + '_total' %> ==2 || <%= category + '_total' %> ==6 || <%= category + '_total' %> ==7){ // 2 is currently pressed
+              if (<%= category + '_total' %> ==2 || <%= category + '_total' %> ==6 || <%= category + '_total' %> ==7 || <%= category + '_total' %> ==3){ // 2 is currently pressed
                 draw<%= category + '_chart'%>(<%= category + '_data' %>[<%= category + '_total' %>-2]);
                 <%= category + '_total' %> -=2;
               }
@@ -117,7 +117,7 @@
               }
 
               <%= category + '_1_button'%>.onclick = function() {
-              console.log('clicked a 2 button!')
+              console.log('clicked a 1 button!')
               console.log(<%= category + '_total' %>)
               if (<%= category + '_total' %> % 2 ==1 ){ // 1 is currently pressed
                 draw<%= category + '_chart'%>(<%= category + '_data' %>[<%= category + '_total' %>-1]);
