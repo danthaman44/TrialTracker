@@ -9,8 +9,8 @@
 
 t = Trial.new
 t.trialName = 'Cancer'
-t.endDate = Date.new(2012, 7, 30) 
-t.enrolledGoal = 500
+t.endDate = Date.new(2012, 12, 31) 
+t.enrolledGoal = 400
 t.completedGoal = 250
 t.save
 
