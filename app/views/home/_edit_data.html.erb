@@ -14,33 +14,33 @@
   <fieldset>
 <div class="input-append">
   <%= f.text_field :enrolled,  :class => "span2", :type => 'number',
-              :value => "0" %>
+              :value => @last_entry.enrolled %>
   <span class="add-on">Enrolled</span>
 </div>
 
 <div class="input-append">
   <%= f.text_field :active, :class => "span2" , :type => 'number',
-              :value => "0" %>
+              :value => @last_entry.active %>
   <span class="add-on">Active</span>
 </div>
 <div class="input-append">
   <%= f.text_field :completed, :class => "span2" , :type => 'number',
-              :value => "0" %>
+              :value => @last_entry.completed %>
   <span class="add-on">Completed</span>
 </div>
 <div class="input-append">
   <%= f.text_field :withdrawn, :class => "span2" , :type => 'number',
-              :value => "0" %>
+              :value => @last_entry.withdrawn %>
   <span class="add-on">Withdrawn</span>
 </div>
 <div class="input-append">
   <%= f.text_field :refused, :class => "span2" , :type => 'number',
-              :value => "0" %>
+              :value => @last_entry.refused %>
   <span class="add-on">Refused</span>
 </div>
 <div class="input-append">
   <%= f.text_field :lost, :class => "span2" , :type => 'number',
-              :value => "0" %>
+              :value => @last_entry.lost %>
   <span class="add-on">Lost</span>
 </div>
 <%= f.submit "Create" %>
@@ -94,13 +94,13 @@
                 </thead>
                 <tr>
                     <td style="text-align: left;"><b>Total</b></td>
-                   <% @totals.each_pair do |k,v| %>
-                    <td ><b><%= v %></b></td>
+                   <% @categories.each do |category| %>
+                    <td ><b><%= @last_entry[category] %></b></td>
                 <% end %> 
                 </tr>
 
 
-                <% @entries.each do |entry| %>
+                <% @entries_recentFirst.each do |entry| %>
                 <tr>
                     <td style="text-align: left;"><%= entry.input_at %><a style = "float:right; font-size:13px" href="#">edit  </a></td>
                     

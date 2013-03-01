@@ -39,8 +39,8 @@
                 var data = google.visualization.arrayToDataTable(
                     [
                     ['Total', 'Subjects'],
-                    <% @totals.each_pair do |k,v| %>
-                    [ '<%= k.capitalize %>', <%= v %> ],
+                    <% @categories.each do |category| %>
+                    [ '<%= category.capitalize %>', <%= @last_entry[category] %> ],
                     <% end %>
                     ]);
                 
@@ -63,7 +63,7 @@
                 
                     //totals_by_week is a Hash of the form:
                     //{'enrolled'=> [:entry => 12, :entry => 23], 'active'=> [:entry=> 11, :entry=>20]}
-               <% @totals_by_week.each_pair do |category, data| %> 
+                <% @categories.each do |category| %>
                 var <%= category + '_total' %> = 4; // we start with just the 4 button pressed
                 var <%= category + '_button'%> = document.getElementById("<%= category + '_4_button'%>");
                 var <%= category + '_button'%> = document.getElementById("<%= category + '_2_button'%>");

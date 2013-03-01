@@ -3,7 +3,9 @@ class HomeController < ApplicationController
 
    
       @trial = Trial.new
-      @entries = Entry.all
+      @entries_recentFirst = Entry.find(:all, :order => "input_at DESC")
+      @entries_oldestFirst = Entry.find(:all, :order => "input_at")
+      @last_entry = @entries_recentFirst[0]
 
       @first_trial = Trial.all
       logger.info("first trial:")
@@ -13,25 +15,12 @@ class HomeController < ApplicationController
 
 
       @categories = ["enrolled", "active", "completed", "withdrawn", "refused", "lost"]
-      @totals = Hash.new
-      @totals_by_week = Hash.new
       @averages = Hash.new
 
       @categories.each do |category|
-        total = 0
-        @totals_by_week[category] = []
-        @entries.each do |entry|
-          total = total + entry[category]
-          @totals_by_week[category] << {entry.input_at => total}
-          logger.info('*********************')
-          logger.info(@totals_by_week[category])
-          logger.info('*********************')
-        end
-        @totals[category] = total
-        @averages[category] = total/@entries.length
+
+        @averages[category] = @last_entry[category]/@entries_recentFirst.length
       end
-    logger.info(@totals)
-    logger.info(@totals_by_week)
     logger.info(@averages)
 
     #totals_by_week is a Hash of the form:
