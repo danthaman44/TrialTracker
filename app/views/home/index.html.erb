@@ -8,6 +8,7 @@
                         
                         <!-- Le styles -->
                         <link href="/assets/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
+                        <link href="/assets/datepicker.css" media="screen" rel="stylesheet" type="text/css" />
                             <style type="text/css">
                                 body {
                                     padding-top: 60px;
@@ -230,8 +231,10 @@
         
                             
                             
-                            <!--<div class="tab-pane fade" id="report">...</div>-->
-                            <div class="tab-pane fade" id="settings">...</div>
+      <!-- *********** Settings is in views/home/_settings.html.erb ****************-->                     
+<%= render "settings" %> 
+
+                            
                         </div>
                         
                         
@@ -253,5 +256,21 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="http://code.jquery.com/jquery-latest.js"></script>
         <script src="/assets/bootstrap.min.js"></script>
+        <script src="/assets/bootstrap-datepicker.js"></script>
+        <script type="text/javascript">
+        $(document).ready(function(){ 
+        $("#datepicker").datepicker()
+        .on('changeDate', function(ev){
+        //if (ev.date.valueOf() > endDate.valueOf()){
+          //  $('#alert').show().find('strong').text('The start date must be before the end date.');
+        //} else {
+          //  $('#alert').hide();
+          //  startDate = new Date(ev.date);
+          //  $('#date-start-display').text($('#date-start').data('date'));
+        //}
+        //$('#date-start').datepicker('hide');
+    });
+      })
+        </script>
         
     </body>
