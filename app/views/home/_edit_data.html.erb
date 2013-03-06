@@ -1,7 +1,7 @@
 <!--*************************** begin Edit Data ******************** -->  
 
 <div class="tab-pane fade" id="edit">
-
+<!--
 <div class="row-fluid">
 <div class= "span12">
         <legend>Add Data</legend>
@@ -49,7 +49,9 @@
 <br />
 
 
-<!--
+
+
+
 <form>
 <div class="input-append">
   <input class="span2" id="appendedInput" type="text" placeholder="0">
@@ -94,10 +96,23 @@
                     </tr>
                 </thead>
                 <tr>
-                    <td style="text-align: left;"><b>Total</b></td>
-                   <% @categories.each do |category| %>
-                    <td ><b><%= @last_entry[category] %></b></td>
-                <% end %> 
+                  <%= form_for @entry  do |f| %>
+                    <td style="text-align: left;"><b>Today</b></td>
+                   
+                    <td ><b><%= f.text_field :enrolled, :type => 'text', :style =>"width:60px; height:30px; margin-bottom:0px; text-align:right",
+              :value => @last_entry.enrolled %></b></td>
+              <td ><b><%= f.text_field :active, :type => 'text', :style =>"width:60px; height:30px; margin-bottom:0px; text-align:right",
+              :value => @last_entry.active %></b></td>
+              <td ><b><%= f.text_field :completed, :type => 'text', :style =>"width:60px; height:30px; margin-bottom:0px; text-align:right",
+              :value => @last_entry.completed %></b></td>
+              <td ><b><%= f.text_field :withdrawn, :type => 'text', :style =>"width:60px; height:30px; margin-bottom:0px; text-align:right",
+              :value => @last_entry.withdrawn %></b></td>
+              <td ><b><%= f.text_field :refused, :type => 'text', :style =>"width:60px; height:30px; margin-bottom:0px; text-align:right",
+              :value => @last_entry.refused %></b></td>
+              <td ><b><%= f.text_field :lost, :type => 'text', :style =>"width:60px; height:30px; margin-bottom:0px; text-align:right",
+              :value => @last_entry.lost %></b></td>
+              <td><%= f.submit "Update", :class=>"btn btn-success"%></td>
+                <% end %>
                 </tr>
 
 
