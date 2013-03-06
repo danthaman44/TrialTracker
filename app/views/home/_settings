@@ -1,0 +1,40 @@
+	
+ <div class="tab-pane fade" id="settings">
+
+  <div class = "row-fluid">
+		<div class="span12">
+
+ <form class="form-horizontal">
+  <div class="control-group">
+    <label class="control-label" for="inputEmail">Enrolled Goal</label>
+    <div class="controls">
+      <input type="text" id="inputEmail" value='<%= @first_trial.enrolledGoal %>' style="height:30px">
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label" for="inputPassword">Completed Goal</label>
+    <div class="controls">
+      <input type="text" id="inputPassword" value='<%= @first_trial.completedGoal %>' style="height:30px">
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label" for="inputPassword">End Date</label>
+    <div class="controls">
+
+    	<div class="input-append date" id="datepicker" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+  <input class="span2" size="16" type="text" value="12-02-2012">
+  <span class="add-on"><i class="icon-th"></i></span>
+</div>
+      <input type="text" id="inputPassword" value='<%= @first_trial.endDate %>' style="height:30px">
+    </div>
+  </div>
+  
+
+</form>
+
+		</div> <!-- end span12 -->
+	</div>
+
+</div><!-- end settings -->
