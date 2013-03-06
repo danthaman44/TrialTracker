@@ -4,6 +4,7 @@
 
 <div class="row-fluid">
 <div class= "span8">
+    
         <h4>Subjects</h4> 
 
         <div id="bar_chart" style="display:inline; float:left"></div>
@@ -59,7 +60,7 @@
 
             <% if (@first_trial.enrolledGoal != nil) %>
             <tr>
-                <th style = "font-size:14px;">Goal <a id="changeGoal" style = "font-size:13px; font-weight:normal" href = "#">change</a></th>
+                <th style = "font-size:14px;">Goal </th>
                 <td style = "font-size:14px; text-align: right;">
                     <div id = "goalContent"> <%= @first_trial.enrolledGoal %></div>
                 </td>
