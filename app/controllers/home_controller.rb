@@ -14,19 +14,31 @@ class HomeController < ApplicationController
       @first_trial = @first_trial[0] # the trial displayed first by default
       logger.info(@first_trial)
       logger.info(@first_trial.enrolledGoal)
+      logger.info(@first_trial.endDate)
 
 
       @categories = ["enrolled", "active", "completed", "withdrawn", "refused", "lost"]
       @averages = Hash.new
 
-      length_of_trial = @last_entry.input_at - @entries_oldestFirst[0].input_at
-      logger.info(@first_trial.endDate)
+      length_of_trial = @last_entry.input_at - @entries_oldestFirst[0].input_at # length of trial SO FAR
+      @total_length_of_trial = @first_trial.endDate - @entries_oldestFirst[0].input_at
 
       @categories.each do |category|
-
         @averages[category] = @last_entry[category]/length_of_trial
       end
-    logger.info(@averages)
+
+      @targetAverages = Hash.new
+
+      @enrolledAverage = @first_trial.enrolledGoal/@total_length_of_trial
+      @completedAverage = @first_trial.completedGoal/@total_length_of_trial
+
+      @targetAverages['enrolled'] = @enrolledAverage
+      @targetAverages['completed'] = @completedAverage
+      @targetAverages['active'] = 0
+      @targetAverages['withdrawn'] = 0
+      @targetAverages['refused'] = 0
+      @targetAverages['lost'] = 0
+    logger.info(@targetAverages)
 
     #totals_by_week is a Hash of the form:
     # {'enrolled'=> [:entry => 12, :entry => 23], 'active'=> [:entry=> 11, :entry=>20]}
@@ -44,6 +56,8 @@ class HomeController < ApplicationController
       format.js
     end
   end
+
+  
   
   def insert_trials
       logger.info("****** Inserting Trials! ******")
