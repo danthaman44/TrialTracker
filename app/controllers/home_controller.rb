@@ -1,8 +1,10 @@
+
 class HomeController < ApplicationController
   def index
 
    
       @trial = Trial.new
+      @trials = Trial.all
       @entries_recentFirst = Entry.find(:all, :order => "input_at DESC")
       @entries_oldestFirst = Entry.find(:all, :order => "input_at")
       @last_entry = @entries_recentFirst[0]

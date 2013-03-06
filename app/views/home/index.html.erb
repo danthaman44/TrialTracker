@@ -182,16 +182,12 @@
                     <div class="well sidebar-nav" data-spy="affix" style = "width:282px">
                         <ul class="nav nav-list">
                             <li class="nav-header">dukeCRC24</li>
-                            <li class="nav-header">My Trials</li>
+                        <!--     <li class="nav-header">My Trials</li>
                             <li class="active"><a href="#">Cancer</a></li>
-                            <li><a href="#">Flesh Eating Bacteria</a></li>
-                            <li><a href="#">Herpes</a></li>
-                            <li><a href="#">Worms</a></li>
-                            <li><a href="#">Leukemia</a></li>
-                            <li><a href="#">Lung Cancer</a></li>
+                            <li><a href="#">Flesh Eating Bacteria</a></li> -->
+                           
+                            <%= render 'trials/index' %>
                             
-                            <li><a href="#">Obesity</a></li>
-                            <li><a href="#">Elephantitis</a></li>
                             <li class="nav-header">Add or join more Trials</li>
                             <a href="#addTrialModal" role="button" class="btn btn-success" data-toggle="modal">New Trial</a>
                         </ul>
@@ -200,6 +196,7 @@
 
 <!-- *********** modal is in views/home/_modal.html.erb ****************-->
         <%= render "modal" %>
+        <%= render "editmodal" %>
 
 
                 <div class="span9">

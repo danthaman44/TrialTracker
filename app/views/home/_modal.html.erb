@@ -12,15 +12,19 @@
     <h4>Link an existing Trial</h4>
     <input class="span8" type="text" placeholder="Trial Name" data-provide="typeahead" data-source='["sean", "nikhil", "dan", "ashwin", "shiv"]'>
   </div>
+
+
     
 
   <div class="span6" style = "margin-bottom:15px; padding-left:30px; border-left: 1px solid #eeeeee">
     <h4>Create a new Trial</h4>
+
+    <%= render 'trials/form' %>
     
     <form>
         <fieldset>
 
-            <input class="span8" type="text" placeholder="Trial Name">
+            <!-- <input class="span8" type="text" placeholder="Trial Name"> -->
 
             <div class="input-append">
                 <input class="span8" type="text" placeholder="Invite Someone" id="appendedInputButton" type="text">
@@ -50,7 +54,7 @@
 
         </fieldset>
     
-    <button type="submit" class="btn">Submit</button>
+   <!--  <button type="submit" class="btn">Submit</button> -->
 </form>
 
   </div>
@@ -74,3 +78,14 @@ function allTrials(query, process) {
 </script>
 
 <!--**************** End Modal  ************************************-->
+
+  
+
+
+
+
+
+
+
+
+

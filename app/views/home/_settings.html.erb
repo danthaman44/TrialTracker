@@ -1,5 +1,4 @@
-	
- <div class="tab-pane fade" id="settings">
+<div class="tab-pane fade" id="settings">
 
   <div class = "row-fluid">
 
@@ -29,8 +28,10 @@
   <div class="control-group">
     <label class="control-label" for="inputPassword">End Date</label>
     <div class="controls">
+
 <%= trial.text_field :endDate, :type => 'text', :style=>"height:30px", :id=>"datepicker", :value => @first_trial.endDate.strftime("%m/%d/%Y") %>
     	<!--<input type="text" value='<%= @first_trial.endDate %>' id="datepicker" data-date-format="mm-dd-yyyy" style="height:30px"> -->
+
     </div>
   </div>
 
@@ -44,8 +45,8 @@
 </fieldset>
     <% end %>
 
-	
-	</div>
+
+  </div>
 
   <div class = "row-fluid">
     <div class="span12">
@@ -58,14 +59,14 @@
   <div class="control-group">
     <label class="control-label" for="inputEmail">Trial ID</label>
     <div class="controls">
-      <input type="text" id="inputEmail" value='<%= @first_trial.enrolledGoal %>' style="height:30px">
+      <input type="text" id="inputEmail" value='<%= @first_trial.trialID %>' style="height:30px">
     </div>
   </div>
 
   <div class="control-group">
     <label class="control-label" for="inputPassword">Trial Name</label>
     <div class="controls">
-      <input type="text" id="inputPassword" value='<%= @first_trial.completedGoal %>' style="height:30px">
+      <input type="text" id="inputPassword" value='<%= @first_trial.trialName %>' style="height:30px">
     </div>
   </div>
 
@@ -81,4 +82,5 @@
     </div> <!-- end span12 -->
   </div>
 
+</div><!-- end settings -->
 </div><!-- end settings -->
