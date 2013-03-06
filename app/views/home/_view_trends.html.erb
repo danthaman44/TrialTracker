@@ -4,7 +4,7 @@
 
 <div class="row-fluid">
 <div class= "span8">
-    
+
         <h4>Subjects</h4> 
 
         <div id="bar_chart" style="display:inline; float:left"></div>
@@ -56,7 +56,7 @@
     <div class= "span4">
 
          <table class="table table-condensed table-hover" style="display:inline; float:right; margin-top:10px">
-            <tr style="border-top: 2px solid #ccc;"><th style = "font-size:14px;">Total <%=category.capitalize %></th><td style = "font-size:14px; text-align: right;">218</td></tr>
+            <tr style="border-top: 2px solid #ccc;"><th style = "font-size:14px;">Total <%=category.capitalize %></th><td style = "font-size:14px; text-align: right;"><%= @last_entry[category] %></td></tr>
 
             <% if (@first_trial.enrolledGoal != nil) %>
             <tr>
@@ -72,7 +72,7 @@
 
             <tr><th style = "font-size:14px">Avg/Month</th><td style = "font-size:14px; text-align: right;">62.5</td></tr>
             <tr><th style = "font-size:14px">Avg/Week</th><td style = "font-size:14px; text-align: right;">19.3</td></tr>
-            <tr><th style = "font-size:14px">Est. by Jan 19th</th><td style = "font-size:14px; text-align: right;"> 280</td></tr>
+            <tr><th style = "font-size:14px">Est. by <%=@first_trial.endDate.strftime("%m/%d/%Y") %></th><td style = "font-size:14px; text-align: right;"> 280</td></tr>
 
          </table>
 

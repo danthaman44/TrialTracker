@@ -14,10 +14,10 @@ var <%= category + '_0_data' %> = new google.visualization.DataTable();
                       
                         //In JS this would look like: [new Date(2012, 0, 3),  142,      120],
                         
-                        [new Date (<%= entry_date.year%>, <%= entry_date.mon%>, <%= entry_date.mday%>),  
+                        [new Date (<%= entry_date.year%>, <%= entry_date.mon-1%>, <%= entry_date.mday%>),  
                         ,  , ,],
                         
-                      <% $i +=1 %> 
+                      <% $i +=7 %> 
                     <% end%>
                     
 
@@ -38,21 +38,20 @@ var <%= category + '_1_data' %> = new google.visualization.DataTable();
                       
                         //In JS this would look like: [new Date(2012, 0, 3),  142,      120],
                         
-                        [new Date (<%= entry_date.year%>, <%= entry_date.mon%>, <%= entry_date.mday%>),  
+                        [new Date (<%= entry_date.year%>, <%= entry_date.mon-1%>, <%= entry_date.mday%>),  
                         ,  , <%= (@averages[category] * $i) %>],
                         
-                      <% $i +=1 %> 
+                      <% $i +=7 %> 
                     <% end%>
 
                   ]);
-                  <% $i -=1 %> 
-                  <% $j = 0 %>
+                  <% $i-=7 %>
                   <%= category + '_1_data' %>.addRows([
                   <% @last_entry.input_at.upto(@first_trial.endDate) do |date| %>
-                  [new Date (<%= date.year%>, <%= date.mon%>, <%= date.mday%>),  
-                        ,  , <%= (@averages[category] * $i + @averages[category] *$j/7) %>],
+                  [new Date (<%= date.year%>, <%= date.mon-1%>, <%= date.mday%>),  
+                        ,  , <%= (@averages[category] * $i) %>],
                    
-                   <% $j +=1 %> 
+                   <% $i +=1 %> 
                    <% end%>
 
 ]);
@@ -72,18 +71,18 @@ var <%= category + '_2_data' %> = new google.visualization.DataTable();
                     <% entry_date = data_point.input_at %>
 
                         //In JS this would look like: [new Date(2012, 0, 3),  142,      120],
-                        [new Date (<%= entry_date.year%>, <%= entry_date.mon%>, <%= entry_date.mday%>),  
+                        [new Date (<%= entry_date.year%>, <%= entry_date.mon-1%>, <%= entry_date.mday%>),  
                         ,  <%= ($i * 10) %>, , ],
                         
                      
-                      <% $i +=1 %> 
+                      <% $i +=7 %> 
                     <% end%>
                   ]);
                   <% $i -=1 %> 
                   <% $j = 0 %>
                   <%= category + '_2_data' %>.addRows([
                   <% @last_entry.input_at.upto(@first_trial.endDate) do |date| %>
-                  [new Date (<%= date.year%>, <%= date.mon%>, <%= date.mday%>),  
+                  [new Date (<%= date.year%>, <%= date.mon-1%>, <%= date.mday%>),  
                         ,  <%= ($i * 10 + $j*10/7) %>, ,],
                    
                    <% $j +=1 %> 
@@ -106,22 +105,21 @@ var <%= category + '_3_data' %> = new google.visualization.DataTable();
                     <% entry_date = data_point.input_at %>
 
                         //In JS this would look like: [new Date(2012, 0, 3),  142,      120],
-                        [new Date (<%= entry_date.year%>, <%= entry_date.mon%>, <%= entry_date.mday%>),  
+                        [new Date (<%= entry_date.year%>, <%= entry_date.mon-1%>, <%= entry_date.mday%>),  
                          ,  <%= ($i * 10) %>, <%= (@averages[category] * $i) %>],
                         
                      
-                      <% $i +=1 %> 
+                      <% $i +=7 %> 
                     <% end%>
                   ]);
                   
-                   <% $i -=1 %> 
-                  <% $j = 0 %>
+                   <% $i -=7 %> 
                   <%= category + '_3_data' %>.addRows([
                   <% @last_entry.input_at.upto(@first_trial.endDate) do |date| %>
-                  [new Date (<%= date.year%>, <%= date.mon%>, <%= date.mday%>),  
-                        ,  <%= ($i * 10 + $j*10/7) %>, <%= (@averages[category] * $i + @averages[category] *$j/7) %>],
+                  [new Date (<%= date.year%>, <%= date.mon-1%>, <%= date.mday%>),  
+                        ,  <%= ($i * 10) %>, <%= (@averages[category] * $i) %>],
                    
-                   <% $j +=1 %> 
+                   <% $i +=1 %> 
                    <% end%>
 
 ]);
@@ -141,7 +139,7 @@ var <%= category + '_4_data' %> = new google.visualization.DataTable();
                     <% entry_date = data_point.input_at %>
 
                         //In JS this would look like: [new Date(2012, 0, 3),  142,      120],
-                        [new Date (<%= entry_date.year%>, <%= entry_date.mon%>, <%= entry_date.mday%>),  
+                        [new Date (<%= entry_date.year%>, <%= entry_date.mon-1%>, <%= entry_date.mday%>),  
                         
                         <%= data_point[category] %>,  , ,],
                         
@@ -164,23 +162,22 @@ var <%= category + '_5_data' %> = new google.visualization.DataTable();
                     <% entry_date = data_point.input_at %>
 
                         //In JS this would look like: [new Date(2012, 0, 3),  142,      120],
-                        [new Date (<%= entry_date.year%>, <%= entry_date.mon%>, <%= entry_date.mday%>),  
+                        [new Date (<%= entry_date.year%>, <%= entry_date.mon-1%>, <%= entry_date.mday%>),  
                         
                         <%= data_point[category] %>,  , <%= (@averages[category] * $i) %>],
                         
                      
-                      <% $i +=1 %> 
+                      <% $i +=7 %> 
                     <% end%>
                   ]);
 
-                   <% $i -=1 %> 
-                  <% $j = 0 %>
+                   <% $i -=7 %> 
                   <%= category + '_5_data' %>.addRows([
                   <% @last_entry.input_at.upto(@first_trial.endDate) do |date| %>
-                  [new Date (<%= date.year%>, <%= date.mon%>, <%= date.mday%>),  
-                        ,  , <%= (@averages[category] * $i + @averages[category] *$j/7) %>],
+                  [new Date (<%= date.year%>, <%= date.mon-1%>, <%= date.mday%>),  
+                        ,  , <%= (@averages[category] * $i) %>],
                    
-                   <% $j +=1 %> 
+                   <% $i +=1 %> 
                    <% end%>
 
 ]);
@@ -201,7 +198,7 @@ var <%= category + '_6_data' %> = new google.visualization.DataTable();
                     <% entry_date = data_point.input_at %>
 
                         //In JS this would look like: [new Date(2012, 0, 3),  142,      120],
-                        [new Date (<%= entry_date.year%>, <%= entry_date.mon%>, <%= entry_date.mday%>),  
+                        [new Date (<%= entry_date.year%>, <%= entry_date.mon-1%>, <%= entry_date.mday%>),  
                         <%= data_point[category] %>,  <%= ($i * 10) %>, ,],
                         
                       
@@ -212,7 +209,7 @@ var <%= category + '_6_data' %> = new google.visualization.DataTable();
                   <% $j = 0 %>
                   <%= category + '_6_data' %>.addRows([
                   <% @last_entry.input_at.upto(@first_trial.endDate) do |date| %>
-                  [new Date (<%= date.year%>, <%= date.mon%>, <%= date.mday%>),  
+                  [new Date (<%= date.year%>, <%= date.mon-1%>, <%= date.mday%>),  
                         ,  <%= ($i * 10 + $j*10/7) %>, ,],
                    
                    <% $j +=1 %> 
@@ -235,21 +232,22 @@ var <%= category + '_7_data' %> = new google.visualization.DataTable();
                     <% entry_date = data_point.input_at %>
  
                         //In JS this would look like: [new Date(2012, 0, 3),  142,      120],
-                        [new Date (<%= entry_date.year%>, <%= entry_date.mon%>, <%= entry_date.mday%>),  
+                        [new Date (<%= entry_date.year%>, <%= entry_date.mon-1%>, <%= entry_date.mday%>),  
                         <%= data_point[category] %>,  <%= ($i * 10) %>, <%= (@averages[category] * $i) %>],
                         
 
-                      <% $i +=1 %> 
+                      <% $i +=7 %> 
                     <% end%>
                   ]);
-                   <% $i -=1 %> 
-                  <% $j = 0 %>
+                  <% logger.info(@first_trial.endDate) %>
+                  <% logger.info(@last_entry.input_at) %>
+                   <% $i -=7 %> 
                   <%= category + '_7_data' %>.addRows([
                   <% @last_entry.input_at.upto(@first_trial.endDate) do |date| %>
-                  [new Date (<%= date.year%>, <%= date.mon%>, <%= date.mday%>),  
-                        ,  <%= ($i * 10 + $j*10/7) %>, <%= (@averages[category] * $i + @averages[category] *$j/7) %>],
+                  [new Date (<%= date.year%>, <%= date.mon-1%>, <%= date.mday%>),  
+                        ,  <%= ($i * 10) %>, <%= (@averages[category] * $i) %>],
                    
-                   <% $j +=1 %> 
+                   <% $i +=1 %> 
                    <% end%>
 
 ]);

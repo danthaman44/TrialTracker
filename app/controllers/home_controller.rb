@@ -17,9 +17,12 @@ class HomeController < ApplicationController
       @categories = ["enrolled", "active", "completed", "withdrawn", "refused", "lost"]
       @averages = Hash.new
 
+      length_of_trial = @last_entry.input_at - @entries_oldestFirst[0].input_at
+      logger.info(@first_trial.endDate)
+
       @categories.each do |category|
 
-        @averages[category] = @last_entry[category]/@entries_recentFirst.length
+        @averages[category] = @last_entry[category]/length_of_trial
       end
     logger.info(@averages)
 

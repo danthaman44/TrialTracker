@@ -6,38 +6,43 @@
       <fieldset>
     <legend>Goals</legend>
 
+<%= form_for @first_trial, :html=>{ :class=>"form-horizontal"} do |trial|  %>
  <form class="form-horizontal">
   <div class="control-group">
     <label class="control-label" for="inputEmail">Enrolled Goal</label>
     <div class="controls">
-      <input type="text" id="inputEmail" value='<%= @first_trial.enrolledGoal %>' style="height:30px">
+      <%= trial.text_field :enrolledGoal, :type => 'text', :style=>"height:30px",
+              :value => @first_trial.enrolledGoal %>
+      <!--<input type="text" id="inputEmail" value='<%= @first_trial.enrolledGoal %>' style="height:30px">-->
     </div>
   </div>
+
 
   <div class="control-group">
     <label class="control-label" for="inputPassword">Completed Goal</label>
     <div class="controls">
-      <input type="text" id="inputPassword" value='<%= @first_trial.completedGoal %>' style="height:30px">
+      <%= trial.text_field :completedGoal, :type => 'text', :style=>"height:30px",
+              :value => @first_trial.completedGoal %>
     </div>
   </div>
 
   <div class="control-group">
     <label class="control-label" for="inputPassword">End Date</label>
     <div class="controls">
-
-    	<input type="text" value='<%= @first_trial.endDate %>' id="datepicker" data-date-format="mm-dd-yyyy" style="height:30px">
-      
+<%= trial.text_field :endDate, :type => 'text', :style=>"height:30px", :id=>"datepicker", :value => @first_trial.endDate.strftime("%m/%d/%Y") %>
+    	<!--<input type="text" value='<%= @first_trial.endDate %>' id="datepicker" data-date-format="mm-dd-yyyy" style="height:30px"> -->
     </div>
   </div>
 
+
   <div class="control-group">
     <div class="controls">
-  <button type="submit" class="btn btn-success">Update</button>
-  <small>Last updated on 12-24-2012</small>
+  <%= trial.submit "Update", :class=>"btn btn-success"%>
+  <small>Last updated on <%= @first_trial.updated_at.strftime("%m/%d/%Y") %></small>
 </div>
 </div>
 </fieldset>
-</form>
+    <% end %>
 
 	
 	</div>
@@ -67,7 +72,7 @@
 <div class="control-group">
     <div class="controls">
   <button type="submit" class="btn btn-success">Update</button>
-  <small>Last updated on 12-24-2012</small>
+  <small>Last updated on <%= @first_trial.updated_at.strftime("%m/%d/%Y") %></small>
 </div>
 </div>
 </fieldset>
