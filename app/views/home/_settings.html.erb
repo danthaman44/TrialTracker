@@ -10,8 +10,7 @@
   <div class="control-group">
     <label class="control-label" for="inputEmail">Enrolled Goal</label>
     <div class="controls">
-      <%= trial.text_field :enrolledGoal, :type => 'text', :style=>"height:30px",
-              :value => @first_trial.enrolledGoal %>
+      <%= trial.text_field :enrolledGoal, :type => 'text', :style=>"height:30px"%>
       <!--<input type="text" id="inputEmail" value='<%= @first_trial.enrolledGoal %>' style="height:30px">-->
     </div>
   </div>
@@ -20,20 +19,19 @@
   <div class="control-group">
     <label class="control-label" for="inputPassword">Completed Goal</label>
     <div class="controls">
-      <%= trial.text_field :completedGoal, :type => 'text', :style=>"height:30px",
-              :value => @first_trial.completedGoal %>
+      <%= trial.text_field :completedGoal, :type => 'text', :style=>"height:30px"%>
     </div>
   </div>
 
-  <div class="control-group">
+ <!-- <div class="control-group">
     <label class="control-label" for="inputPassword">End Date</label>
     <div class="controls">
 
-<%= trial.text_field :endDate, :type => 'text', :style=>"height:30px", :id=>"datepicker", :value => @first_trial.endDate.strftime("%m/%d/%Y") %>
-    	<!--<input type="text" value='<%= @first_trial.endDate %>' id="datepicker" data-date-format="mm-dd-yyyy" style="height:30px"> -->
+<%= trial.text_field :endDate, :type => 'text', :style=>"height:30px", :id=>"datepicker" %>
+    	 :value => @first_trial.endDate.strftime("%m/%d/%Y") logger.info(@first_trial.enrolledGoal)<input type="text" value='<%= @first_trial.endDate %>' id="datepicker" data-date-format="mm-dd-yyyy" style="height:30px"> 
 
     </div>
-  </div>
+  </div> -->
 
 
   <div class="control-group">

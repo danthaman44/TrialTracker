@@ -66,10 +66,14 @@
                     //{'enrolled'=> [:entry => 12, :entry => 23], 'active'=> [:entry=> 11, :entry=>20]}
                 <% @categories.each do |category| %>
                 var <%= category + '_total' %> = 4; // we start with just the 4 button pressed
-                var <%= category + '_button'%> = document.getElementById("<%= category + '_4_button'%>");
-                var <%= category + '_button'%> = document.getElementById("<%= category + '_2_button'%>");
-                var <%= category + '_button'%> = document.getElementById("<%= category + '_1_button'%>");
+                var <%= category + '_4_button'%> = document.getElementById("<%= category + '_4_button'%>");
+                var <%= category + '_2_button'%> = document.getElementById("<%= category + '_2_button'%>");
+                var <%= category + '_1_button'%> = document.getElementById("<%= category + '_1_button'%>");
 
+                if (<%= category + '_2_button'%> == null) // it is only there for enrolled and completed
+                {
+                <%= category + '_2_button'%> = document.getElementById("blank");
+                }
               
                 //set options
                 var options = {

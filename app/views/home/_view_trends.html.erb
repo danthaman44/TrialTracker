@@ -58,21 +58,26 @@
          <table class="table table-condensed table-hover" style="display:inline; float:right; margin-top:10px">
             <tr style="border-top: 2px solid #ccc;"><th style = "font-size:14px;">Total <%=category.capitalize %></th><td style = "font-size:14px; text-align: right;"><%= @last_entry[category] %></td></tr>
 
-            <% if (@first_trial.enrolledGoal != nil) %>
+            <% if (category == 'enrolled') || (category=='completed') %>
             <tr>
                 <th style = "font-size:14px;">Goal </th>
                 <td style = "font-size:14px; text-align: right;">
-                    <div id = "goalContent"> <%= @first_trial.enrolledGoal %></div>
+                    <div id = "goalContent"> 
+                         <% if (category == 'enrolled') %>
+                        <%= @first_trial.enrolledGoal %>
+                        <% else %>
+                        <%= @first_trial.completedGoal %>
+                        <% end %>
+                    </div>
                 </td>
             </tr>
 
-            <% else %>
-            <tr><th><a href="goalModal" role="button" class="btn btn-success" data-toggle="modal">Set Goal</a></th><td></td></tr>
+            
             <% end %>
 
-            <tr><th style = "font-size:14px">Avg/Month</th><td style = "font-size:14px; text-align: right;">62.5</td></tr>
-            <tr><th style = "font-size:14px">Avg/Week</th><td style = "font-size:14px; text-align: right;">19.3</td></tr>
-            <tr><th style = "font-size:14px">Est. by <%=@first_trial.endDate.strftime("%m/%d/%Y") %></th><td style = "font-size:14px; text-align: right;"> 280</td></tr>
+            <tr><th style = "font-size:14px">Avg/Month</th><td style = "font-size:14px; text-align: right;"><%= Float(@averages[category]*30).round(1) %></td></tr>
+            <tr><th style = "font-size:14px">Avg/Week</th><td style = "font-size:14px; text-align: right;"><%= Float(@averages[category]*7).round(1) %></td></tr>
+            <tr><th style = "font-size:14px">Est. by <%=@first_trial.endDate.strftime("%m/%d/%Y") %></th><td style = "font-size:14px; text-align: right;"> <%= Float(@total_length_of_trial* @averages[category]).round(1) %></td></tr>
 
          </table>
 
@@ -84,7 +89,9 @@
             <form class="form-inline" action="#" method="post">
                     <div class="btn-group" data-toggle="buttons-checkbox">
                         <button type="button" class="btn btn-inverse active" id = <%= category + '_4_button'%> style = "color:#849CCC" >Progress</button>
+                        <% if (category == 'enrolled') || (category=='completed') %>
                         <button type="button" class="btn btn-inverse" style = "color:#dc3912" id = <%= category + '_2_button'%>>Target</button>
+                        <% end %>
                         <button type="button" class="btn btn-inverse" style = "color:#ff9900" id = <%= category + '_1_button'%>>Projected</button>
                     </div>
                     
@@ -97,7 +104,7 @@
 <% end %>
 
     </div> <!-- end tab content -->
-
+<div id ="blank"> </div>
 </div>
 
 
