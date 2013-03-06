@@ -20,7 +20,8 @@
     <td><%= link_to 'Edit', edit_trial_path(trial) %></td>
     <td><%= link_to 'Destroy', trial, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <td><%= button_to "Delete", trial, :method=>:delete,  :class=>:destroy %></td> -->
-    <td> <div class = "btn btn-link" data-target="#editModal" data-toggle="modal"> Edit </div> </td>
+   <!--  <td> <div class = "btn btn-link" data-target="#editModal" data-toggle="modal"> Edit </div> </td> -->
+     <td><%= link_to 'Edit', edit_trial_path(trial) %></td>
 
   </tr>
 <% end %>
