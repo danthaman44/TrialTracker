@@ -13,7 +13,7 @@ end
 group :assets do
   gem 'sass-rails',   '3.2.5'
   gem 'coffee-rails', '3.2.2'
-  gem 'bootstrap-sass', '~> 2.0.2'
+
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
@@ -22,13 +22,13 @@ group :assets do
 end
 
 gem 'jquery-rails', '2.0.2'
+gem 'bootstrap-sass', '~> 2.0.2'
+gem 'sass-rails',   '3.2.5'
 
 group :production do
 	gem 'pg', '0.12.2'
-	gem 'sass-rails',   '3.2.5'
     gem 'coffee-rails', '3.2.2'
     gem 'uglifier', '1.2.3'
-    gem 'bootstrap-sass', '~> 2.0.2'
 
 end
 # To use ActiveModel has_secure_password
