@@ -1,5 +1,5 @@
 
-<h1>My Trials</h1>
+<h2>My Trials</h2>
 
 <table>
   <tr>
@@ -13,7 +13,7 @@
 
 <% @trials.each do |trial| %>
   <tr>
-    <td><%= link_to trial.trialName, trials_change_path(trial) %>
+    <td><%= trial.trialName %> </td>
     <td> &nbsp &nbsp &nbsp </td>
     <td><%= trial.trialID %></td>
     <!--<td><%= link_to 'Show', trial %></td> 
