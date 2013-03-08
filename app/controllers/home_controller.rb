@@ -1,17 +1,15 @@
 
 class HomeController < ApplicationController
   def index
-
-   
       @trial = Trial.new
       @trials = Trial.all
       @entries_recentFirst = Entry.find(:all, :order => "input_at DESC")
       @entries_oldestFirst = Entry.find(:all, :order => "input_at")
       @last_entry = @entries_recentFirst[0]
 
-      @first_trial = Trial.all
+      
       logger.info("first trial:")
-      @first_trial = @first_trial[0] # the trial displayed first by default
+      @first_trial = @trials[0] # the trial displayed first by default
       logger.info(@first_trial)
       logger.info(@first_trial.enrolledGoal)
       logger.info(@first_trial.endDate)
@@ -56,6 +54,15 @@ class HomeController < ApplicationController
       format.js
     end
   end
+
+
+  def change_trial
+    @trials = Trial.all
+    @first_trial = @trials[1]
+    logger.info(@first_trial.trialName)
+    redirect_to "localhost:3000"
+  end
+
 
   
   

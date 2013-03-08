@@ -45,13 +45,22 @@ class TrialsController < ApplicationController
 
     respond_to do |format|
       if @trial.save
-        format.html { redirect_to @trial, notice: 'Trial was successfully created.' }
+        # format.html { redirect_to @trial, notice: 'Trial was successfully created.' }
         format.json { render json: @trial, status: :created, location: @trial }
+        format.html {redirect_to 'localhost:3000'}
       else
         format.html { render action: "new" }
         format.json { render json: @trial.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def change
+    @first_trial = Trial.new
+    @trials = Trial.all
+    @first_trial = @trials[1]
+    logger.info(@first_trial.trialName)
+    redirect_to "localhost:3000"
   end
 
   # PUT /trials/1

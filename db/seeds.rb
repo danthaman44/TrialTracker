@@ -9,13 +9,14 @@
 
 t = Trial.new
 t.trialName = 'Cancer'
+t.trialID = '123'
 t.endDate = Date.new(2012, 12, 31) 
 t.enrolledGoal = 400
 t.completedGoal = 250
 t.save
 
 g = Entry.new
-g.input_at = Date.new(2012, 5, 12)
+g.input_at = Date.new(2013, 3, 7)
 g.enrolled = 17
 g.active = 12
 g.withdrawn = 3

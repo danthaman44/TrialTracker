@@ -19,7 +19,38 @@
   <div class="span6" style = "margin-bottom:15px; padding-left:30px; border-left: 1px solid #eeeeee">
     <h4>Create a new Trial</h4>
 
-    <%= render 'trials/form' %>
+   <!--  <%= render 'trials/form' %> -->
+
+<%= form_for(@trial) do |f| %>
+  <% if @trial.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@trial.errors.count, "error") %> prohibited this trial from being saved:</h2>
+
+      <ul>
+      <% @trial.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :trialName %><br />
+    <%= f.text_field :trialName %>
+  </div>
+  <div class="field">
+    <%= f.label :trialID %><br />
+    <%= f.number_field :trialID %>
+  </div>
+  <div class="actions">
+    <%= f.submit :class => "btn btn-primary" %>
+  </div>
+<% end %>
+
+
+
+
+
     
     <form>
         <fieldset>
@@ -37,9 +68,9 @@
 <!-- ****************** Advanced Options ***********************-->
 
 
-<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">
+<!-- <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">
   Advanced Options
-</button>
+</button> -->
  
 <div id="demo" class="collapse">
     <p>More Options Here</p>

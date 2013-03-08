@@ -3,10 +3,32 @@
   <div class = "row-fluid">
 
       <fieldset>
-    <legend>Goals</legend>
+    <legend><%= @first_trial.trialName %> &nbsp <small>Last updated on <%= @first_trial.updated_at.strftime("%m/%d/%Y") %></small> </legend>
 
 <%= form_for @first_trial, :html=>{ :class=>"form-horizontal"} do |trial|  %>
  <form class="form-horizontal">
+
+  <div class="control-group">
+    <label class="control-label" for="inputEmail">Trial Name</label>
+    <div class="controls">
+       <%= trial.text_field :trialName, :type => 'text', :style=>"height:30px"%>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label" for="inputPassword">Trial ID</label>
+    <div class="controls">
+       <%= trial.text_field :trialID, :type => 'text', :style=>"height:30px"%>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label" for="inputPassword">End Date</label>
+    <div class="controls">
+       <%= trial.text_field :endDate, :type => 'text', :style=>"height:30px"%>
+    </div>
+  </div>
+
   <div class="control-group">
     <label class="control-label" for="inputEmail">Enrolled Goal</label>
     <div class="controls">
@@ -36,9 +58,24 @@
 
   <div class="control-group">
     <div class="controls">
-  <%= trial.submit "Update", :class=>"btn btn-success"%>
-  <small>Last updated on <%= @first_trial.updated_at.strftime("%m/%d/%Y") %></small>
+      <table>
+      <tr>
+        <td>
+          <%= trial.submit "Update", :class=>"btn btn-success"%> 
+
+        </td>
+        <td>
+          &nbsp &nbsp
+        </td>
+
+      </tr>
+    </table>
+
+  
 </div>
+
+
+
 </div>
 </fieldset>
     <% end %>
@@ -50,31 +87,7 @@
     <div class="span12">
 
 
-    <fieldset>
-       <legend>Trial</legend>
-
- <form class="form-horizontal">
-  <div class="control-group">
-    <label class="control-label" for="inputEmail">Trial ID</label>
-    <div class="controls">
-      <input type="text" id="inputEmail" value='<%= @first_trial.trialID %>' style="height:30px">
-    </div>
-  </div>
-
-  <div class="control-group">
-    <label class="control-label" for="inputPassword">Trial Name</label>
-    <div class="controls">
-      <input type="text" id="inputPassword" value='<%= @first_trial.trialName %>' style="height:30px">
-    </div>
-  </div>
-
-<div class="control-group">
-    <div class="controls">
-  <button type="submit" class="btn btn-success">Update</button>
-  <small>Last updated on <%= @first_trial.updated_at.strftime("%m/%d/%Y") %></small>
-</div>
-</div>
-</fieldset>
+  
 </form>
 
     </div> <!-- end span12 -->
