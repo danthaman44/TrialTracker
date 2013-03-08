@@ -22,7 +22,7 @@ group :assets do
 end
 
 gem 'jquery-rails', '2.0.2'
-gem 'bootstrap-sass', '~> 2.0.2'
+gem "twitter-bootstrap-rails"
 gem 'sass-rails',   '3.2.5'
 
 group :production do
