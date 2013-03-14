@@ -1,5 +1,27 @@
 
 class HomeController < ApplicationController
+
+  def register
+      @title = 'Website Example -- Register Page'
+      user = params[:username]
+      passwd = params[:password]
+      verify = params[:verify]
+      logger.info("user")
+      logger.info(user)
+      logger.info("password")
+      logger.info(passwd)
+      logger.info("verify")
+      logger.info(verify)
+      logger.info(session[:current_user])
+      if !user.blank? && passwd == verify
+          login = User.new
+          login.username = user
+          hash = Digest::SHA2.hexdigest(passwd)
+          login.password = hash
+          login.save
+          redirect_to :action => 'login'
+      end
+  end
   def index
       @trial = Trial.new
       @trials = Trial.all

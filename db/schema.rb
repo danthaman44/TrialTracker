@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130226052437) do
+ActiveRecord::Schema.define(:version => 20130314065236) do
+
+  create_table "connections", :force => true do |t|
+    t.string   "acceptinguser"
+    t.string   "invitinguser"
+    t.string   "status"
+    t.integer  "trialID"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
 
   create_table "entries", :force => true do |t|
     t.integer  "enrolled"
@@ -37,6 +46,14 @@ ActiveRecord::Schema.define(:version => 20130226052437) do
     t.integer  "completedGoal"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.string   "userowner"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "username"
+    t.string   "password"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end
