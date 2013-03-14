@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  acceptinguser: MyString
+  invitinguser: MyString
+  status: MyString
+  trialID: 1
+
+two:
+  acceptinguser: MyString
+  invitinguser: MyString
+  status: MyString
+  trialID: 1

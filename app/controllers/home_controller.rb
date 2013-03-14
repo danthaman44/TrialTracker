@@ -10,9 +10,6 @@ class HomeController < ApplicationController
       
       logger.info("first trial:")
       @first_trial = @trials[0] # the trial displayed first by default
-      logger.info(@first_trial)
-      logger.info(@first_trial.enrolledGoal)
-      logger.info(@first_trial.endDate)
 
 
       @categories = ["enrolled", "active", "completed", "withdrawn", "refused", "lost"]

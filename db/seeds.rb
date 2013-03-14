@@ -9,7 +9,7 @@
 
 t = Trial.new
 t.trialName = 'Your Trial'
-t.trialID = '123'
+t.trialID = 123
 t.endDate = Date.new(2013, 12, 31) 
 t.enrolledGoal = 400
 t.completedGoal = 250
