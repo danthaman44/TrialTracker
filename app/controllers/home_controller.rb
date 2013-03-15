@@ -4,17 +4,23 @@ class HomeController < ApplicationController
     @user = User.all
     cuser = params[:username]
     cpass = params[:password]
+    logger.info ("00000000000000000000000")
+    logger.info (cpass)
     cdigest = Digest::SHA2.hexdigest(cpass)
+    logger.info (cdigest)
 
+    found = 0
     @user.each do |u|
       if u.username == cuser && cdigest == u.password
+        logger.info (u.password)
         session[:username] = cuser
+        found = 1
         redirect_to :action => 'index'
-        break
-      else
-        redirect_to :back
-        break
       end
+    end
+    
+    if found == 0
+      redirect_to :back
     end
   end
 
@@ -23,12 +29,13 @@ class HomeController < ApplicationController
       user = params[:username]
       passwd = params[:password]
       verify = params[:verify]
-      if !user.blank? && passwd == verify
+      if !user.blank? && !User.exists?(user) && passwd == verify
           login = User.new
           login.username = user
           hash = Digest::SHA2.hexdigest(passwd)
           login.password = hash
           login.save
+          session[:username] = user
           redirect_to :action => 'index'
       else
           redirect_to :back
