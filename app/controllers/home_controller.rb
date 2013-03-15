@@ -1,25 +1,37 @@
 
 class HomeController < ApplicationController
+  def login 
+    @user = User.all
+    cuser = params[:username]
+    cpass = params[:password]
+    cdigest = Digest::SHA2.hexdigest(cpass)
+
+    @user.each do |u|
+      if u.username == cuser && cdigest == u.password
+        session[:username] = cuser
+        redirect_to :action => 'index'
+        break
+      else
+        redirect_to :back
+        break
+      end
+    end
+  end
 
   def register
       @title = 'Website Example -- Register Page'
       user = params[:username]
       passwd = params[:password]
       verify = params[:verify]
-      logger.info("user")
-      logger.info(user)
-      logger.info("password")
-      logger.info(passwd)
-      logger.info("verify")
-      logger.info(verify)
-      logger.info(session[:current_user])
       if !user.blank? && passwd == verify
           login = User.new
           login.username = user
           hash = Digest::SHA2.hexdigest(passwd)
           login.password = hash
           login.save
-          redirect_to :action => 'login'
+          redirect_to :action => 'index'
+      else
+          redirect_to :back
       end
   end
   def index
