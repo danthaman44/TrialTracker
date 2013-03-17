@@ -1,6 +1,14 @@
 
 class HomeController < ApplicationController
 
+  def accept #Doesn't work yet. Need to implement trialID
+    invitee = params[:clickeduser]
+    @connect = Connections.where("acceptinguser = '#{invitee}' AND invitinguser = '#session[:username]' AND status = 'pending'")
+    connect.status = 'accepted'
+    connect.save
+    redirect_to :action => 'index'
+  end
+
   def invite
     invitee = params[:inviteuser]
     @connect = Connections.where("acceptinguser = '#{invitee}' OR invitinguser = '#{invitee}'")
