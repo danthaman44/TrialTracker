@@ -71,6 +71,7 @@ FirstApp::Application.routes.draw do
    match '/insert_trials' => 'home#insert_trials', :as => 'insert_trials'
    match '/register' => 'home#register'
    match '/login' => 'home#login'
+   match '/invite' => 'home#invite'
 
   # See how all your routes lay out with "rake routes"
 

@@ -45,6 +45,7 @@
     </div>
   </div>
 
+
  <!-- <div class="control-group">
     <label class="control-label" for="inputPassword">End Date</label>
     <div class="controls">
@@ -71,18 +72,33 @@
       </tr>
     </table>
 
-  
+</div>
+
 </div>
 
 
-
-</div>
+  <div class "control-group">
+    <legend> Your Friends </legend>
+      <table class = "table table-hover table-condensed table-bordered table-striped" style = "font-size:14px" id="data_table">
+        <thead>
+          <tr>
+              <% session[:connections].each do |c| %>
+                  <td style="text-align: left;"><b><%= c %></b></td>
+              <%end%>
+          </tr>
+        </thread>
+      </table>
 </fieldset>
     <% end %>
-
-
   </div>
 
-
-    </div> <!-- end span12 -->
+  <div class "control-group">
+    <legend> Invite Friends </legend>
+      <%= form_tag ("/invite") do%>
+        <%= label_tag ("Type CRC name")%>
+        <%= text_field_tag :inviteuser %>
+        <%= submit_tag ('Enter') %>
+      <%end%>
   </div>
+
+</div> <!-- end span12 -->

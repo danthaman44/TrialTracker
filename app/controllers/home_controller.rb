@@ -1,27 +1,59 @@
 
 class HomeController < ApplicationController
+
+  def invite
+    invitee = params[:inviteuser]
+    @connect = Connections.where("acceptinguser = '#{invitee}' OR invitinguser = '#{invitee}'")
+    condition = true
+    @connect.each do |c|
+      if (c.acceptinguser == session[:username] || c.invitinguser == session[:username] && 
+        (c.status == 'accepted' || c.status == 'pending') )
+        condition = false
+      end
+    end
+    if (condition)
+        newcon = Connections.new
+        newcon.acceptinguser = invitee
+        newcon.invitinguser = session[:username]
+        newcon.status = 'pending'
+        newcon.save
+    end
+    redirect_to :action => 'index'
+  end
+
   def login 
     @user = User.all
     cuser = params[:username]
     cpass = params[:password]
-    logger.info ("00000000000000000000000")
-    logger.info (cpass)
     cdigest = Digest::SHA2.hexdigest(cpass)
-    logger.info (cdigest)
 
     found = 0
     @user.each do |u|
       if u.username == cuser && cdigest == u.password
-        logger.info (u.password)
         session[:username] = cuser
         found = 1
+        connections_query (session[:username])
         redirect_to :action => 'index'
+        break
       end
     end
     
     if found == 0
       redirect_to :back
     end
+  end
+
+  def connections_query (current, ctID=123)
+      @connect = Connections.all
+      session.delete(:connections) 
+      session[:connections] ||= []
+      @connect.each do |c|
+        if ((c.acceptinguser == current) && (c.status == 'accepted') && (c.trialID == ctID))
+          (session[:connections] ||= []) << c.invitinguser 
+        elsif c.invitinguser == current && c.status == 'accepted' && c.trialID == ctID
+          (session[:connections] ||= []) << c.acceptinguser
+        end
+      end
   end
 
   def register
