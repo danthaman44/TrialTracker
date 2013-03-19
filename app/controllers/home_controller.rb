@@ -9,7 +9,9 @@ class HomeController < ApplicationController
 
       
       logger.info("first trial:")
-      @first_trial = @trials[0] # the trial displayed first by default
+      if @first_trial == nil
+          @first_trial = @trials[0] # the trial displayed first by default
+      end
       logger.info(@first_trial)
       logger.info(@first_trial.enrolledGoal)
       logger.info(@first_trial.endDate)
@@ -58,7 +60,8 @@ class HomeController < ApplicationController
 
   def change_trial
     @trials = Trial.all
-    @first_trial = @trials[1]
+    id = params[:id]
+    @first_trial = @trials[id]
     logger.info(@first_trial.trialName)
     redirect_to "localhost:3000"
   end
