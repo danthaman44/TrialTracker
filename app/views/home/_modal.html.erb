@@ -9,8 +9,19 @@
   <div class="modal-body" height="500px">
     <div class = "row-fluid">
     <div class="span5" style ="padding-left:15px;">
-    <h4>Link an existing Trial</h4>
-  <!--   <input class="span8" type="text" placeholder="Trial Name" data-provide="typeahead" data-source='["sean", "nikhil", "dan", "ashwin", "shiv"]'> -->
+    <h4>Join an existing Trial</h4>
+    <!-- <input class="span8" type="text" placeholder="Trial Name" data-provide="typeahead" data-source='["sean", "nikhil", "dan", "ashwin", "shiv"]'> -->
+
+    <div class="control-group">
+    <label class="control-label" for="inputEmail">Trial ID (From Email)</label>
+    <div class="controls">
+       <%= text_field :trial_id, :type => 'text', :style=>"height:30px"%>
+    </div>
+  </div>
+
+  <%= submit_tag "Join Trial", :class=>"btn btn-success"%> 
+
+
   </div>
 
 

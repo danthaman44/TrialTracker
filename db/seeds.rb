@@ -5,7 +5,35 @@ c.status = 'accepted'
 c.trialID = 123
 c.save
 
-Trial.create({trialName: 'Your Trial', trialID: 123, endDate: Date.new(2013, 12, 31), enrolledGoal: 400, completedGoal: 250,
+Trial.create({trialName: 'Asthma', trialID: 123, endDate: Date.new(2013, 12, 31), enrolledGoal: 400, completedGoal: 250,
+	entries_attributes: [{input_at: Date.new(2012, 6, 1), 
+		enrolled: 51, 
+		active: 24, 
+		withdrawn: 22, 
+		completed: 34, 
+		refused: 21, 
+		lost: 14},
+		
+{input_at: Date.new(2012, 6, 8),
+enrolled: 72,
+active: 23,
+withdrawn: 30,
+completed: 42,
+refused: 24,
+lost: 17},
+
+{
+input_at: Date.new(2012, 6, 15),
+enrolled: 95,
+active: 15,
+withdrawn: 30,
+completed: 50,
+refused: 26,
+lost: 20}
+
+]})
+
+Trial.create({trialName: 'Cancer', trialID: 124, endDate: Date.new(2013, 12, 31), enrolledGoal: 400, completedGoal: 250,
 	entries_attributes: [{input_at: Date.new(2012, 6, 1), 
 		enrolled: 51, 
 		active: 24, 
