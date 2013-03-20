@@ -55,10 +55,13 @@ class TrialsController < ApplicationController
     end
   end
 
-  def change
-    @first_trial = Trial.new
+  def change_trial
     @trials = Trial.all
-    @first_trial = @trials[1]
+    id = params[:id]
+    id = id.to_i
+    id = id - 1
+    @first_trial = @trials[id]
+    logger.info("first trial: ")
     logger.info(@first_trial.trialName)
     redirect_to "localhost:3000"
   end

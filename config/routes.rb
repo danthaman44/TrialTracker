@@ -60,10 +60,13 @@ FirstApp::Application.routes.draw do
 
    resources :splash
 
+
   match '/entries/update' => 'entries#update'
+
    match '/entries/delete' => 'entries#delete'
    match '/trials/change' => 'trials#change'
-   match '/trials/:id/change' => 'trials#change', as: :trials_change
+   match '/trials/:id/change_trial' => 'trials#change_trial', as: :trials_change
+
 
    root :to => 'splashes#index'
 

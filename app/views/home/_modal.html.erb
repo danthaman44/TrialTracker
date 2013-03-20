@@ -46,24 +46,36 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :trialName %><br />
-    <%= f.text_field :trialName %>
+    
+    <label class="control-label" for="inputEmail">Trial Name</label>
+    <%= f.text_field :trialName, :style=>"height:30px" %>
   </div>
   <div class="field">
-    <%= f.label :trialID %><br />
-    <%= f.number_field :trialID %>
+
+    <label class="control-label" for="inputEmail">Trial ID</label>
+    <%= f.number_field :trialID, :style=>"height:30px" %>
   </div>
-  <div class="actions">
-    <%= f.submit :class => "btn btn-primary" %>
+
+  <div class="field">
+   <label class="control-label" for="inputEmail">Enrolled Goal (optional)</label>
+    <%= f.number_field :enrolledGoal, :style=>"height:30px" %>
   </div>
-<% end %>
+  <div class="field">
+    <label class="control-label" for="inputEmail">Completed Goal (optional)</label>
+    <%= f.number_field :completedGoal, :style=>"height:30px" %>
+  </div>
+
+<div class="field">
+  <label class="control-label" for="inputEmail">End Date (optional)</label>
+    <%= f.text_field :endDate, :style=>"height:30px" %>
+  </div>
 
 
 
 
 
     
-    <form>
+    
   <!--       <fieldset>
 
             <input class="span8" type="text" placeholder="Trial Name"> 
@@ -97,14 +109,17 @@
         </fieldset> -->
     
    <!--  <button type="submit" class="btn">Submit</button> -->
-</form>
+
 
   </div>
 </div>
 
   <div class="modal-footer">
+    <%= f.submit :class => "btn btn-primary" %>
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
     <!-- <button class="btn btn-primary" id = "addTrial" data-dismiss="modal">Add Trial</button> -->
+     
+    <% end %>
   </div>
 </div>
 </div>

@@ -1,4 +1,3 @@
-
 class HomeController < ApplicationController
 
   def accept #Doesn't work yet. Need to implement trialID
