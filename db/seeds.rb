@@ -1,12 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-#!/usr/bin/ruby 
-
 c = Connections.new
 c.acceptinguser = 'Sundar'
 c.invitinguser = 'peggy'
@@ -14,55 +5,17 @@ c.status = 'accepted'
 c.trialID = 123
 c.save
 
-t = Trial.new
-t.trialName = 'Your Trial'
-t.trialID = 123
-t.endDate = Date.new(2013, 12, 31) 
-t.enrolledGoal = 400
-t.completedGoal = 250
-t.save
+Trial.create({trialName: 'Your Trial', trialID: 123, endDate: Date.new(2013, 12, 31), enrolledGoal: 400, completedGoal: 250,
+	entries_attributes: [{input_at: Date.new(2012, 6, 1), 
+		enrolled: 51, 
+		active: 24, 
+		withdrawn: 22, 
+		completed: 34, 
+		refused: 21, 
+		lost: 14}]
+		})
 
-g = Entry.new
-g.input_at = Date.new(2013, 3, 1)
-g.enrolled = 17
-g.active = 12
-g.withdrawn = 3
-g.completed = 11
-g.refused = 4
-g.lost = 4
-g.save
-
-g = Entry.new
-g.input_at = Date.new(2013, 3, 7)
-g.enrolled = 30
-g.active = 12
-g.withdrawn = 8
-g.completed = 14
-g.refused = 12
-g.lost = 6
-g.save
-
-# g = Entry.new
-# g.input_at = Date.new(2012, 5, 26)
-# g.enrolled = 48
-# g.active = 17
-# g.withdrawn = 12
-# g.completed = 25
-# g.refused = 15
-# g.lost = 10
-# g.save
-
-# g = Entry.new
-# g.input_at = Date.new(2012, 6, 1)
-# g.enrolled = 51
-# g.active = 24
-# g.withdrawn = 22
-# g.completed = 34
-# g.refused = 21
-# g.lost = 14
-# g.save
-
-# g = Entry.new
+#  g = Entry.new
 # g.input_at = Date.new(2012, 6, 8)
 # g.enrolled = 72
 # g.active = 23
@@ -122,7 +75,7 @@ g.save
 # g.lost = 40
 # g.save
 
-# g = Entry.new
+# g4 = Entry.new
 # g.input_at = Date.new(2012, 7, 19)
 # g.enrolled = 186
 # g.active = 21
@@ -132,7 +85,7 @@ g.save
 # g.lost = 46
 # g.save
 
-# g = Entry.new
+# g3 = Entry.new
 # g.input_at = Date.new(2012, 7, 26)
 # g.enrolled = 203
 # g.active = 16
@@ -142,7 +95,7 @@ g.save
 # g.lost = 50
 # g.save
 
-# g = Entry.new
+# g2 = Entry.new
 # g.input_at = Date.new(2012, 8, 2)
 # g.enrolled = 230
 # g.active = 10
@@ -161,3 +114,7 @@ g.save
 # g.refused = 66
 # g.lost = 53
 # g.save
+
+
+
+

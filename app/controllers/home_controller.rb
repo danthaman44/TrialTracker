@@ -89,7 +89,8 @@ class HomeController < ApplicationController
       @last_entry = @entries_recentFirst[0]
 
       
-      logger.info("first trial:")
+      logger.info("all entries")
+      logger.info(@entries_recentFirst)
       @first_trial = @trials[0] # the trial displayed first by default
 
 
@@ -98,6 +99,13 @@ class HomeController < ApplicationController
 
       length_of_trial = @last_entry.input_at - @entries_oldestFirst[0].input_at # length of trial SO FAR
       @total_length_of_trial = @first_trial.endDate - @entries_oldestFirst[0].input_at
+
+      if length_of_trial == 0
+        length_of_trial = 1
+      end
+      if @total_length_of_trial ==0
+        @total_length_of_trial = 1
+      end
 
       @categories.each do |category|
         @averages[category] = @last_entry[category]/length_of_trial
