@@ -68,9 +68,10 @@ class TrialsController < ApplicationController
   def update
     @trial = Trial.find(params[:id])
 
+    session[:current_tab] = 'settings'
     respond_to do |format|
       if @trial.update_attributes(params[:trial])
-        format.html { redirect_to @trial, notice: 'Trial was successfully updated.' }
+        format.html { redirect_to :controller => 'home', :action => 'index'}
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

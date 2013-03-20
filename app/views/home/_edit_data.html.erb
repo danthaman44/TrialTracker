@@ -1,6 +1,12 @@
 <!--*************************** begin Edit Data ******************** -->  
 
-<div class="tab-pane fade" id="edit">
+<div class="tab-pane fade
+
+<% if session[:current_tab] == 'edit_data' %>
+in active
+  <% end %>
+
+" id="edit">
 <!--
 
 
@@ -62,7 +68,7 @@
 
 
                 <% @entries_recentFirst.each do |entry| %>
-                <tr>
+                <tr id="entry_ <%= entry.id %>">
                     <td style="text-align: left;"><%= entry.input_at.strftime("%m/%d/%Y") %></td>
                     
                     <td><%= entry.enrolled %></td>
@@ -72,7 +78,8 @@
                     <td><%= entry.withdrawn %></td>
                     <td><%= entry.refused %></td>
                     <td><%= entry.lost %></td>
-                    <td ><%= link_to "delete", :controller => "entries", :action => "delete", :toDelete => entry.id %></td>
+                    <td ><a href = "#" onclick="javascript:editEntry(<%= entry.id %>)">edit</a>
+                      <%= link_to "delete", :controller => "entries", :action => "delete", :toDelete => entry.id %></td>
                 </tr> 
                 <% end %>                             
             </table>
@@ -80,6 +87,14 @@
 
             
         </div>
+
+        <script type="text/javascript">
+            function editEntry(id) {
+            var row = document.getElementById('entry_'+id);
+            row.innerHTML = 
+            }
+
+        </script>
                             
                             
           <!--**************** end Edit Data ******************** -->

@@ -209,10 +209,23 @@
                       
                         
                         <ul class="nav nav-tabs" id="myTab">
-                            <li class="active"><a href="#home" data-toggle="tab">View Trends</a></li>
-                            <li><a href="#edit" data-toggle="tab">Edit Data</a></li>
+                            <li
+<% if session[:current_tab] == 'view_trends' %>
+class = 'active'
+  <% end %>
+><a href="#view_trends" data-toggle="tab">View Trends</a></li>
+                            <li
+                            <% if session[:current_tab] == 'edit_data' %>
+class = 'active'
+  <% end %>
+><a href="#edit" data-toggle="tab">Edit Data</a></li>
                             <!--<li><a href="#report" data-toggle="tab">Report</a></li>-->
-                            <li><a href="#settings" data-toggle="tab">Settings</a></li>
+                            <li
+                            <% if session[:current_tab] == 'settings' %>
+class = 'active'
+  <% end %>
+>
+                            <a href="#settings" data-toggle="tab">Settings</a></li>
                         </ul>
                         
                         <div class="tab-content">

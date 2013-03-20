@@ -19,9 +19,9 @@ class EntriesController < ApplicationController
     entry.trial_id = params[:entry][:trial_id]
 
 
-		
+		session[:current_tab] = 'edit_data'
 	  if entry.save
-      redirect_to 'localhost:3000'
+      redirect_to :controller => 'home', :action => 'index'
         #format.html { redirect_to @home, :notice => 'Article was successfully created.' }
         #format.json { render :json => @article, :status => :created, :location => @article }
       else
@@ -31,8 +31,18 @@ class EntriesController < ApplicationController
   end
 
   def update
+    entry = Entry.find(params[:toUpdate])
+    session[:current_tab] = 'edit_data'
 
-
+    respond_to do |format|
+      if entry.update_attributes(params[:entry])
+        format.html { redirect_to :controller => 'home', :action => 'index' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: entry.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def show
@@ -43,6 +53,8 @@ class EntriesController < ApplicationController
     logger.info ("------------------------------")
     logger.info (s)
     s.delete_all
-    redirect_to 'localhost:3000'
+
+    session[:current_tab] = 'edit_data'
+    redirect_to :controller => 'home', :action => 'index'
   end
 end

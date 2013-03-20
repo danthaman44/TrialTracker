@@ -1,11 +1,15 @@
-<div class="tab-pane fade" id="settings">
+<div class="tab-pane fade
+
+<% if session[:current_tab] == 'settings' %>
+in active
+  <% end %>" id="settings">
 
   <div class = "row-fluid">
 
       <fieldset>
-    <legend><%= session[:current_trial].trialName %> &nbsp <small>Last updated on <%= session[:current_trial].updated_at.strftime("%m/%d/%Y") %></small> </legend>
+    <legend><%= @current_trial.trialName %> &nbsp <small>Last updated on <%= @current_trial.updated_at.strftime("%m/%d/%Y") %></small> </legend>
 
-<%= form_for session[:current_trial], :html=>{ :class=>"form-horizontal"} do |trial|  %>
+<%= form_for @current_trial, :html=>{ :class=>"form-horizontal"} do |trial|  %>
  <form class="form-horizontal">
 
   <div class="control-group">

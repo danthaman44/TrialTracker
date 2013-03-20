@@ -135,6 +135,11 @@ class HomeController < ApplicationController
     #totals is a Hash of the form:
     # {'enrolled': 33, 'active': 31}
 
+    if session[:current_tab] == nil
+      session[:current_tab] = 'edit_data'
+    end
+    logger.info(session[:current_tab])
+
     @entry = Entry.new # Used in edit data form
     @trial = Trial.new # Used in modal form
       
