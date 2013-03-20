@@ -12,28 +12,26 @@ Trial.create({trialName: 'Your Trial', trialID: 123, endDate: Date.new(2013, 12,
 		withdrawn: 22, 
 		completed: 34, 
 		refused: 21, 
-		lost: 14}]
-		})
+		lost: 14},
+		
+{input_at: Date.new(2012, 6, 8),
+enrolled: 72,
+active: 23,
+withdrawn: 30,
+completed: 42,
+refused: 24,
+lost: 17},
 
-#  g = Entry.new
-# g.input_at = Date.new(2012, 6, 8)
-# g.enrolled = 72
-# g.active = 23
-# g.withdrawn = 30
-# g.completed = 42
-# g.refused = 24
-# g.lost = 17
-# g.save
+{
+input_at: Date.new(2012, 6, 15),
+enrolled: 95,
+active: 15,
+withdrawn: 30,
+completed: 50,
+refused: 26,
+lost: 20}
 
-# g = Entry.new
-# g.input_at = Date.new(2012, 6, 15)
-# g.enrolled = 95
-# g.active = 15
-# g.withdrawn = 30
-# g.completed = 50
-# g.refused = 26
-# g.lost = 20
-# g.save
+]})
 
 # g = Entry.new
 # g.input_at = Date.new(2012, 6, 22)
