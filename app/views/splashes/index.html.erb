@@ -26,16 +26,14 @@
                        <!--  <p class="navbar-text pull-right">
                         Logged in as <a href="#" class="navbar-link">Username</a>
                         </p> -->
-                        <form class = "navbar-form pull-right"  method = "post">
-											<input style = "width: 140px; height: 30px" class="input-small" id = "email" type="text" name = "email" placeholder="Email" />
-											<input style = "width: 140px; height: 30px" class="input-small" id = "password" type="password" name = "password" placeholder= "Password" />
-											<input type = "hidden" name = "activationkey" value = "" />
-						<button class = "btn" type = "submit">Sign In</button>
-			          </form>	
-
-                        <ul class="nav">
-                            <li> <%=link_to("Home", home_path) %> </li>
-                     
+                        	<%= form_tag ("/login") do%>
+                        		<%= label_tag ("Username")%>
+								<%= text_field_tag :username %>
+								<%= label_tag ("Password")%>
+								<%= password_field_tag :password %>
+								<%= submit_tag ('Sign In') %>
+							<%end%>
+                        <ul class="nav">                     
                             <li><a href="#about">About</a></li>
                             <li><a href="#contact">Contact</a></li>
                         </ul>
@@ -90,12 +88,31 @@
 				filter: alpha(opacity = 90);padding-top: 30px; padding-left: 30px; padding-right: 30px; padding-bottom: 50px; background-color:#FFF"><h3 style="
 				margin-bottom: 10px;
 				">New to TrialTracker?<br><span style="font-size: 26px;">Sign up</span></h3>
-					<form method="post">
-					<input style="height: 30px; width: 255px" class="xlarge" id="xlInput" name="fullname" size="25" type="text" value="" placeholder="First Name">
-					<input style="height: 30px; width: 255px" class="xlarge" type="password" id="xlInput" name="password1" size="25" value="" placeholder="Last Name">
-					<input style="height: 30px; width: 255px" class="xlarge" type="password" id="xlInput" name="password2" size="25" placeholder="Password (at least 6 characters)">
-					<input style="height: 30px; width: 255px" class="xlarge" id="xlInput" name="emailaddress" size="25" type="text" value="" placeholder="Retype Password">
-					<input style="height: 30px; width: 255px" class="xlarge" id="xlInput" name="cellnumber" maxlength="10" size="25" type="text" value="" placeholder="Email Address">
+					<h1>Register</h1>
+					<br/>
+						<%= form_tag ("/register") do %>
+						<table>
+						<tr>
+						    <%= label_tag("Username") %>
+    						<%= text_field_tag (:username)  %>
+						</tr>
+					<br/>
+						<tr>
+    						<%= label_tag("Password") %>
+   							<%= password_field_tag(:password) %>
+   							<%= label_tag ("Verify") %>
+   							<%= password_field_tag(:verify) %>
+   							<br/>
+    						<%= submit_tag ('Submit') %>
+						</tr>
+						</table>
+					<% end %>
+					<!--<form method="post">
+					<!<input style="height: 30px; width: 255px" class="xlarge" id="xlInput" name="fullname" size="25" type="text" value="" placeholder=>
+					<!<input style="height: 30px; width: 255px" class="xlarge" type="password" id="xlInput" name="password1" size="25" value="" placeholder="Last Name">
+					<!<input style="height: 30px; width: 255px" class="xlarge" type="password" id="xlInput" name="password2" size="25" placeholder="Password (at least 6 characters)">
+					<!<input style="height: 30px; width: 255px" class="xlarge" id="xlInput" name="emailaddress" size="25" type="text" value="" placeholder="Retype Password">
+					<!<input style="height: 30px; width: 255px" class="xlarge" id="xlInput" name="cellnumber" maxlength="10" size="25" type="text" value="" placeholder="Email Address">
 								<!-- <p style="font-family: Delius">Cell Phone Service Provider (For FREE text message cab updates)</p> -->
 								<!-- <p><select class="medium" name="service_provider" id="service_provider">
 									<option> Verizon Wireless </option>

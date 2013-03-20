@@ -165,13 +165,12 @@
 
                     <div class="nav-collapse collapse">
                         <p class="navbar-text pull-right">
-                        Logged in as <a href="#" class="navbar-link">Username</a>
+                        Logged in as <a href="#" class="navbar-link"><%= session[:username] %></a>
                         </p>
                         <ul class="nav">
-                             <li> <%=link_to("Splash", splashes_path) %> </li>
-                            <li class="active"><a href="#">Home</a></li>
                             <li><a href="#about">About</a></li>
                             <li><a href="#contact">Contact</a></li>
+                            <li> <%=link_to("Logout", splashes_path) %> </li>
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>
@@ -185,7 +184,7 @@
                 <div class="span3" >
                     <div class="well sidebar-nav" data-spy="affix" style = "width:282px">
                         <ul class="nav nav-list">
-                            <li class="nav-header">dukeCRC24</li>
+                            <li class="nav-header"><%= session[:username] %></li>
                         <!--     <li class="nav-header">My Trials</li>
                             <li class="active"><a href="#">Cancer</a></li>
                             <li><a href="#">Flesh Eating Bacteria</a></li> -->
@@ -235,7 +234,7 @@
       <!-- *********** Settings is in views/home/_settings.html.erb ****************-->                     
 <%= render "settings" %> 
 
-                            
+       
                         </div>
                         
                         

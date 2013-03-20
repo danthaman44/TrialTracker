@@ -7,9 +7,16 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #!/usr/bin/ruby 
 
+c = Connections.new
+c.acceptinguser = 'Sundar'
+c.invitinguser = 'peggy'
+c.status = 'accepted'
+c.trialID = 123
+c.save
+
 t = Trial.new
 t.trialName = 'Your Trial'
-t.trialID = '123'
+t.trialID = 123
 t.endDate = Date.new(2013, 12, 31) 
 t.enrolledGoal = 400
 t.completedGoal = 250

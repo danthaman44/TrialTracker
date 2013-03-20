@@ -1,5 +1,85 @@
+lass HomeController < ApplicationController
 
-class HomeController < ApplicationController
+  def accept #Doesn't work yet. Need to implement trialID
+    invitee = params[:clickeduser]
+    @connect = Connections.where("acceptinguser = '#{invitee}' AND invitinguser = '#session[:username]' AND status = 'pending'")
+    connect.status = 'accepted'
+    connect.save
+    redirect_to :action => 'index'
+  end
+
+  def invite
+    invitee = params[:inviteuser]
+    @connect = Connections.where("acceptinguser = '#{invitee}' OR invitinguser = '#{invitee}'")
+    condition = true
+    @connect.each do |c|
+      if (c.acceptinguser == session[:username] || c.invitinguser == session[:username] && 
+        (c.status == 'accepted' || c.status == 'pending') )
+        condition = false
+      end
+    end
+    if (condition)
+        newcon = Connections.new
+        newcon.acceptinguser = invitee
+        newcon.invitinguser = session[:username]
+        newcon.status = 'pending'
+        newcon.save
+    end
+    redirect_to :action => 'index'
+  end
+
+  def login 
+    @user = User.all
+    cuser = params[:username]
+    cpass = params[:password]
+    cdigest = Digest::SHA2.hexdigest(cpass)
+
+    found = 0
+    @user.each do |u|
+      if u.username == cuser && cdigest == u.password
+        session[:username] = cuser
+        found = 1
+        connections_query (session[:username])
+        redirect_to :action => 'index'
+        break
+      end
+    end
+    
+    if found == 0
+      redirect_to :back
+    end
+  end
+
+  def connections_query (current, ctID=123)
+      @connect = Connections.all
+      session.delete(:connections) 
+      session[:connections] ||= []
+      @connect.each do |c|
+        if ((c.acceptinguser == current) && (c.status == 'accepted') && (c.trialID == ctID))
+          (session[:connections] ||= []) << c.invitinguser 
+        elsif c.invitinguser == current && c.status == 'accepted' && c.trialID == ctID
+          (session[:connections] ||= []) << c.acceptinguser
+        end
+      end
+  end
+
+  def register
+      @title = 'Website Example -- Register Page'
+      user = params[:username]
+      passwd = params[:password]
+      verify = params[:verify]
+      if !user.blank? && !User.exists?(user) && passwd == verify
+          login = User.new
+          login.username = user
+          hash = Digest::SHA2.hexdigest(passwd)
+          login.password = hash
+          login.save
+          session[:username] = user
+          redirect_to :action => 'index'
+      else
+          redirect_to :back
+      end
+  end
   def index
       @trial = Trial.new
       @trials = Trial.all
@@ -9,12 +89,7 @@ class HomeController < ApplicationController
 
       
       logger.info("first trial:")
-      if @first_trial == nil
-          @first_trial = @trials[0] # the trial displayed first by default
-      end
-      logger.info(@first_trial)
-      logger.info(@first_trial.enrolledGoal)
-      logger.info(@first_trial.endDate)
+      @first_trial = @trials[0] # the trial displayed first by default
 
 
       @categories = ["enrolled", "active", "completed", "withdrawn", "refused", "lost"]
@@ -60,8 +135,7 @@ class HomeController < ApplicationController
 
   def change_trial
     @trials = Trial.all
-    id = params[:id]
-    @first_trial = @trials[id]
+    @first_trial = @trials[1]
     logger.info(@first_trial.trialName)
     redirect_to "localhost:3000"
   end
