@@ -2,63 +2,7 @@
 
 <div class="tab-pane fade" id="edit">
 <!--
-<div class="row-fluid">
-<div class= "span12">
-        <legend>Add Data</legend>
-      </div>
-    </div>
 
-<%= form_for @entry  do |f| %>
-
-
-  <fieldset>
-<div class="input-prepend">
-  <span class="add-on">Enrolled </span>
-  <%= f.text_field :enrolled,  :class => "span2", :type => 'text',
-              :value => @last_entry.enrolled %>
-  
-</div>
-
-<div class="input-prepend">
-    <span class="add-on">Active    </span>
-  <%= f.text_field :active, :class => "span2" , :type => 'text',
-              :value => @last_entry.active %>
-</div>
-<div class="input-prepend">
-    <span class="add-on">Completed</span>
-  <%= f.text_field :completed, :class => "span2" , :type => 'text',
-              :value => @last_entry.completed %>
-</div>
-<div class="input-prepend">
-    <span class="add-on">Withdrawn</span>
-  <%= f.text_field :withdrawn, :class => "span2" , :type => 'text',
-              :value => @last_entry.withdrawn %>
-</div>
-<div class="input-prepend">
-    <span class="add-on">Refused  </span>
-  <%= f.text_field :refused, :class => "span2" , :type => 'text',
-              :value => @last_entry.refused %>
-</div>
-<div class="input-prepend">
-    <span class="add-on">Lost     </span>
-  <%= f.text_field :lost, :class => "span2" , :type => 'text',
-              :value => @last_entry.lost %>
-</div>
-<%= f.submit "Create", :class=>"btn btn-success"%>
-<% end %>
-<br />
-
-
-
-
-
-<form>
-<div class="input-append">
-  <input class="span2" id="appendedInput" type="text" placeholder="0">
-  <span class="add-on">Vulnerable</span>
-</div>
-</form>
-<button type="submit" class="btn btn-success">Submit</button>
 
 
 
@@ -111,6 +55,7 @@
               :value => @last_entry.refused %></b></td>
               <td ><b><%= f.text_field :lost, :type => 'text', :style =>"width:60px; height:30px; margin-bottom:0px; text-align:right",
               :value => @last_entry.lost %></b></td>
+              <%= f.hidden_field :trial_id, :value => @current_trial.id %>
               <td><%= f.submit "Update", :class=>"btn btn-success"%></td>
                 <% end %>
                 </tr>

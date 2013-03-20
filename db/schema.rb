@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130314065236) do
+ActiveRecord::Schema.define(:version => 20130320171454) do
 
   create_table "connections", :force => true do |t|
     t.string   "acceptinguser"
@@ -29,7 +29,9 @@ ActiveRecord::Schema.define(:version => 20130314065236) do
     t.integer  "withdrawn"
     t.integer  "refused"
     t.integer  "lost"
-    t.date     "input_at",   :null => false
+    t.integer  "trial_id"
+    t.date     "input_at"
+    t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 

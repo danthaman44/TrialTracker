@@ -47,7 +47,7 @@ var <%= category + '_1_data' %> = new google.visualization.DataTable();
                   ]);
                   <% $i-=7 %>
                   <%= category + '_1_data' %>.addRows([
-                  <% @last_entry.input_at.upto(@first_trial.endDate) do |date| %>
+                  <% @last_entry.input_at.upto(@current_trial.endDate) do |date| %>
                   [new Date (<%= date.year%>, <%= date.mon-1%>, <%= date.mday%>),  
                         ,  , <%= (@averages[category] * $i) %>],
                    
@@ -80,7 +80,7 @@ var <%= category + '_2_data' %> = new google.visualization.DataTable();
                   ]);
                   <% $i -=7 %> 
                   <%= category + '_2_data' %>.addRows([
-                  <% @last_entry.input_at.upto(@first_trial.endDate) do |date| %>
+                  <% @last_entry.input_at.upto(@current_trial.endDate) do |date| %>
                   [new Date (<%= date.year%>, <%= date.mon-1%>, <%= date.mday%>),  
                         ,  <%= ($i * @targetAverages[category]) %>, ,],
                    
@@ -114,7 +114,7 @@ var <%= category + '_3_data' %> = new google.visualization.DataTable();
                   
                    <% $i -=7 %> 
                   <%= category + '_3_data' %>.addRows([
-                  <% @last_entry.input_at.upto(@first_trial.endDate) do |date| %>
+                  <% @last_entry.input_at.upto(@current_trial.endDate) do |date| %>
                   [new Date (<%= date.year%>, <%= date.mon-1%>, <%= date.mday%>),  
                         ,  <%= ($i * @targetAverages[category]) %>, <%= (@averages[category] * $i) %>],
                    
@@ -172,7 +172,7 @@ var <%= category + '_5_data' %> = new google.visualization.DataTable();
 
                    <% $i -=7 %> 
                   <%= category + '_5_data' %>.addRows([
-                  <% @last_entry.input_at.upto(@first_trial.endDate) do |date| %>
+                  <% @last_entry.input_at.upto(@current_trial.endDate) do |date| %>
                   [new Date (<%= date.year%>, <%= date.mon-1%>, <%= date.mday%>),  
                         ,  , <%= (@averages[category] * $i) %>],
                    
@@ -206,7 +206,7 @@ var <%= category + '_6_data' %> = new google.visualization.DataTable();
                   ]);
                    <% $i -=7 %> 
                   <%= category + '_6_data' %>.addRows([
-                  <% @last_entry.input_at.upto(@first_trial.endDate) do |date| %>
+                  <% @last_entry.input_at.upto(@current_trial.endDate) do |date| %>
                   [new Date (<%= date.year%>, <%= date.mon-1%>, <%= date.mday%>),  
                         ,  <%= ($i * @targetAverages[category]) %>, ,],
                    
@@ -237,11 +237,11 @@ var <%= category + '_7_data' %> = new google.visualization.DataTable();
                       <% $i +=7 %> 
                     <% end%>
                   ]);
-                  <% logger.info(@first_trial.endDate) %>
+                  <% logger.info(@current_trial.endDate) %>
                   <% logger.info(@last_entry.input_at) %>
                    <% $i -=7 %> 
                   <%= category + '_7_data' %>.addRows([
-                  <% @last_entry.input_at.upto(@first_trial.endDate) do |date| %>
+                  <% @last_entry.input_at.upto(@current_trial.endDate) do |date| %>
                   [new Date (<%= date.year%>, <%= date.mon-1%>, <%= date.mday%>),  
                         ,  <%= ($i * @targetAverages[category]) %>, <%= (@averages[category] * $i) %>],
                    

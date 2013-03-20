@@ -3,9 +3,9 @@
   <div class = "row-fluid">
 
       <fieldset>
-    <legend><%= @first_trial.trialName %> &nbsp <small>Last updated on <%= @first_trial.updated_at.strftime("%m/%d/%Y") %></small> </legend>
+    <legend><%= session[:current_trial].trialName %> &nbsp <small>Last updated on <%= session[:current_trial].updated_at.strftime("%m/%d/%Y") %></small> </legend>
 
-<%= form_for @first_trial, :html=>{ :class=>"form-horizontal"} do |trial|  %>
+<%= form_for session[:current_trial], :html=>{ :class=>"form-horizontal"} do |trial|  %>
  <form class="form-horizontal">
 
   <div class="control-group">
@@ -33,7 +33,7 @@
     <label class="control-label" for="inputEmail">Enrolled Goal</label>
     <div class="controls">
       <%= trial.text_field :enrolledGoal, :type => 'text', :style=>"height:30px"%>
-      <!--<input type="text" id="inputEmail" value='<%= @first_trial.enrolledGoal %>' style="height:30px">-->
+      <!--<input type="text" id="inputEmail" value='<%= session[:current_trial].enrolledGoal %>' style="height:30px">-->
     </div>
   </div>
 
@@ -51,7 +51,7 @@
     <div class="controls">
 
 <%= trial.text_field :endDate, :type => 'text', :style=>"height:30px", :id=>"datepicker" %>
-    	 :value => @first_trial.endDate.strftime("%m/%d/%Y") logger.info(@first_trial.enrolledGoal)<input type="text" value='<%= @first_trial.endDate %>' id="datepicker" data-date-format="mm-dd-yyyy" style="height:30px"> 
+    	 :value => session[:current_trial].endDate.strftime("%m/%d/%Y") logger.info(session[:current_trial].enrolledGoal)<input type="text" value='<%= session[:current_trial].endDate %>' id="datepicker" data-date-format="mm-dd-yyyy" style="height:30px"> 
 
     </div>
   </div> -->

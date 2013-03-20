@@ -16,6 +16,7 @@ class EntriesController < ApplicationController
     entry.withdrawn = params[:entry][:withdrawn]
     entry.refused = params[:entry][:refused]
     entry.lost = params[:entry][:lost]
+    entry.trial_id = params[:entry][:trial_id]
 
 
 		

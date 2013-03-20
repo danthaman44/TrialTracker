@@ -66,7 +66,7 @@ FirstApp::Application.routes.draw do
    match '/trials/:id/change_trial' => 'trials#change_trial', as: :trials_change
 
 
-   root :to => 'home#index'
+   root :to => 'splashes#index'
 
    match '/' => "home#index", :as => :home
 
