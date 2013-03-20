@@ -62,9 +62,9 @@
                 <td style = "font-size:14px; text-align: right;">
                     <div id = "goalContent"> 
                          <% if (category == 'enrolled') %>
-                        <%= @first_trial.enrolledGoal %>
+                        <%= @current_trial.enrolledGoal %>
                         <% else %>
-                        <%= @first_trial.completedGoal %>
+                        <%= @current_trial.completedGoal %>
                         <% end %>
                     </div>
                 </td>
@@ -75,7 +75,7 @@
 
             <tr><th style = "font-size:14px">Avg/Month</th><td style = "font-size:14px; text-align: right;"><%= Float(@averages[category]*30).round(1) %></td></tr>
             <tr><th style = "font-size:14px">Avg/Week</th><td style = "font-size:14px; text-align: right;"><%= Float(@averages[category]*7).round(1) %></td></tr>
-            <tr><th style = "font-size:14px">Est. by <%=@first_trial.endDate.strftime("%m/%d/%Y") %></th><td style = "font-size:14px; text-align: right;"> <%= Float(@total_length_of_trial* @averages[category]).round(1) %></td></tr>
+            <tr><th style = "font-size:14px">Est. by <%= @current_trial.endDate.strftime("%m/%d/%Y") %></th><td style = "font-size:14px; text-align: right;"> <%= Float(@total_length_of_trial* @averages[category]).round(1) %></td></tr>
 
          </table>
 

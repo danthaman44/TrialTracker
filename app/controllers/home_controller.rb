@@ -82,23 +82,29 @@ class HomeController < ApplicationController
       end
   end
   def index
-      @trial = Trial.new
+
+      
+      
       @trials = Trial.all
-      @entries_recentFirst = Entry.find(:all, :order => "input_at DESC")
-      @entries_oldestFirst = Entry.find(:all, :order => "input_at")
+      @current_trial = @trials[0] # the trial displayed first by default
+      logger.info(session.inspect)
+
+      entries= @current_trial.entries
+      @entries_recentFirst = entries.sort { |a, b| b.input_at <=> a.input_at }
+      #(:all, :order => "input_at DESC")
+      @entries_oldestFirst = entries.sort { |a, b| a.input_at <=> b.input_at }
       @last_entry = @entries_recentFirst[0]
 
       
       logger.info("all entries")
       logger.info(@entries_recentFirst)
-      @first_trial = @trials[0] # the trial displayed first by default
 
 
       @categories = ["enrolled", "active", "completed", "withdrawn", "refused", "lost"]
       @averages = Hash.new
 
       length_of_trial = @last_entry.input_at - @entries_oldestFirst[0].input_at # length of trial SO FAR
-      @total_length_of_trial = @first_trial.endDate - @entries_oldestFirst[0].input_at
+      @total_length_of_trial = @current_trial.endDate - @entries_oldestFirst[0].input_at
 
       if length_of_trial == 0
         length_of_trial = 1
@@ -113,8 +119,8 @@ class HomeController < ApplicationController
 
       @targetAverages = Hash.new
 
-      @enrolledAverage = @first_trial.enrolledGoal/@total_length_of_trial
-      @completedAverage = @first_trial.completedGoal/@total_length_of_trial
+      @enrolledAverage = @current_trial.enrolledGoal/@total_length_of_trial
+      @completedAverage = @current_trial.completedGoal/@total_length_of_trial
 
       @targetAverages['enrolled'] = @enrolledAverage
       @targetAverages['completed'] = @completedAverage
@@ -144,8 +150,8 @@ class HomeController < ApplicationController
 
   def change_trial
     @trials = Trial.all
-    @first_trial = @trials[1]
-    logger.info(@first_trial.trialName)
+    @current_trial = @trials[1]
+    logger.info(@current_trial.trialName)
     redirect_to "localhost:3000"
   end
 
