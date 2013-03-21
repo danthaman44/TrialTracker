@@ -50,15 +50,6 @@ in active
   </div>
 
 
- <!-- <div class="control-group">
-    <label class="control-label" for="inputPassword">End Date</label>
-    <div class="controls">
-
-<%= trial.text_field :endDate, :type => 'text', :style=>"height:30px", :id=>"datepicker" %>
-    	 :value => session[:current_trial].endDate.strftime("%m/%d/%Y") logger.info(session[:current_trial].enrolledGoal)<input type="text" value='<%= session[:current_trial].endDate %>' id="datepicker" data-date-format="mm-dd-yyyy" style="height:30px"> 
-
-    </div>
-  </div> -->
 
 
   <div class="control-group">
@@ -81,35 +72,6 @@ in active
 </div>
 
 
-<!--   <div class "control-group">
-    <legend> Your Friends </legend>
-      <table class = "table table-hover table-condensed table-bordered table-striped" style = "font-size:14px" id="data_table">
-        <thead>
-          <tr>
-              <th style="text-align: left;">Accepted CRCs</th>
-          </tr>
-          <% session[:connections].each do |c| %>
-             <tr>
-              <td style="text-align: left;"><%= c %></td>
-             </tr>
-          <%end%>
-        </thread>
-      </table> -->
-<!-- 
-      <table class = "table table-hover table-condensed table-bordered table-striped" style = "font-size:14px" id="data_table">
-        <thead>
-          <tr>
-              <th style="text-align: left;">Pending CRCs</th>
-          </tr>
-              <% @query = Connections.where("invitinguser = '#{session[:username]}' AND status = 'pending'") %>
-              <% @query.each do |q| %>
-                <tr>
-                  <td style="text-align: left;"><%=q.acceptinguser %></td>
-                </tr>
-              <%end%>   
-          </tr>
-        </thread>
-      </table> -->
 
       <table class = "table table-hover table-condensed table-bordered table-striped" style = "font-size:14px" id="data_table">
         <thead>

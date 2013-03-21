@@ -80,15 +80,22 @@ class HomeController < ApplicationController
           redirect_to :back
       end
   end
-  def index
-
-      
-      
+  def index    
       @trials = Trial.all
-      @current_trial = @trials[0] # the trial displayed first by default
-      logger.info(session.inspect)
+    if session[:current_trial] == nil
+        logger.info("going off")
+        @current_trial = @trials[0] # the trial displayed first by default
+    else
 
-      entries= @current_trial.entries
+      @current_trial = Trial.find(session[:current_trial])
+
+    end
+
+      logger.info("current trial: ")
+      logger.info(@current_trial.trialName)
+    
+
+      entries = @current_trial.entries
       @entries_recentFirst = entries.sort { |a, b| b.input_at <=> a.input_at }
       #(:all, :order => "input_at DESC")
       @entries_oldestFirst = entries.sort { |a, b| a.input_at <=> b.input_at }
@@ -149,14 +156,6 @@ class HomeController < ApplicationController
     respond_to do |format|
       format.js
     end
-  end
-
-
-  def change_trial
-    @trials = Trial.all
-    @current_trial = @trials[1]
-    logger.info(@current_trial.trialName)
-    redirect_to "localhost:3000"
   end
 
 

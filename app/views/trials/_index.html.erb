@@ -3,7 +3,9 @@
 <% if trial== @current_trial %>
 class="active"
 <% end %> 
-><%= link_to trial.trialName, :controller => "trials", :action => "change", :newTrial => trial.id %></li>
+>
+
+<%= link_to trial.trialName, :controller => "trials", :action => "change_trial", :id => trial.id %></li>
 <% end %>
 
 

@@ -56,14 +56,14 @@ class TrialsController < ApplicationController
   end
 
   def change_trial
-    @trials = Trial.all
-    id = params[:id]
-    id = id.to_i
-    id = id - 1
-    @first_trial = @trials[id]
-    logger.info("first trial: ")
-    logger.info(@first_trial.trialName)
-    redirect_to "localhost:3000"
+    session[:current_trial] = Trial.find(params[:id]).id
+    current = session[:current_trial] 
+    logger.info("current trial: ")
+    logger.info(current)
+    respond_to do |format|
+      format.html { redirect_to :controller => 'home', :action => 'index'}
+      format.json { head :no_content } 
+    end
   end
 
   # PUT /trials/1
