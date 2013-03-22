@@ -85,6 +85,7 @@ class HomeController < ApplicationController
       
       
       @trials = Trial.all
+
       @current_trial = @trials[0] # the trial displayed first by default
       logger.info(session.inspect)
 
@@ -140,6 +141,7 @@ class HomeController < ApplicationController
     logger.info(session[:current_tab])
 
     @entry = Entry.new # Used in edit data form
+    @entry2 = Entry.new
     @trial = Trial.new # Used in modal form
       
   end

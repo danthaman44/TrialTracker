@@ -1,7 +1,10 @@
 class EntriesController < ApplicationController
+  respond_to :html, :json
 	def new
 		
 	end
+
+
 
 	def create
     
@@ -20,17 +23,21 @@ class EntriesController < ApplicationController
 
 
 		session[:current_tab] = 'edit_data'
-	  if entry.save
-      redirect_to :controller => 'home', :action => 'index'
-        #format.html { redirect_to @home, :notice => 'Article was successfully created.' }
-        #format.json { render :json => @article, :status => :created, :location => @article }
-      else
-        #format.html { render :action => "new" }
-        #format.json { render :json => @article.errors, :status => :unprocessable_entity }
+    respond_to do |format|
+	     if entry.save
+        format.html { redirect_to :controller => 'home', :action => 'index' }  
+        format.js
+        else
+        end
       end
   end
 
+  def edit
+logger.info("EDITING AN ENTRY")
+  end
+
   def update
+    logger.info("UPDATING AN ENTRY")
     entry = Entry.find(params[:toUpdate])
     session[:current_tab] = 'edit_data'
 
@@ -45,16 +52,19 @@ class EntriesController < ApplicationController
     end
   end
 
-  def show
-    logger.info (params[:toDelete])
-    logger.info (params[:toDelete])
+  
+  def show # implements delete
+    logger.info (params[:id])
     #params[:toDelete].delete_all;
-    s = Entry.where("id = ?", params[:toDelete])
+    s = Entry.where("id = ?", params[:id])
     logger.info ("------------------------------")
     logger.info (s)
     s.delete_all
 
     session[:current_tab] = 'edit_data'
-    redirect_to :controller => 'home', :action => 'index'
+    respond_to do |format|  
+      format.html { redirect_to :controller => 'home', :action => 'index' }  
+      format.js   { render :nothing => true }  
+      end
   end
 end

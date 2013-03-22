@@ -283,7 +283,17 @@ class = 'active'
         //}
         //$('#date-start').datepicker('hide');
     });
+
       })
+        $(document).ready(function(){ 
+$('.delete_post').click(function(){
+    $(this).closest('tr').fadeOut();  
+}); 
+$('#editEntry').click(function(){
+  console.log("clicked button!")
+    $(this).closest('tr').fadeOut();  
+});  
+});
         </script>
         
     </body>

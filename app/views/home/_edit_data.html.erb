@@ -46,7 +46,7 @@ in active
                     </tr>
                 </thead>
                 <tr>
-                  <%= form_for @entry  do |f| %>
+                  <%= form_for(@entry, :remote => true) do |f| %>
                     <td style="text-align: left;"><b>Today</b></td>
                    
                     <td ><b><%= f.text_field :enrolled, :type => 'text', :style =>"width:60px; height:30px; margin-bottom:0px; text-align:right",
@@ -66,23 +66,27 @@ in active
                 <% end %>
                 </tr>
 
-
+                
                 <% @entries_recentFirst.each do |entry| %>
-                <tr id="entry_ <%= entry.id %>">
-                    <td style="text-align: left;"><%= entry.input_at.strftime("%m/%d/%Y") %></td>
+                <tr id="entry_<%= entry.id %>">
+                    <td style="text-align: left;" id="input_at_<%= entry.id %>"><%= entry.input_at.strftime("%m/%d/%Y") %></td>
                     
-                    <td><%= entry.enrolled %></td>
+                    <td id="enrolled_<%= entry.id %>"><%= entry.enrolled %></td>
 
-                    <td><%= entry.active %></td>
-                    <td><%= entry.completed %></td>
-                    <td><%= entry.withdrawn %></td>
-                    <td><%= entry.refused %></td>
-                    <td><%= entry.lost %></td>
-                    <td ><a href = "#" onclick="javascript:editEntry(<%= entry.id %>)">edit</a>
-                      <%= link_to "delete", :controller => "entries", :action => "delete", :toDelete => entry.id %></td>
+                    <td id="active_<%= entry.id %>"><%= entry.active %></td>
+                    <td id="completed_<%= entry.id %>"><%= entry.completed %></td>
+                    <td id="withdrawn_<%= entry.id %>"><%= entry.withdrawn %></td>
+                    <td id="refused_<%= entry.id %>"><%= entry.refused %></td>
+                    <td id="lost_<%= entry.id %>"><%= entry.lost %></td>
+                    <td><a href = "#" onclick="javascript:editEntry(<%= entry.id %>)">edit</a>
+                      <%= link_to 'Delete', entry_path(entry), :method => :delete, :toDelete => entry.id, :remote=>true, :class=>'delete_post' %></td>
                 </tr> 
-                <% end %>                             
+              </div>
+                <% end %> 
+                                          
             </table>
+<div id="test">
+</div>
 
 
             
@@ -90,8 +94,21 @@ in active
 
         <script type="text/javascript">
             function editEntry(id) {
-            var row = document.getElementById('entry_'+id);
-            row.innerHTML = 
+            var row = document.getElementById('entry_'.concat(id.toString()));
+
+            var input_at = document.getElementById('input_at_'.concat(id.toString())).innerHTML;
+            var enrolled = document.getElementById('enrolled_'.concat(id.toString())).innerHTML;
+            var active = document.getElementById('active_'.concat(id.toString())).innerHTML;
+            var completed = document.getElementById('completed_'.concat(id.toString())).innerHTML;
+            var withdrawn = document.getElementById('withdrawn_'.concat(id.toString())).innerHTML;
+            var refused = document.getElementById('refused_'.concat(id.toString())).innerHTML;
+            var lost = document.getElementById('lost_'.concat(id.toString())).innerHTML;
+
+            //var form = '<form accept-charset = "UTF-8" action = "/entries/'.concat(id);
+            //form = form.concat('/edit" method = "post" data-remote="true" > 
+              var form = '<%= form_for @entry2, :remote => true do |f| %><%= f.text_field :enrolled, :type => "text", :style =>"width:60px; height:30px; margin-bottom:0px; text-align:right", :value => @last_entry.enrolled %><%= f.submit "Confirm", :class=>"btn btn-success", :id=>"editEntry"%><% end %>';
+            
+            row.innerHTML = form;
             }
 
         </script>

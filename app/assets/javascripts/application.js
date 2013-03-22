@@ -8,3 +8,10 @@
 = require jquery_ujs
 = require twitter/bootstrap
 = require_tree .
+
+$(document).ready(function(){
+	console.log('testing');
+$('.delete_post').bind('ajax:success', function() {  
+    $(this).closest('tr').fadeOut();  
+});  
+});

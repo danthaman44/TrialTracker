@@ -56,6 +56,7 @@ class TrialsController < ApplicationController
   end
 
   def change_trial
+    logger.info("CHANGING TRIAL")
     @trials = Trial.all
     id = params[:id]
     id = id.to_i
