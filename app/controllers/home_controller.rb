@@ -37,6 +37,7 @@ class HomeController < ApplicationController
     found = 0
     @user.each do |u|
       if u.username == cuser && cdigest == u.password
+        logger.info("found matching user")
         session[:username] = cuser
         found = 1
         connections_query (session[:username])

@@ -5,11 +5,11 @@ c.status = 'accepted'
 c.trialID = 123
 c.save
 
-users = User.create([{:username =>'wdd3', :password =>'pw', :email =>'wdd3@duke.edu'}, {:username =>'vfseanm', :password =>'pw', :email => 'sean@duke.edu'},
-	{:username =>'ashsunday', :password =>'pw', :email => 'ash@duke.edu'}])
+users = User.create([{:username =>'wdd3', :password =>Digest::SHA2.hexdigest('pw'), :email =>'wdd3@duke.edu'}, {:username =>'vfseanm', :password =>Digest::SHA2.hexdigest('pw'), :email => 'sean@duke.edu'},
+	{:username =>'ashsunday', :password =>Digest::SHA2.hexdigest('pw'), :email => 'ash@duke.edu'}])
 
 
-Trial.create({trialName: 'Asthma', trialID: 123, endDate: Date.new(2013, 12, 31), enrolledGoal: 400, completedGoal: 250, 
+Trial.create({trialName: 'Asthma', trialID: 123, startDate: Date.new(2012, 6, 1), endDate: Date.new(2013, 12, 31), enrolledGoal: 400, completedGoal: 250, 
 
 	entries_attributes: [{input_at: Date.new(2012, 6, 1), 
 		enrolled: 51, 
@@ -38,7 +38,7 @@ lost: 20}
 
 ]})
 
-Trial.create({trialName: 'Cancer', trialID: 124, endDate: Date.new(2013, 12, 31), enrolledGoal: 400, completedGoal: 250,
+Trial.create({trialName: 'Cancer', trialID: 124, startDate: Date.new(2012, 6, 1), endDate: Date.new(2013, 12, 31), enrolledGoal: 400, completedGoal: 250,
 	entries_attributes: [{input_at: Date.new(2012, 6, 1), 
 		enrolled: 51, 
 		active: 24, 

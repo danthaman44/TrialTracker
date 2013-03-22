@@ -18,9 +18,8 @@ in active
     <div class = "span4">
 
         <table class="table table-condensed table-hover" style="display:inline; float:right; margin-top:10px">
-            <th> Overview </th>
-            <tr style="border-top: 2px solid #ccc;"><th style = "font-size:14px;">Total Subjects</th><td style = "font-size:14px; text-align: right;">4056</td></tr>
-            <tr><th style = "font-size:14px">Trial Period</th><td style = "font-size:14px; text-align: right;">Jan 1st - July 14th</td></tr>
+            <tr style="border-top: 2px solid #ccc;"><th style = "font-size:14px;">Total Completed</th><td style = "font-size:14px; text-align: right;"><%= @last_entry.completed %></td></tr>
+            <tr><th style = "font-size:14px">Trial Period</th><td style = "font-size:14px; text-align: right;"><%= @current_trial.startDate.strftime("%m/%d/%Y") %> - <%= @current_trial.endDate.strftime("%m/%d/%Y") %></td></tr>
 
            
        <!--      <tr><th></th><td style = "font-size:14px; text-align: right;"> <a href= "#"> Invite Someone</a></td></tr> -->
