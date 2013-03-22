@@ -8,6 +8,7 @@ in active
 
       <fieldset>
     <legend><%= @current_trial.trialName %> &nbsp <small>Last updated on <%= @current_trial.updated_at.strftime("%m/%d/%Y") %></small> </legend>
+<div class = "span6">
 
 <%= form_for @current_trial, :html=>{ :class=>"form-horizontal"} do |trial|  %>
  <form class="form-horizontal">
@@ -66,11 +67,27 @@ in active
 
       </tr>
     </table>
-
 </div>
 
 </div>
 
+</div>
+
+   <div class = "span3 offset7" style = "float:right margin-top:10px">
+    <table>
+      Collaborators
+    <% @current_crcs.each do |crc| %>
+    <tr>
+      <td> <%= crc.username %> </td>
+      <td> &nbsp</td>
+      <td> <%= crc.email %> </td>
+
+    </tr>
+    <% end %>
+    </table>
+  </div>
+
+</div>
 
 
       <table class = "table table-hover table-condensed table-bordered table-striped" style = "font-size:14px" id="data_table">

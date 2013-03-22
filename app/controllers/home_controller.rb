@@ -93,8 +93,8 @@ class HomeController < ApplicationController
 
       logger.info("current trial: ")
       logger.info(@current_trial.trialName)
-    
-
+      @current_crcs = @current_trial.users #the collaborators of our current trial
+  
       entries = @current_trial.entries
       @entries_recentFirst = entries.sort { |a, b| b.input_at <=> a.input_at }
       #(:all, :order => "input_at DESC")

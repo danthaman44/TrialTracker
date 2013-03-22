@@ -18,11 +18,26 @@ in active
     <div class = "span4">
 
         <table class="table table-condensed table-hover" style="display:inline; float:right; margin-top:10px">
+            <th> Overview  </th>
             <tr style="border-top: 2px solid #ccc;"><th style = "font-size:14px;">Total Subjects</th><td style = "font-size:14px; text-align: right;">4056</td></tr>
             <tr><th style = "font-size:14px">Trial Period</th><td style = "font-size:14px; text-align: right;">Jan 1st - July 14th</td></tr>
+
            
        <!--      <tr><th></th><td style = "font-size:14px; text-align: right;"> <a href= "#"> Invite Someone</a></td></tr> -->
-</table>
+        </table>
+        <table class="table table-condensed table-hover" style="display:inline; float:right; margin-top:10px">
+             Collaborators 
+            <% @current_crcs.each do |crc| %>
+            <tr>
+              <td> <%= crc.username %> </td>
+              <td> &nbsp</td>
+              <td> <%= crc.email %> </td>
+
+            </tr>
+            <% end %>
+        </table>
+
+
 
 </div>
 </div> <!-- end row -->

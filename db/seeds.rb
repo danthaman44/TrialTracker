@@ -5,7 +5,8 @@ c.status = 'accepted'
 c.trialID = 123
 c.save
 
-users = User.create([{:username =>'wdd3', :password =>'pw', :email =>'wdd3@duke.edu', :trial_id => 1}, {:username =>'vfseanm', :password =>'pw', :email => 'sean@duke.edu', :trial_id => 1}])
+users = User.create([{:username =>'wdd3', :password =>'pw', :email =>'wdd3@duke.edu', :trial_id => 1}, {:username =>'vfseanm', :password =>'pw', :email => 'sean@duke.edu', :trial_id => 1},
+	{:username =>'ashsunday', :password =>'pw', :email => 'ash@duke.edu', :trial_id => 2}])
 
 
 Trial.create({trialName: 'Asthma', trialID: 123, endDate: Date.new(2013, 12, 31), enrolledGoal: 400, completedGoal: 250, 
