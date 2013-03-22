@@ -87,9 +87,11 @@ class HomeController < ApplicationController
         @current_trial = @trials[0] # the trial displayed first by default
     else
 
-      @current_trial = Trial.find(session[:current_trial])
+       @current_trial = Trial.find(session[:current_trial])
 
     end
+   # session[:current_trial] = 1
+    #@current_trial = @trials.first 
 
       logger.info("current trial: ")
       logger.info(@current_trial.trialName)
