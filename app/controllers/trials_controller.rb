@@ -47,9 +47,10 @@ class TrialsController < ApplicationController
         entry = @trial.entries.create(:input_at => Time.now, :enrolled => 0, :active => 0, :completed => 0, :withdrawn => 0, :refused => 0,:lost => 0, :trial_id => @trial.id)
         #@trial.users << @current_crc
         user = @trial.users.create(:username => "newguy", :password => "pw", :email => "email@gmail.com")
+        session[:current_trial] = session[:current_trial] + 1
         # format.html { redirect_to @trial, notice: 'Trial was successfully created.' }
         format.json { render json: @trial, status: :created, location: @trial }
-        format.html {redirect_to 'localhost:3000'}
+        format.html {redirect_to :back }
       else
         format.html { render action: "new" }
         format.json { render json: @trial.errors, status: :unprocessable_entity }
