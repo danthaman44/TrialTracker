@@ -42,12 +42,15 @@ class TrialsController < ApplicationController
   # POST /trials.json
   def create
     @trial = Trial.new(params[:trial])
-
     respond_to do |format|
       if @trial.save
+        entry = @trial.entries.create(:input_at => Time.now, :enrolled => 0, :active => 0, :completed => 0, :withdrawn => 0, :refused => 0,:lost => 0, :trial_id => @trial.id)
+        #@trial.users << @current_crc
+        user = @trial.users.create(:username => "newguy", :password => "pw", :email => "email@gmail.com")
+        session[:current_trial] = session[:current_trial] + 1
         # format.html { redirect_to @trial, notice: 'Trial was successfully created.' }
         format.json { render json: @trial, status: :created, location: @trial }
-        format.html {redirect_to 'localhost:3000'}
+        format.html {redirect_to :back }
       else
         format.html { render action: "new" }
         format.json { render json: @trial.errors, status: :unprocessable_entity }
@@ -56,15 +59,15 @@ class TrialsController < ApplicationController
   end
 
   def change_trial
-    logger.info("CHANGING TRIAL")
-    @trials = Trial.all
-    id = params[:id]
-    id = id.to_i
-    id = id - 1
-    @first_trial = @trials[id]
-    logger.info("first trial: ")
-    logger.info(@first_trial.trialName)
-    redirect_to "localhost:3000"
+
+    session[:current_trial] = Trial.find(params[:id]).id
+    current = session[:current_trial] 
+    logger.info("current trial: ")
+    logger.info(current)
+    respond_to do |format|
+      format.html { redirect_to :controller => 'home', :action => 'index'}
+      format.json { head :no_content } 
+    end
   end
 
   # PUT /trials/1

@@ -6,7 +6,8 @@
 	<style type="text/css">
 		body {background-image:url('/assets/medical_billing.png');}
 		h1 {font-size:500%;
-			color: black ;}
+			color: black ;
+		}
                                
      </style>
 </head>
@@ -30,26 +31,33 @@
                             <li><a href="#about">About</a></li>
                             <li><a href="#contact">Contact</a></li>
                         </ul>
-                        <ul class="nav">
-                                     	
-                        	<li> <%= form_tag ("/login") do%>   
+                     
+                         <ul class="nav">    
+                         <li>  	
+                        <%= form_tag ("/login") do%>   
                         		<%= label_tag ("Username")%>
-                        	</li>
-                        	<li>
+                        </li>
+                        <li>
+                        
 								<%= text_field_tag :username %>
-							</li>
-							<li>
-								<%= label_tag ("Password")%>
-							</li>
+						</li>
 						<li>
+						
+								<%= label_tag ("Password")%>
+						</li>
+						<li>
+						
 								<%= password_field_tag :password %>
-							</li>
-							<li>
+						</li>
+						<li>
+						
 								<%= submit_tag ('Sign In') %>
-								<%end%>
-							</li>
+						</li>
+						<%end%>
+					</ul>
+			
 							
-						</ul>
+						
                         
                     </div><!--/.nav-collapse -->
                 </div>
