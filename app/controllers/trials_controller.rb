@@ -68,6 +68,7 @@ class TrialsController < ApplicationController
   end
 
   def change_trial
+
     session[:current_trial] = Trial.find(params[:id]).id
     current = session[:current_trial] 
     logger.info("current trial: ")

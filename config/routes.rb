@@ -60,7 +60,6 @@ FirstApp::Application.routes.draw do
 
    resources :splash
 
-
   match '/entries/update' => 'entries#update'
 
    match '/entries/delete' => 'entries#delete'

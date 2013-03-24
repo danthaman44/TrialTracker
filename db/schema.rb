@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20130320171454) do
   create_table "trials", :force => true do |t|
     t.integer  "trialID"
     t.string   "trialName"
+    t.date     "startDate"
     t.date     "endDate"
     t.integer  "enrolledGoal"
     t.integer  "completedGoal"

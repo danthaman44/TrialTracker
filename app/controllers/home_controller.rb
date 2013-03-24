@@ -37,6 +37,7 @@ class HomeController < ApplicationController
     found = 0
     @user.each do |u|
       if u.username == cuser && cdigest == u.password
+        logger.info("found matching user")
         session[:username] = cuser
         found = 1
         connections_query (session[:username])
@@ -82,7 +83,6 @@ class HomeController < ApplicationController
   end
   def index    
       @trials = Trial.all
-      #session.delete(:current_trial)
     if session[:current_trial] == nil
         logger.info("going off")
         @current_trial = @trials[0] # the trial displayed first by default
@@ -95,6 +95,7 @@ class HomeController < ApplicationController
     
     #session[:current_trial] = 1
     #current_trial = Trial.first 
+
 
       logger.info("current trial: ")
       logger.info(@current_trial.id)
@@ -153,6 +154,7 @@ class HomeController < ApplicationController
     logger.info(session[:current_tab])
 
     @entry = Entry.new # Used in edit data form
+    @entry2 = Entry.new
     @trial = Trial.new # Used in modal form
       
   end
