@@ -83,18 +83,15 @@ class HomeController < ApplicationController
   end
   def index    
       @trials = Trial.all
+      #reset_session
+      # session[:current_trial] = 1
     if session[:current_trial] == nil
         logger.info("going off")
-        @current_trial = @trials[0] # the trial displayed first by default
+        session[:current_trial] = 1
+        @current_trial = @trials[0] # the trial displayed first 
     else
-
        @current_trial = Trial.find(session[:current_trial])
-       
-
     end
-    
-    #session[:current_trial] = 1
-    #current_trial = Trial.first 
 
 
       logger.info("current trial: ")
@@ -166,9 +163,7 @@ class HomeController < ApplicationController
     end
   end
 
-
-  
-  
+ 
   def insert_trials
       logger.info("****** Inserting Trials! ******")
       Trial.create(:description => 'new', :tdate => 'Friday', :trialName => 'hers')

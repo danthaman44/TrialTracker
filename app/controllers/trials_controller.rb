@@ -51,12 +51,18 @@ class TrialsController < ApplicationController
     if @trial.endDate == nil
       @trial.endDate = Date.tomorrow()
     end 
+    if @trial.startDate == nil
+      @trial.startDate = Date.current()
+    end 
+
     respond_to do |format|
       if @trial.save
         entry = @trial.entries.create(:input_at => Time.now, :enrolled => 0, :active => 0, :completed => 0, :withdrawn => 0, :refused => 0,:lost => 0, :trial_id => @trial.id)
         #@trial.users << @current_crc
         user = @trial.users.create(:username => "newguy", :password => "pw", :email => "email@gmail.com")
-        session[:current_trial] = session[:current_trial] + 1
+        session[:current_trial] = @trial.id
+        logger.info("our current session, create")
+        logger.info(session[:current_trial])
         # format.html { redirect_to @trial, notice: 'Trial was successfully created.' }
         format.json { render json: @trial, status: :created, location: @trial }
         format.html {redirect_to :back }
@@ -100,11 +106,13 @@ class TrialsController < ApplicationController
   # DELETE /trials/1.json
   def destroy
     @trial = Trial.find(params[:id])
+    temp = @trial.id - 1
+    logger.info("our current session, delete")
+    logger.info(temp)
     @trial.destroy
-
     respond_to do |format|
-      format.html { redirect_to trials_url }
-      format.html { redirect_to "localhost:3000" }
+      session[:current_trial] = 1
+      format.html { redirect_to :back }
       format.json { head :no_content }
     end
   end

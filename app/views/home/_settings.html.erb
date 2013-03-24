@@ -28,6 +28,13 @@ in active
   </div>
 
   <div class="control-group">
+    <label class="control-label" for="inputPassword">Start Date</label>
+    <div class="controls">
+       <%= trial.text_field :startDate, :type => 'text', :style=>"height:30px"%>
+    </div>
+  </div>
+
+  <div class="control-group">
     <label class="control-label" for="inputPassword">End Date</label>
     <div class="controls">
        <%= trial.text_field :endDate, :type => 'text', :style=>"height:30px"%>
@@ -59,10 +66,15 @@ in active
       <tr>
         <td>
           <%= trial.submit "Update", :class=>"btn btn-success"%> 
-
         </td>
+    <% end %>
         <td>
           &nbsp &nbsp
+        </td>
+        <td>
+          &nbsp
+          <%= button_to "Delete Trial", {:controller => :trials,
+          :action => 'destroy', :id => @current_trial.id }, :class=>"btn btn-danger", :method => :delete %>
         </td>
 
       </tr>
@@ -87,7 +99,7 @@ in active
 
 
 </fieldset>
-    <% end %>
+
   </div>
 
   <div class "control-group">
