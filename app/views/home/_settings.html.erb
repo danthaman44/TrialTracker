@@ -23,7 +23,7 @@ in active
   <div class="control-group">
     <label class="control-label" for="inputPassword">Trial ID</label>
     <div class="controls">
-       <%= trial.text_field :trialID, :type => 'text', :style=>"height:30px"%>
+       <%= trial.number_field :trialID, :type => 'text', :style=>"height:30px"%>
     </div>
   </div>
 
@@ -37,7 +37,7 @@ in active
   <div class="control-group">
     <label class="control-label" for="inputEmail">Enrolled Goal</label>
     <div class="controls">
-      <%= trial.text_field :enrolledGoal, :type => 'text', :style=>"height:30px"%>
+      <%= trial.number_field :enrolledGoal, :type => 'text', :style=>"height:30px"%>
       <!--<input type="text" id="inputEmail" value='<%= @current_trial.enrolledGoal %>' style="height:30px">-->
     </div>
   </div>
@@ -46,7 +46,7 @@ in active
   <div class="control-group">
     <label class="control-label" for="inputPassword">Completed Goal</label>
     <div class="controls">
-      <%= trial.text_field :completedGoal, :type => 'text', :style=>"height:30px"%>
+      <%= trial.number_field :completedGoal, :type => 'text', :style=>"height:30px"%>
     </div>
   </div>
 

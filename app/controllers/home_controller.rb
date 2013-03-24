@@ -82,18 +82,22 @@ class HomeController < ApplicationController
   end
   def index    
       @trials = Trial.all
+      #session.delete(:current_trial)
     if session[:current_trial] == nil
         logger.info("going off")
         @current_trial = @trials[0] # the trial displayed first by default
     else
 
        @current_trial = Trial.find(session[:current_trial])
+       
 
     end
-   # session[:current_trial] = 1
-    #@current_trial = @trials.first 
+    
+    #session[:current_trial] = 1
+    #current_trial = Trial.first 
 
       logger.info("current trial: ")
+      logger.info(@current_trial.id)
       logger.info(@current_trial.trialName)
       @current_crcs = @current_trial.users #the collaborators of our current trial
   
