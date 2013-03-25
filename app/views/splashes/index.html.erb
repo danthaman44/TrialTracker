@@ -8,6 +8,9 @@
 		h1 {font-size:500%;
 			color: black ;
 		}
+		.login{
+			margin-top: 5px; 
+		}
                                
      </style>
 </head>
@@ -40,13 +43,13 @@
                         		
                         </li>
                         <li>
-								<%= text_field_tag :username, '', :style => "height:30px", :placeholder => "User Name" %>
+							<%= text_field_tag :username, '', :style => "height:30px", :placeholder => "User Name", :class => "login" %>
 						</li>
 						<li>
 						&nbsp &nbsp
 						</li>
 						<li>
-								<%= password_field_tag :password , '', :style => "height:30px", :placeholder => "Password" %>
+								<%= password_field_tag :password , '', :style => "height:30px", :placeholder => "Password", :class=> "login" %>
 						</li>
 						<li>
 								&nbsp &nbsp
@@ -81,9 +84,9 @@
 			  		<div class = "offset2">
 			  		<h1> &nbsp <h1>
 			  				
-			  		<h1> Clinical Research.</h1>
+			  		<h1> <i> Clinical Research. </i></h1>
 			  		<h1> &nbsp <h1>
-			  		<h1> Simplified </h1>
+			  		<h1> <i> Simplified </i> </h1>
 
 		
 			  		</div>
@@ -108,16 +111,19 @@
 				/*-ms-filter must come before filter*/
 				filter: alpha(opacity = 90);padding-top: 30px; padding-left: 30px; padding-right: 30px; padding-bottom: 50px; background-color:#FFF"><h3 style="
 				margin-bottom: 10px;
-				">New to TrialTracker?<br><span style="font-size: 26px;">Sign up</span></h3>
-					<h1>Register</h1>
-					<br/>
+				">New to TrialTracker?<br><span style="font-size: 26px;">Sign up!</span></h3>
 						<%= form_tag ("/register") do %>
 						<table>
 						<tr>
+
     						<%= text_field_tag :username, '', :style => "height:30px", :placeholder => "User Name"  %>
     						&nbsp
 						</tr>
-					<br/>
+						<tr>
+
+    						<%= text_field_tag :email, '', :style => "height:30px", :placeholder => "Email Address"  %>
+    						&nbsp
+						</tr>
 						<tr>
 
    							<%= password_field_tag :password, '', :style => "height:30px", :placeholder => "Password"  %>
@@ -125,22 +131,17 @@
    							<%= password_field_tag :verify, '', :style => "height:30px", :placeholder => "Retype Password"  %>
    							<br/>
    								<p><input type="checkbox" id="emailupdates" name="emailupdates" value="emailupdates" checked="checked"> Receive Email Updates</p>
-   							<h5>By clicking Sign Up, you agree to our <a href="http://koalacab.com/index.php/site/terms_of_use">Terms</a> and <a href="http://koalacab.com/index.php/site/privacy_policy">Privacy Policy</a>.</h5>
+   							<h5>By clicking Sign Up, you agree to our Terms and Privacy Policy.</h5>
     						<%= submit_tag ('Sign Up'),  :class => "btn btn-primary", :style=> "width: 240px; height: 50px" %>
 						</tr>
 						</table>
 				
-		
-				
-					
-						<br>
-						<input type="hidden" name="form_submitted" value="1">
-						<button style="width: 240px; height: 50px" class="btn btn-primary" type="submit"><h2 style="font-family: Delius">Sign Up</h2>
 
 						<% end %>
-						<div style="text-align: center; padding-top: 25px" class="fb-like fb_edge_widget_with_comment fb_iframe_widget" data-href="https://www.facebook.com/pages/KoalaCab/171718282927467" data-send="true" data-width="10" data-show-faces="false" data-font="verdana" fb-xfbml-state="rendered"><span style="height: 28px; width: 285px;"><iframe id="f1ca5853e" name="f79f26ea" scrolling="no" style="border: none; overflow: hidden; height: 28px; width: 285px;" title="Like this content on Facebook." class="fb_ltr" src="http://www.facebook.com/plugins/like.php?api_key=216543338370998&amp;locale=en_GB&amp;sdk=joey&amp;channel_url=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter.php%3Fversion%3D18%23cb%3Df36f2ba9%26origin%3Dhttp%253A%252F%252Fkoalacab.com%252Ff42f7966%26domain%3Dkoalacab.com%26relation%3Dparent.parent&amp;href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FKoalaCab%2F171718282927467&amp;node_type=link&amp;width=285&amp;font=verdana&amp;layout=standard&amp;colorscheme=light&amp;show_faces=false&amp;send=true&amp;extended_social_context=false"></iframe></span></div>
-	
-				</button></form></div>
+			
+				</button>
+			</form>
+		</div>
 
 				  </div>
 			  </div>
