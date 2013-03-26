@@ -83,14 +83,14 @@ class HomeController < ApplicationController
   end
   def index    
       @trials = Trial.all
-      #reset_session
-      # session[:current_trial] = 1
+      reset_session
+      session[:current_trial] = 1
     if session[:current_trial] == nil
         logger.info("going off")
         session[:current_trial] = 1
         @current_trial = @trials[0] # the trial displayed first 
     else
-       @current_trial = Trial.find(session[:current_trial])
+       #@current_trial = Trial.find(session[:current_trial])
     end
 
 
