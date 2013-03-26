@@ -1,4 +1,4 @@
 class User < ActiveRecord::Base
   attr_accessible :password, :username, :email, :trial_id
-  belongs_to :trial
+  has_and_belongs_to_many :trials
 end

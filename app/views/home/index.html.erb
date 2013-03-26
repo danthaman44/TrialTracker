@@ -37,9 +37,12 @@
                         
             function drawBarChart() {
                 // Create and populate the data table.
-                var data = google.visualization.arrayToDataTable(
-                    [
-                    ['Total', 'Subjects'],
+               var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Category');
+                data.addColumn('number', 'Value');
+                data.addRows([
+                    
+                    //['Total', 'Subjects'],
                     <% @categories.each do |category| %>
                     [ '<%= category.capitalize %>', <%= @last_entry[category] %> ],
                     <% end %>
@@ -49,11 +52,11 @@
                 new google.visualization.ColumnChart(document.getElementById('bar_chart')).
                 draw(data,
                      {
-                     width:500, height:300,
+                     width:515, height:340,
                      backgroundColor:'#EDEDED',
                      legend: {position: 'none'},
-                     chartArea: {top: 20, left: 60, height:200, width:400},
-                     legend: {position: 'none'}
+                     chartArea: {top: 20, left: 60, height:240, width:415},
+                     colors: ['#259C43', '#CDED13', '#296ABD', '#784FC1', '#784FC1', '#784FC1'],
                      }
                      );
             }
@@ -80,8 +83,9 @@
                 var options = {
                   width:500, height:350,
                   backgroundColor:'#EDEDED',
-                  //legend: {position: 'none'},
+                  legend: {position: 'none'},
                   chartArea: {top: 20, left: 60, width:400, height:250},
+                  hAxis: {format: 'MMM dd'}
                 };
 
                 // make the chart
