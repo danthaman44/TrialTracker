@@ -47,26 +47,31 @@
 
   <div class="field">
     
-    <label class="control-label" for="inputEmail">Trial Name</label>
+    <label class="control-label" for="inputEmail">Trial Name (required)</label>
     <%= f.text_field :trialName, :style=>"height:30px" %>
   </div>
   <div class="field">
 
-    <label class="control-label" for="inputEmail">Trial ID</label>
+    <label class="control-label" for="inputEmail">Trial ID (required)</label>
     <%= f.number_field :trialID, :style=>"height:30px" %>
   </div>
 
   <div class="field">
-   <label class="control-label" for="inputEmail">Enrolled Goal (optional)</label>
+   <label class="control-label" for="inputEmail">Enrolled Goal</label>
     <%= f.number_field :enrolledGoal, :style=>"height:30px" %>
   </div>
   <div class="field">
-    <label class="control-label" for="inputEmail">Completed Goal (optional)</label>
+    <label class="control-label" for="inputEmail">Completed Goal</label>
     <%= f.number_field :completedGoal, :style=>"height:30px" %>
   </div>
 
 <div class="field">
-  <label class="control-label" for="inputEmail">End Date (optional)</label>
+  <label class="control-label" for="inputEmail">Start Date</label>
+    <%= f.text_field :startDate, :style=>"height:30px" %>
+  </div>
+
+<div class="field">
+  <label class="control-label" for="inputEmail">End Date</label>
     <%= f.text_field :endDate, :style=>"height:30px" %>
   </div>
 

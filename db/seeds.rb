@@ -5,12 +5,76 @@ c.status = 'accepted'
 c.trialID = 123
 c.save
 
-users = User.create([{:username =>'wdd3', :password =>Digest::SHA2.hexdigest('pw'), :email =>'wdd3@duke.edu'}, {:username =>'vfseanm', :password =>Digest::SHA2.hexdigest('pw'), :email => 'sean@duke.edu'},
-	{:username =>'ashsunday', :password =>Digest::SHA2.hexdigest('pw'), :email => 'ash@duke.edu'}])
+dan = User.create({:username =>'wdd3', :password =>Digest::SHA2.hexdigest('pw'), :email =>'wdd3@duke.edu'})
+sean = User.create({:username =>'vfseanm', :password =>Digest::SHA2.hexdigest('pw'), :email => 'sean@duke.edu'})
+ash = User.create({:username =>'ashsunday', :password =>Digest::SHA2.hexdigest('pw'), :email => 'ash@duke.edu'})
+
+asthma = Trial.create({trialName: 'Asthma', trialID: 123, startDate: Date.new(2012, 6, 1), endDate: Date.new(2013, 12, 31), enrolledGoal: 400, completedGoal: 250, 
+
+	entries_attributes: [{input_at: Date.new(2012, 6, 1), 
+		enrolled: 51, 
+		active: 24, 
+		withdrawn: 22, 
+		completed: 34, 
+		refused: 21, 
+		lost: 14},
+		
+{input_at: Date.new(2012, 6, 8),
+enrolled: 72,
+active: 23,
+withdrawn: 30,
+completed: 42,
+refused: 24,
+lost: 17},
+
+{
+input_at: Date.new(2012, 6, 15),
+enrolled: 95,
+active: 15,
+withdrawn: 30,
+completed: 50,
+refused: 26,
+lost: 20},
+
+]})
+
+asthma.users << sean
+asthma.users << dan
+asthma.users << ash
+
+diabetes = Trial.create({trialName: 'Diabetes', trialID: 125, startDate: Date.new(2012, 6, 1), endDate: Date.new(2013, 12, 31), enrolledGoal: 400, completedGoal: 250, 
+
+	entries_attributes: [{input_at: Date.new(2012, 6, 1), 
+		enrolled: 51, 
+		active: 24, 
+		withdrawn: 22, 
+		completed: 34, 
+		refused: 21, 
+		lost: 14},
+		
+{input_at: Date.new(2012, 6, 8),
+enrolled: 72,
+active: 23,
+withdrawn: 30,
+completed: 42,
+refused: 24,
+lost: 17},
+
+{
+input_at: Date.new(2012, 6, 15),
+enrolled: 95,
+active: 15,
+withdrawn: 30,
+completed: 50,
+refused: 26,
+lost: 20},
+
+]})
+
+diabetes.users << dan
 
 
-Trial.create({trialName: 'Asthma', trialID: 123, startDate: Date.new(2012, 6, 1), endDate: Date.new(2013, 12, 31), enrolledGoal: 400, completedGoal: 250, 
-
+cancer = Trial.create({trialName: 'Cancer', trialID: 124, startDate: Date.new(2012, 6, 1), endDate: Date.new(2013, 12, 31), enrolledGoal: 400, completedGoal: 250,
 	entries_attributes: [{input_at: Date.new(2012, 6, 1), 
 		enrolled: 51, 
 		active: 24, 
@@ -38,33 +102,7 @@ lost: 20}
 
 ]})
 
-Trial.create({trialName: 'Cancer', trialID: 124, startDate: Date.new(2012, 6, 1), endDate: Date.new(2013, 12, 31), enrolledGoal: 400, completedGoal: 250,
-	entries_attributes: [{input_at: Date.new(2012, 6, 1), 
-		enrolled: 51, 
-		active: 24, 
-		withdrawn: 22, 
-		completed: 34, 
-		refused: 21, 
-		lost: 14},
-		
-{input_at: Date.new(2012, 6, 8),
-enrolled: 72,
-active: 23,
-withdrawn: 30,
-completed: 42,
-refused: 24,
-lost: 17},
-
-{
-input_at: Date.new(2012, 6, 15),
-enrolled: 95,
-active: 15,
-withdrawn: 30,
-completed: 50,
-refused: 26,
-lost: 20}
-
-]})
+cancer.users << ash 
 
 # g = Entry.new
 # g.input_at = Date.new(2012, 6, 22)

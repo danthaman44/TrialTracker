@@ -66,6 +66,7 @@ FirstApp::Application.routes.draw do
    match '/trials/change' => 'trials#change'
    match '/trials/:id/change_trial' => 'trials#change_trial'
 
+   match '/splashes' => 'splashes#index'
 
    root :to => 'splashes#index'
 
@@ -75,6 +76,7 @@ FirstApp::Application.routes.draw do
    match '/register' => 'home#register'
    match '/login' => 'home#login'
    match '/invite' => 'home#invite'
+   match '/logout' => 'home#logout'
 
   # See how all your routes lay out with "rake routes"
 

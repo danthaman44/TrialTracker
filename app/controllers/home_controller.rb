@@ -29,16 +29,17 @@ class HomeController < ApplicationController
   end
 
   def login 
-    @user = User.all
+    @users = User.all
     cuser = params[:username]
     cpass = params[:password]
     cdigest = Digest::SHA2.hexdigest(cpass)
 
     found = 0
-    @user.each do |u|
+    @users.each do |u|
       if u.username == cuser && cdigest == u.password
         logger.info("found matching user")
         session[:username] = cuser
+        session[:userID] = u.id
         found = 1
         connections_query (session[:username])
         redirect_to :action => 'index'
@@ -49,6 +50,15 @@ class HomeController < ApplicationController
     if found == 0
       redirect_to :back
     end
+  end
+
+  def logout
+    logger.info("Logging out") 
+    session[:username] = nil
+    session[:userID] = nil
+    session[:connections] = nil
+    session[:current_tab] = nil
+      redirect_to splashes_path
   end
 
   def connections_query (current, ctID=123)
@@ -76,25 +86,38 @@ class HomeController < ApplicationController
           login.password = hash
           login.save
           session[:username] = user
+          session[:userID] = login.id
           redirect_to :action => 'index'
       else
           redirect_to :back
       end
   end
+
   def index    
-      @trials = Trial.all
+    if session[:userID] == nil
+      logger.info("Not logged in, redirecting") 
+      logger.info(splashes_path)
+      redirect_to splashes_path
+  else
+
+      @user = User.find(session[:userID])
+      logger.info("Logged in as ")
+      logger.info(@user.username)
+      @trials = @user.trials
+      logger.info(@trials)
     if session[:current_trial] == nil
         logger.info("logging in, viewing first trial")
         @current_trial = @trials[0] # the trial displayed first by default
+
     else
        @current_trial = Trial.find(session[:current_trial])
-
     end
 
 
       logger.info("current trial: ")
       logger.info(@current_trial.trialName)
       @current_crcs = @current_trial.users #the collaborators of our current trial
+      logger.info(@current_crcs)
   
       entries = @current_trial.entries
       @entries_recentFirst = entries.sort { |a, b| b.input_at <=> a.input_at }
@@ -103,10 +126,6 @@ class HomeController < ApplicationController
       @last_entry = @entries_recentFirst[0]
 
       
-      logger.info("all entries")
-      logger.info(@entries_recentFirst)
-
-
       @categories = ["enrolled", "active", "completed", "withdrawn", "refused", "lost"]
       @averages = Hash.new
 
@@ -150,6 +169,7 @@ class HomeController < ApplicationController
     @entry = Entry.new # Used in edit data form
     @entry2 = Entry.new
     @trial = Trial.new # Used in modal form
+  end
       
   end
   def Show
@@ -160,9 +180,7 @@ class HomeController < ApplicationController
     end
   end
 
-
-  
-  
+ 
   def insert_trials
       logger.info("****** Inserting Trials! ******")
       Trial.create(:description => 'new', :tdate => 'Friday', :trialName => 'hers')

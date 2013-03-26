@@ -174,8 +174,8 @@
                         </p>
                         <ul class="nav">
                             <li><a href="#about">About</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                            <li> <%=link_to("Logout", splashes_path) %> </li>
+                            <li><a href="#contact">FAQ</a></li>
+                            <li> <%=link_to("Logout", logout_path) %> </li>
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>
@@ -189,7 +189,8 @@
                 <div class="span3" >
                     <div class="well sidebar-nav" data-spy="affix" style = "width:282px">
                         <ul class="nav nav-list">
-                            <li class="nav-header"><%= session[:username] %></li>
+                            <li class="nav-header"><h4><%= session[:username] %><h4></li>
+                            <hr>
                         <!--     <li class="nav-header">My Trials</li>
                             <li class="active"><a href="#">Cancer</a></li>
                             <li><a href="#">Flesh Eating Bacteria</a></li> -->

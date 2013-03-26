@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130320171454) do
+ActiveRecord::Schema.define(:version => 20130326214305) do
 
   create_table "connections", :force => true do |t|
     t.string   "acceptinguser"
@@ -51,6 +51,14 @@ ActiveRecord::Schema.define(:version => 20130320171454) do
     t.datetime "updated_at",    :null => false
     t.string   "userowner"
   end
+
+  create_table "trials_users", :id => false, :force => true do |t|
+    t.integer "trial_id"
+    t.integer "user_id"
+  end
+
+  add_index "trials_users", ["trial_id", "user_id"], :name => "index_trials_users_on_trial_id_and_user_id"
+  add_index "trials_users", ["user_id", "trial_id"], :name => "index_trials_users_on_user_id_and_trial_id"
 
   create_table "users", :force => true do |t|
     t.string   "username"
