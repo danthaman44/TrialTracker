@@ -44,11 +44,24 @@
     </div>
   <% end %>
 
-  <div class="field">
-    
-    <label class="control-label" for="inputEmail">Trial Name (required)</label>
-    <%= f.text_field :trialName, :style=>"height:30px" %>
+  <% if flash[:notice] %>
+        <div class="notice"><%= flash[:notice] %></div>
+     <% end %>
+
+  <div class="field">   
+    <label class="control-label" for="inputEmail">Trial Name <font color = "red">(required)</font></label>
+    <%= f.text_field :trialName, :minimum => 5, :style=>"height:30px; width:228px" %>
   </div>
+
+  <div class="accordion" id="accordion2">
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+        More options
+      </a>
+    </div>
+    <div id="collapseOne" class="accordion-body collapse">
+      <div class="accordion-inner">
 
   <div class="field">
    <label class="control-label" for="inputEmail">Enrolled Goal</label>
@@ -70,6 +83,11 @@
     <%= f.text_field :endDate, :type => 'text', :style=>"height:30px", :class=>"datepicker", 
        :value => (Date.today + 1.year).strftime("%m/%d/%Y") %>
   </div>
+   
+      </div>
+    </div>
+  </div>
+</div>
 
   <style>
 .datepicker{z-index:1151;}
