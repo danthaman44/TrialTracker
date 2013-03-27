@@ -102,7 +102,7 @@ class HomeController < ApplicationController
           @current_trial = @trials[0] # the trial displayed first by default
         else
           @current_trial = nil
-          flash[:notice] = "You currently don't have any trials. Click 'New Trial' to make one"
+          flash[:notice] = "You currently don't have any trials. Click 'New Trial' to make one or join one"
         end 
     else
        @current_trial = Trial.find(session[:current_trial])

@@ -36,8 +36,14 @@
                             <li><a href="#contact">Contact</a></li>
                         </ul>
                      
-                         <ul class="nav pull-right">    
-
+                         <ul class="nav pull-right">   
+  							<% if (session[:errormessage] != nil) %>
+    	 						<li style = "margin-top:10px;"> <font color="ff0000"><%= session[:errormessage] %></font></li>
+    							<% session[:errormessage] = nil%>
+  							<% end %>
+  						<li>
+  							&nbsp &nbsp
+  						</li>
                          <li>  	
 	                        <%= form_tag ("/login") do%>   	
                         </li>
@@ -55,12 +61,7 @@
 								&nbsp &nbsp
 								<%= submit_tag ('Sign In'), :class => "btn btn-primary" %>
 						</li>
-						<ul>
-  							<% if (session[:errormessage] != nil) %>
-    	 						<li> <font color="ff0000"><%= session[:errormessage] %></font></li>
-    							<% session[:errormessage] = nil%>
-  							<% end %>
-						</ul>
+						
 
 						<%end%>
 					</ul>
