@@ -36,12 +36,18 @@
                             <li><a href="#contact">Contact</a></li>
                         </ul>
                      
-                         <ul class="nav pull-right">    
-
+                         <ul class="nav pull-right">   
+  							<% if (session[:errormessage] != nil) %>
+    	 						<li style = "margin-top:10px;"> <font color="ff0000"><%= session[:errormessage] %></font></li>
+    							<% session[:errormessage] = nil%>
+  							<% end %>
+  						<li>
+  							&nbsp &nbsp
+  						</li>
                          <li>  	
-                        <%= form_tag ("/login") do%>   
-                        		
+	                        <%= form_tag ("/login") do%>   	
                         </li>
+	
                         <li>
 							<%= text_field_tag :username, '', :style => "height:30px", :placeholder => "User Name", :class => "login" %>
 						</li>
@@ -55,6 +61,8 @@
 								&nbsp &nbsp
 								<%= submit_tag ('Sign In'), :class => "btn btn-primary" %>
 						</li>
+						
+
 						<%end%>
 					</ul>
 			

@@ -41,13 +41,15 @@ class HomeController < ApplicationController
         session[:username] = cuser
         session[:userID] = u.id
         found = 1
-        connections_query (session[:username])
         redirect_to :action => 'index'
         break
       end
     end
     
     if found == 0
+      session[:errormessage] = 'Username/password is incorrect!'
+      logger.info (session[:errormessage])
+      logger.info ("===============================")
       redirect_to :back
     end
   end
@@ -59,20 +61,8 @@ class HomeController < ApplicationController
     session[:connections] = nil
     session[:current_tab] = nil
     session[:current_trial] = nil
-      redirect_to splashes_path
-  end
 
-  def connections_query (current, ctID=123)
-      @connect = Connections.all
-      session.delete(:connections) 
-      session[:connections] ||= []
-      @connect.each do |c|
-        if ((c.acceptinguser == current) && (c.status == 'accepted') && (c.trialID == ctID))
-          (session[:connections] ||= []) << c.invitinguser 
-        elsif c.invitinguser == current && c.status == 'accepted' && c.trialID == ctID
-          (session[:connections] ||= []) << c.acceptinguser
-        end
-      end
+      redirect_to splashes_path
   end
 
   def register
@@ -108,15 +98,19 @@ class HomeController < ApplicationController
       logger.info(@trials)
     if session[:current_trial] == nil
         logger.info("logging in, viewing first trial")
-        @current_trial = @trials[0] # the trial displayed first by default
-
+        if @trials.length > 0
+          @current_trial = @trials[0] # the trial displayed first by default
+        else
+          @current_trial = nil
+          flash[:notice] = "You currently don't have any trials. Click 'New Trial' to make one or join one"
+        end 
     else
        @current_trial = Trial.find(session[:current_trial])
     end
 
-
+  if (@current_trial != nil)
       logger.info("current trial: ")
-      logger.info(@current_trial.trialName)
+      logger.info(@current_trial.trialName)  
       @current_crcs = @current_trial.users #the collaborators of our current trial
       logger.info(@current_crcs)
   
@@ -156,7 +150,7 @@ class HomeController < ApplicationController
       @targetAverages['refused'] = 0
       @targetAverages['lost'] = 0
     logger.info(@targetAverages)
-
+  end
     #totals_by_week is a Hash of the form:
     # {'enrolled'=> [:entry => 12, :entry => 23], 'active'=> [:entry=> 11, :entry=>20]}
     #totals is a Hash of the form:

@@ -1,3 +1,4 @@
+ <% if @categories != nil %>
  <% @categories.each do |category| %>
 var <%= category + '_data'%> = new Array();
 
@@ -254,3 +255,4 @@ var <%= category + '_7_data' %> = new google.visualization.DataTable();
 
 
                   <%end %>
+<%end%>
