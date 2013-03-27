@@ -52,7 +52,7 @@
                 new google.visualization.ColumnChart(document.getElementById('bar_chart')).
                 draw(data,
                      {
-                     width:515, height:340,
+                     width:515, height:300,
                      backgroundColor:'#EDEDED',
                      legend: {position: 'none'},
                      chartArea: {top: 20, left: 60, height:240, width:415},
@@ -189,8 +189,7 @@
                 <div class="span3" >
                     <div class="well sidebar-nav" data-spy="affix" style = "width:282px">
                         <ul class="nav nav-list">
-                            <li class="nav-header"><h4><%= session[:username] %><h4></li>
-                            <hr>
+                            <li class="nav-header"><h5><%= session[:username] %><h5></li>
                         <!--     <li class="nav-header">My Trials</li>
                             <li class="active"><a href="#">Cancer</a></li>
                             <li><a href="#">Flesh Eating Bacteria</a></li> -->
