@@ -10,17 +10,16 @@
     <div class = "row-fluid">
     <div class="span5" style ="padding-left:15px;">
     <h4>Join an existing Trial</h4>
-    <!-- <input class="span8" type="text" placeholder="Trial Name" data-provide="typeahead" data-source='["sean", "nikhil", "dan", "ashwin", "shiv"]'> -->
+    <%= form_tag("/join", :method => "get") do %>
 
     <div class="control-group">
-    <label class="control-label" for="inputEmail">Trial ID (From Email)</label>
+    <label class="control-label" for="inputEmail">Trial Code</label>
     <div class="controls">
-       <%= text_field :trial_id, :type => 'text', :style=>"height:30px"%>
+       <%= text_field_tag(:trial_id)%>
     </div>
   </div>
-
   <%= submit_tag "Join Trial", :class=>"btn btn-success"%> 
-
+<% end %>
 
   </div>
 

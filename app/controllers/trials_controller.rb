@@ -33,6 +33,23 @@ class TrialsController < ApplicationController
     end
   end
 
+  def join
+    @trial = Trial.find(params[:trial_id])
+    if @trial == nil
+      logger.info("Trial doesn't exist")
+      # do something
+    else
+      user = User.find session[:userID]
+      @trial.users << user
+      session[:current_trial] = @trial.id
+      respond_to do |format|
+      format.html { redirect_to :controller => 'home', :action => 'index' }
+      format.json { head :no_content }
+     end
+    end
+
+  end
+
   # GET /trials/1/edit
   def edit
     @trial = Trial.find(params[:id])

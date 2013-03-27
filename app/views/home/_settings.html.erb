@@ -12,6 +12,7 @@ in active
 
       <fieldset>
     <legend><%= @current_trial.trialName %> &nbsp <small>Last updated on <%= @current_trial.updated_at.strftime("%m/%d/%Y") %></small> </legend>
+
 <div class = "span6">
 
 <%= form_for @current_trial, :html=>{ :class=>"form-horizontal"} do |trial|  %>
@@ -85,11 +86,17 @@ in active
         
       </tr>
     </table>
-    </fieldset>
-</div>
+    
 </div>
 
 </div>
+
+</div> <!-- end span6 -->
+</fieldset>
+</div>  <!-- end row fluid -->
+
+<div class = "row-fluid">
+  <div class = "span12">
 
 
     <legend> Collaborators </legend>
@@ -114,6 +121,7 @@ in active
 
         </thead>
       </table>
-
+</div>
+</div>
 
 </div> <!-- end span12 -->
