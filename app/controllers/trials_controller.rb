@@ -109,6 +109,7 @@ class TrialsController < ApplicationController
     @trial = Trial.find(params[:id])
     @trial.users.delete(User.find session[:userID])
     logger.info(@trial.users)
+    session[:current_trial] = nil
     respond_to do |format|
       format.html { redirect_to :controller => 'home', :action => 'index' }
       format.json { head :no_content }
