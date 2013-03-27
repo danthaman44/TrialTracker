@@ -5,7 +5,8 @@ class Trial < ActiveRecord::Base
   has_and_belongs_to_many :users, :autosave => true
   accepts_nested_attributes_for :users
 
-  validates :trialName, :trialID, :presence => true
+  validates :trialName, :length => { :minimum=> 1,
+    :too_short => "You must input a trial name" }
 
     
 end
