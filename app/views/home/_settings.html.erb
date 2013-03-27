@@ -78,7 +78,7 @@ in active
         <td>
           <% if @current_crcs.length==1 %>
           &nbsp
-          <%= button_to("Delete this Trial", {:controller => :trials,
+          <%= button_to("Leave Trial", {:controller => :trials,
           :action => 'destroy', :id => @current_trial.id }, {:class => "btn btn-danger", :onclick => "return confirm('Are you sure you want to delete this trial?')", :method => :delete, :remote => true}) %>
 <% else %> 
 &nbsp
