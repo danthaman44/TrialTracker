@@ -91,6 +91,9 @@ class TrialsController < ApplicationController
     @trial = Trial.find(params[:id])
 
     session[:current_tab] = 'settings'
+    params[:trial][:startDate] = Date.strptime(params[:trial][:startDate], '%m/%d/%Y')
+    params[:trial][:endDate] = Date.strptime(params[:trial][:endDate], '%m/%d/%Y')
+    
     respond_to do |format|
       if @trial.update_attributes(params[:trial])
         format.html { redirect_to :controller => 'home', :action => 'index'}
@@ -105,7 +108,6 @@ class TrialsController < ApplicationController
   # DELETE /trials/1
   # DELETE /trials/1.json
   def destroy
-    logger.info("deleting a trial")
     @trial = Trial.find(params[:id])
     @trial.users.delete(User.find session[:userID])
     logger.info(@trial.users)

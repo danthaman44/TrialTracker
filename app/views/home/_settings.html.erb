@@ -34,14 +34,15 @@ in active
   <div class="control-group">
     <label class="control-label" for="inputPassword">Start Date</label>
     <div class="controls">
-       <%= trial.text_field :startDate, :type => 'text', :style=>"height:30px"%>
+       <%= trial.text_field :startDate, :type => 'text', :style=>"height:30px", :class=>"datepicker", :value => @current_trial.startDate.strftime("%m/%d/%Y")%>
     </div>
   </div>
 
   <div class="control-group">
     <label class="control-label" for="inputPassword">End Date</label>
     <div class="controls">
-       <%= trial.text_field :endDate, :type => 'text', :style=>"height:30px"%>
+       <%= trial.text_field :endDate, :type => 'text', :style=>"height:30px", :class=>"datepicker", 
+       :value => @current_trial.endDate.strftime("%m/%d/%Y") %>
     </div>
   </div>
 
