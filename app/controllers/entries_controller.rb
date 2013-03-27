@@ -37,8 +37,10 @@ logger.info("EDITING AN ENTRY")
   end
 
   def update
+    entry = Entry.find(params[:id])
+    params[:entry][:input_at] = Date.strptime(params[:entry][:input_at], '%m/%d/%Y')
+
     logger.info("UPDATING AN ENTRY")
-    entry = Entry.find(params[:toUpdate])
     session[:current_tab] = 'edit_data'
 
     respond_to do |format|
