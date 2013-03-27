@@ -18,9 +18,15 @@ in active
     <div class = "span4">
 
         <table class="table table-condensed table-hover" style="display:inline; float:right; margin-top:10px">
-            <tr style="border-top: 2px solid #ccc;"><th style = "font-size:14px;">Total Completed</th><td style = "font-size:14px; text-align: right;"><%= @last_entry.completed %></td></tr>
-            <tr><th style = "font-size:14px">Trial Period</th><td style = "font-size:14px; text-align: right;"><%= @current_trial.startDate.strftime("%m/%d/%Y") %> - <%= @current_trial.endDate.strftime("%m/%d/%Y") %></td></tr>
-
+            <tr style="border-top: 2px solid #ccc;"><th style = "font-size:14px;">Total Completed</th>
+            <% if @last_entry != nil %>
+                <td style = "font-size:14px; text-align: right;"><%= @last_entry.completed %></td></tr>
+                <tr>
+                <% if @current_trial != nil %>
+                <th style = "font-size:14px">Trial Period</th><td style = "font-size:14px; text-align: right;"><%= @current_trial.startDate.strftime("%m/%d/%Y") %> - <%= @current_trial.endDate.strftime("%m/%d/%Y") %></td>
+                <%end%>
+                </tr>
+            <%end%>
            
        <!--      <tr><th></th><td style = "font-size:14px; text-align: right;"> <a href= "#"> Invite Someone</a></td></tr> -->
         </table>
@@ -45,6 +51,7 @@ in active
 <div class="tab-content">
 <!-- start tab content -->
 
+<% if @categories != nil %>
 <% @categories.each do |category| %> 
 
 <div class="tab-pane fade in<% if category== 'enrolled' %> 
@@ -107,6 +114,7 @@ in active
 </div> <!-- end Category content -->
 
 <% end %>
+<%end%>
 
     </div> <!-- end tab content -->
 <div id ="blank"> </div>

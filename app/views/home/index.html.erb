@@ -43,11 +43,12 @@
                 data.addRows([
                     
                     //['Total', 'Subjects'],
-                    <% @categories.each do |category| %>
-                    [ '<%= category.capitalize %>', <%= @last_entry[category] %> ],
-                    <% end %>
-                    ]);
-                
+                    <% if @categories != nil %>
+                      <% @categories.each do |category| %>
+                      [ '<%= category.capitalize %>', <%= @last_entry[category] %> ],
+                      <% end %>
+                      ]);
+                    <%end %>             
                 // Create and draw the visualization.
                 new google.visualization.ColumnChart(document.getElementById('bar_chart')).
                 draw(data,
@@ -68,6 +69,7 @@
                 
                     //totals_by_week is a Hash of the form:
                     //{'enrolled'=> [:entry => 12, :entry => 23], 'active'=> [:entry=> 11, :entry=>20]}
+                <% if @categories != nil %>
                 <% @categories.each do |category| %>
                 var <%= category + '_total' %> = 4; // we start with just the 4 button pressed
                 var <%= category + '_4_button'%> = document.getElementById("<%= category + '_4_button'%>");
@@ -147,6 +149,7 @@
             <% end %>
 
             }
+            <%end%>
             
             </script>
     </head>
