@@ -45,6 +45,9 @@ class TrialsController < ApplicationController
     if @trial.enrolledGoal == nil
       @trial.enrolledGoal = 0
     end 
+    if @trial.trialID == nil
+      @trial.trialID = 0
+    end
     if @trial.completedGoal == nil
       @trial.completedGoal = 0
     end 
@@ -52,20 +55,21 @@ class TrialsController < ApplicationController
       @trial.endDate = Date.tomorrow()
     end 
     if @trial.startDate == nil
-      @trial.startDate = Date.current()
+      @trial.startDate = Date.today
     end 
 
     respond_to do |format|
       if @trial.save
         entry = @trial.entries.create(:input_at => Time.now, :enrolled => 0, :active => 0, :completed => 0, :withdrawn => 0, :refused => 0,:lost => 0, :trial_id => @trial.id)
         #@trial.users << @current_crc
-        user = @trial.users.create(:username => "newguy", :password => "pw", :email => "email@gmail.com")
+        @trial.users << @user = User.find(session[:userID])
+       
         session[:current_trial] = @trial.id
         logger.info("our current session, create")
         logger.info(session[:current_trial])
         # format.html { redirect_to @trial, notice: 'Trial was successfully created.' }
-        format.json { render json: @trial, status: :created, location: @trial }
-        format.html {redirect_to :back }
+        format.json { head :no_content }
+        format.html {redirect_to :controller => 'home', :action => 'index' }
       else
         format.html { render action: "new" }
         format.json { render json: @trial.errors, status: :unprocessable_entity }
@@ -93,7 +97,7 @@ class TrialsController < ApplicationController
     session[:current_tab] = 'settings'
     params[:trial][:startDate] = Date.strptime(params[:trial][:startDate], '%m/%d/%Y')
     params[:trial][:endDate] = Date.strptime(params[:trial][:endDate], '%m/%d/%Y')
-    
+
     respond_to do |format|
       if @trial.update_attributes(params[:trial])
         format.html { redirect_to :controller => 'home', :action => 'index'}
