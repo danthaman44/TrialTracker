@@ -58,6 +58,7 @@ class HomeController < ApplicationController
     session[:userID] = nil
     session[:connections] = nil
     session[:current_tab] = nil
+    session[:current_trial] = nil
       redirect_to splashes_path
   end
 
