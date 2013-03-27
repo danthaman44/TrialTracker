@@ -83,8 +83,10 @@ in active
                     <td id="withdrawn_<%= entry.id %>"><%= entry.withdrawn %></td>
                     <td id="refused_<%= entry.id %>"><%= entry.refused %></td>
                     <td id="lost_<%= entry.id %>"><%= entry.lost %></td>
-                    <td><a href = "#" onclick="javascript:editEntry(<%= entry.id %>)">edit</a>
-                      <%= link_to 'Delete', entry_path(entry), :method => :delete, :toDelete => entry.id, :remote=>true, :class=>'delete_post' %></td>
+                    <td><a href = "#" onclick="javascript:editEntry(<%= entry.id %>)">Edit</a>
+                    <% if entry != @entries_recentFirst.first %>
+                      | <%= link_to 'Delete', entry_path(entry), :method => :delete, :toDelete => entry.id, :remote=>true, :class=>'delete_post' %></td>
+                    <% end %>
                 </tr> 
 
                 <tr id="entry_form_<%= entry.id %>" style="display:none">

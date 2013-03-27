@@ -196,6 +196,13 @@
                         <!--     <li class="nav-header">My Trials</li>
                             <li class="active"><a href="#">Cancer</a></li>
                             <li><a href="#">Flesh Eating Bacteria</a></li> -->
+                            <% if flash[:notice] %>
+                            <div class="notice">
+                              <div class="alert alert-error">
+                                 <strong><%= flash[:notice] %></strong>
+                               </div>
+                            </div>
+                            <% end %>
                            
                             <%= render 'trials/index' %>
                             
