@@ -15,7 +15,7 @@
     <div class="control-group">
     <label class="control-label" for="inputEmail">Trial Code</label>
     <div class="controls">
-       <%= text_field_tag(:trial_id)%>
+       <%= number_field_tag(:trial_id, nil, {:style => "height:30px; width:100px;"})%>
     </div>
   </div>
   <%= submit_tag "Join Trial", :class=>"btn btn-success"%> 

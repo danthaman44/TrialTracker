@@ -4,9 +4,8 @@ class TrialsController < ApplicationController
   def index
     @trials = Trial.all
     @trial = Trial.new
-
     respond_to do |format|
-      format.html # index.html.erb
+      format.html {redirect_to :controller => 'home', :action => 'index' }
       format.json { render json: @trials }
     end
   end
@@ -68,12 +67,13 @@ class TrialsController < ApplicationController
     if @trial.completedGoal == nil
       @trial.completedGoal = 0
     end 
-    if @trial.endDate == nil
-      @trial.endDate = Date.tomorrow()
-    end 
-    if @trial.startDate == nil
-      @trial.startDate = Date.today
-    end 
+    # logger.info(@trial.endDate)
+    # if @trial.endDate == nil
+    #   @trial.endDate = Date.tomorrow()
+    # end 
+    # if @trial.startDate == nil
+    #   @trial.startDate = Date.today
+    # end 
 
     respond_to do |format|
       if @trial.save

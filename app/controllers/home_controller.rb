@@ -96,6 +96,7 @@ class HomeController < ApplicationController
       logger.info(@user.username)
       @trials = @user.trials
       logger.info(@trials)
+
     if session[:current_trial] == nil
         logger.info("logging in, viewing first trial")
         if @trials.length > 0
