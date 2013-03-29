@@ -67,13 +67,13 @@ class TrialsController < ApplicationController
     if @trial.completedGoal == nil
       @trial.completedGoal = 0
     end 
-    # logger.info(@trial.endDate)
-    # if @trial.endDate == nil
-    #   @trial.endDate = Date.tomorrow()
-    # end 
-    # if @trial.startDate == nil
-    #   @trial.startDate = Date.today
-    # end 
+    logger.info(@trial.endDate)
+    if @trial.endDate == nil
+      @trial.endDate = Date.today + 1.year
+    end 
+    if @trial.startDate == nil
+      @trial.startDate = Date.today
+    end 
 
     respond_to do |format|
       if @trial.save
