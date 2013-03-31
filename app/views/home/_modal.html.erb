@@ -41,10 +41,9 @@
 <% end %>
 
 
-
   <div class="field">   
     <label class="control-label" for="inputEmail">Trial Name <font color = "red">(required)</font></label>
-    <%= f.text_field :trialName, :minimum => 5, :style=>"height:30px; width:228px" %>
+    <%= f.text_field :trialName, :minimum => 5, :style=>"height:30px; width:228px", :id => "trial_name" %>
   </div>
 
   <div class="accordion" id="accordion2">
@@ -132,7 +131,7 @@
 </div>
 
   <div class="modal-footer">
-    <%= f.submit :class => "btn btn-primary" %>
+    <%= f.submit :class => "btn btn-primary", :id => "new_trial", disable_with: "Submitting..." %>
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
     <!-- <button class="btn btn-primary" id = "addTrial" data-dismiss="modal">Add Trial</button> -->
      
@@ -148,6 +147,15 @@ function allTrials(query, process) {
                 return data;
 
 }
+
+$("#new_trial").click(function(e) {
+  e.preventDefault();
+  var trialName = $('#trial_name').value
+  alert("error")
+  if (trialName == "") {
+    alert("error");
+  }
+});
 
 </script>
 

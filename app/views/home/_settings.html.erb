@@ -1,5 +1,10 @@
 <head>
   <%= javascript_include_tag :defaults %>
+  <style type="text/css">
+    .notice {
+      color:red;
+    }
+  </style>
 </head>
 
 <div class="tab-pane fade
@@ -14,16 +19,22 @@ in active
 <% if @current_trial != nil %>
     <legend><%= @current_trial.trialName %> &nbsp <small>Last updated on <%= @current_trial.updated_at.strftime("%m/%d/%Y") %></small> </legend>
 
-<div class = "span6">
+<div class = "span12">
 
 <%= form_for (@current_trial), :html=>{ :class=>"form-horizontal"} do |trial|  %>
+
  <form class="form-horizontal">
 
   <div class="control-group">
+    <div class = "row-fluid">
+     <% if flash[:nameerror] %>
+        <div class="notice offset2"><%= flash[:nameerror] %></div>
+    <% end %>
     <label class="control-label" for="inputEmail">Trial Name</label>
     <div class="controls">
        <%= trial.text_field :trialName, :type => 'text', :style=>"height:30px"%>
-    </div>
+    </div> 
+   </div>
   </div>
 
        <%= trial.hidden_field :trialID %>

@@ -120,7 +120,8 @@ class TrialsController < ApplicationController
         format.html { redirect_to :controller => 'home', :action => 'index'}
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        flash[:nameerror] = 'You must have a Trial Name!'
+        format.html {redirect_to :back} #{ render action: "edit" }
         format.json { render json: @trial.errors, status: :unprocessable_entity }
       end
     end

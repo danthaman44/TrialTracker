@@ -1,4 +1,8 @@
 FirstApp::Application.routes.draw do
+  get "users/index"
+
+  get "user/index"
+
   resources :splashes
 
 
@@ -59,6 +63,7 @@ FirstApp::Application.routes.draw do
    resources :trials
 
    resources :splash
+   resources :users
 
   match '/entries/update' => 'entries#update'
 
