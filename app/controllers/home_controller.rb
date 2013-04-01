@@ -78,7 +78,7 @@ class HomeController < ApplicationController
           login.save
           session[:username] = user
           session[:userID] = login.id
-          UserMailer.welcome_email(user).deliver
+          UserMailer.welcome_email(login).deliver
           redirect_to :action => 'index'
       else
           redirect_to :back
