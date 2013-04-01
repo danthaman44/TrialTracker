@@ -70,12 +70,13 @@ class HomeController < ApplicationController
       user = params[:username]
       passwd = params[:password]
       verify = params[:verify]
+      email = params[:email]
       if !user.blank? && !User.exists?(user) && passwd == verify
-          login = User.new
+          login = User.create
           login.username = user
           hash = Digest::SHA2.hexdigest(passwd)
           login.password = hash
-          login.save
+          login.email= email
           session[:username] = user
           session[:userID] = login.id
           UserMailer.welcome_email(login).deliver
