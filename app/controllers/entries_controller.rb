@@ -66,7 +66,7 @@ logger.info("EDITING AN ENTRY")
     session[:current_tab] = 'edit_data'
     respond_to do |format|  
       format.html { redirect_to :controller => 'home', :action => 'index' }  
-      format.js   { render :nothing => true }  
+      format.json   { render :nothing => true }  
       end
   end
 end
