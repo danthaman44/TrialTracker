@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @user = User.new
+    @trials = Trial.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +15,11 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @trials = Trial.all
     @user = User.find(params[:id])
+    # if session[:userID] != @user.id
+    #    format.html { redirect_to :controller => 'home', :action => 'index' }
+    # end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -61,7 +66,10 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     @user = User.find(params[:id])
-
+    pw = @user.password
+    logger.info("password")
+    logger.info(pw)
+    @user.password = Digest::SHA2.hexdigest(pw)
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to @user, notice: 'User was successfully updated.' }

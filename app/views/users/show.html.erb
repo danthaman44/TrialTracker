@@ -1,5 +1,99 @@
-<p id="notice"><%= notice %></p>
+<head>
+	<link href="/assets/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+		hr { display: block; height: 1px;
+    		border: 0; border-top: 1px solid #ccc;
+    		margin: 1em 0; padding: 0; }
+	</style>
+<head>
+<body>	
+	   <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="#">TrialTracker </a>
+                    
+                    
 
+                    <div class="nav-collapse collapse">
+                        <p class="navbar-text pull-right">
+                        Logged in as <a href="#" class="navbar-link"><%= session[:username] %></a>
+                        </p>
+                        <ul class="nav">
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#contact">FAQ</a></li>
+                            <li> <%=link_to("Logout", logout_path) %> </li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+      <div>
+      	<br>
+      	<br>
+      	<br>
+      </div>
+   <div class = "container">
+   	  <div class = "hero-unit">
+		<h2> My Account </h2>
+		<hr>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+			<div class = "form">
+				<%= form_for (@user), :html=>{ :class=>"form-horizontal"} do |user|  %>
+				<div class = "span4">
+					<img src = "/assets/nurse.png">
+				</div>
+
+				<div class="controls">
+					<label class="control-label" for="inputEmail">User Name &nbsp</label>
+				 	<%= user.text_field :username, :type => 'text', :style=>"height:30px"%>
+				</div>
+			    <br>
+				<div class="controls">
+				<label class="control-label" for="inputEmail">Email &nbsp </label>
+				 		<%= user.text_field :email, :type => 'text', :style=>"height:30px"%>
+				</div>
+			     <br>
+			     <div class="controls">
+				<label class="control-label" for="inputEmail"> Current Password &nbsp</label>
+				 		<%= user.password_field :password, :type => 'text', :style=>"height:30px"%>
+				</div>
+				<br>
+				 <div class="controls">
+				<label class="control-label" for="inputEmail"> New Password &nbsp</label>
+				 		<%= user.password_field :password, :type => 'text', :style=>"height:30px"%>
+				</div>
+				<br>
+
+				<div class="offset5">
+				<table>
+					<tr>
+						<td>
+		   				<%= user.submit :Update, :class => "btn btn-primary" %>
+		   			    <%end%>
+		   			</td>
+
+		   			<td>
+		   				&nbsp &nbsp
+		   			</td>
+		   			<td>
+			   			<%= button_to("Delete Account", {:controller => :users,
+	          :action => 'destroy', :id => @user.id }, {:class => "btn btn-danger", :onclick => "return confirm('Are you sure? You will lose all your trial data')", :method => :delete, :remote => true}) %>
+          			</td>
+          			<tr>
+                </table>
+
+		  		</div>
+		
+			 </div>
+		<div class = "offset6">
+		<%= link_to 'Home', home_path %>
+	   </div>
+	</div>
+		<hr>
+  </div>
+</body>

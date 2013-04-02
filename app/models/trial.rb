@@ -8,5 +8,5 @@ class Trial < ActiveRecord::Base
   validates :trialName, :length => { :minimum=> 1,
     :too_short => "- You must input a trial name" }
 
-    
+
 end
