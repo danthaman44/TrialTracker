@@ -70,14 +70,17 @@ class HomeController < ApplicationController
       user = params[:username]
       passwd = params[:password]
       verify = params[:verify]
+      email = params[:email]
       if !user.blank? && !User.exists?(user) && passwd == verify
           login = User.new
           login.username = user
           hash = Digest::SHA2.hexdigest(passwd)
           login.password = hash
+          login.email= email
           login.save
           session[:username] = user
           session[:userID] = login.id
+          UserMailer.welcome_email(login).deliver
           redirect_to :action => 'index'
       else
           redirect_to :back
@@ -101,6 +104,7 @@ class HomeController < ApplicationController
       logger.info(@user.username)
       @trials = @user.trials
       logger.info(@trials)
+
     if session[:current_trial] == nil
         logger.info("logging in, viewing first trial")
         if @trials.length > 0

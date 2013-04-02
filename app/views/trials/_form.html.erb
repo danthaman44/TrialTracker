@@ -12,14 +12,9 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :trialName %><br />
-    <%= f.text_field :trialName,  :style=>"height:30px"%>
-  </div>
-  <div class="field">
-    <%= f.label :trialID %><br />
-    <%= f.number_field :trialID, :style=>"height:30px"%>
+    Trial Name <%= f.text_field :trialName,  :style=>"height:30px"%>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => "btn btn-primary" %>
   </div>
 <% end %>

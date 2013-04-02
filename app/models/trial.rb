@@ -6,7 +6,7 @@ class Trial < ActiveRecord::Base
   accepts_nested_attributes_for :users
 
   validates :trialName, :length => { :minimum=> 1,
-    :too_short => "You must input a trial name" }
+    :too_short => "- You must input a trial name" }
 
-    
+
 end

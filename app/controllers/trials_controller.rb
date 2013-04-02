@@ -4,9 +4,8 @@ class TrialsController < ApplicationController
   def index
     @trials = Trial.all
     @trial = Trial.new
-
     respond_to do |format|
-      format.html # index.html.erb
+      format.html {redirect_to :controller => 'home', :action => 'index' }
       format.json { render json: @trials }
     end
   end
@@ -68,12 +67,13 @@ class TrialsController < ApplicationController
     if @trial.completedGoal == nil
       @trial.completedGoal = 0
     end 
-    if @trial.endDate == nil
-      @trial.endDate = Date.tomorrow()
-    end 
-    if @trial.startDate == nil
-      @trial.startDate = Date.today
-    end 
+    logger.info(@trial.endDate)
+
+    @trial.endDate = Date.strptime(params[:trial][:endDate], '%m/%d/%Y') + 1.year
+
+
+    @trial.startDate = Date.strptime(params[:trial][:startDate], '%m/%d/%Y')
+
 
     respond_to do |format|
       if @trial.save
@@ -120,7 +120,8 @@ class TrialsController < ApplicationController
         format.html { redirect_to :controller => 'home', :action => 'index'}
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        flash[:nameerror] = 'You must have a Trial Name!'
+        format.html {redirect_to :back} #{ render action: "edit" }
         format.json { render json: @trial.errors, status: :unprocessable_entity }
       end
     end
