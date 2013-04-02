@@ -84,7 +84,7 @@ class HomeController < ApplicationController
       end
   end
 
-  def index    
+  def index  
     if session[:userID] == nil
       logger.info("Not logged in, redirecting") 
       logger.info(splashes_path)
@@ -92,6 +92,11 @@ class HomeController < ApplicationController
   else
 
       @user = User.find(session[:userID])
+      if not @user.trials.include?(Trial.find(session[:current_trial]))
+        logger.info("things are messed up!")
+        session[:current_trial] = nil
+      end
+
       logger.info("Logged in as ")
       logger.info(@user.username)
       @trials = @user.trials
