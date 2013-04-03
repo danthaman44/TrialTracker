@@ -82,6 +82,7 @@ FirstApp::Application.routes.draw do
    match '/login' => 'home#login'
    match '/invite' => 'home#invite'
    match '/logout' => 'home#logout'
+   match '/faq' => 'static#faq'
    match '/join' => 'trials#join'
 
   # See how all your routes lay out with "rake routes"

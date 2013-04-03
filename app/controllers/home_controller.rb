@@ -95,10 +95,6 @@ class HomeController < ApplicationController
   else
 
       @user = User.find(session[:userID])
-      if not @user.trials.include?(Trial.find(session[:current_trial]))
-        logger.info("things are messed up!")
-        session[:current_trial] = nil
-      end
 
       logger.info("Logged in as ")
       logger.info(@user.username)
@@ -109,6 +105,7 @@ class HomeController < ApplicationController
         logger.info("logging in, viewing first trial")
         if @trials.length > 0
           @current_trial = @trials[0] # the trial displayed first by default
+          session[:current_trial] = @current_trial.id
         else
           @current_trial = nil
           flash[:notice] = "You currently don't have any trials. Click 'New Trial' to make one or join one"
@@ -116,6 +113,11 @@ class HomeController < ApplicationController
     else
        @current_trial = Trial.find(session[:current_trial])
     end
+
+    if not @user.trials.include?(Trial.find(session[:current_trial]))
+        logger.info("things are messed up!")
+        session[:current_trial] = nil
+      end
 
   if (@current_trial != nil)
       logger.info("current trial: ")
