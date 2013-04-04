@@ -1,0 +1,58 @@
+<head>
+	<link href="/assets/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+		hr { display: block; height: 1px;
+    		border: 0; border-top: 1px solid #ccc;
+    		margin: 1em 0; padding: 0; }
+	</style>
+</head>
+<body>	
+	   <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="/home/index">TrialTracker </a>
+                    
+                    
+
+                    <div class="nav-collapse collapse">
+                        <p class="navbar-text pull-right">
+                        Logged in as <a href="#" class="navbar-link"><%= session[:username] %></a>
+                        </p>
+                        <ul class="nav">
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#contact">FAQ</a></li>
+                            <li> <%=link_to("Logout", logout_path) %> </li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+      <div>
+      	<br>
+      	<br>
+      	<br>
+      </div>
+   <div class = "container">
+   	  <div class = "hero-unit">
+		<legend> Frequently Asked Questions </legend>
+
+		<em>How can I join a trial that someone else has already created?</em><p></p>
+		<small>You must contact the trial-owner and ask them to invite you. When they do, you will receive an email with a link to join the trial.</small>
+<p></p></br>
+		<em>What happens when my data is updated twice on the same day?</em><p></p>
+		<small>There can only ever be one entry (one row) per day. So when more than one update comes during the same day, the last update takes precedence.</small>
+		<p></p></br>
+		<em>How is the 'projected' line calculated?</em><p></p>
+		<small>First, we take the most recent total for that category and divide it by the number of days the trial has been going on. This gives us your average number of subjects logged per day. Then we draw the line by simply adding that number to your total every day until your trial's end date.</small>
+		<p></p></br>
+		<em>How is the 'target' line calculated?</em><p></p>
+		<small>First, we divide your goal by the length of your trial in days. This gives us the number of subjects you need to enroll every day to be right on track. The line is drawn by starting at zero at your start date and moving up by this amount every day, until you reach your goal.</small>
+		
+	</div>
+  </div>
+</body>
