@@ -69,7 +69,7 @@ class TrialsController < ApplicationController
     end 
     logger.info(@trial.endDate)
 
-    @trial.endDate = Date.strptime(params[:trial][:endDate], '%m/%d/%Y') + 1.year
+    @trial.endDate = Date.strptime(params[:trial][:endDate], '%m/%d/%Y')
 
 
     @trial.startDate = Date.strptime(params[:trial][:startDate], '%m/%d/%Y')
