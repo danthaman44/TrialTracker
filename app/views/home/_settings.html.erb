@@ -133,7 +133,7 @@ in active
         <% if @current_crcs != nil %>
               <% @current_crcs.each do |crc| %>
             <tr>
-              <td> <%= crc.username %> </td>
+              <td> <%= crc.username %> <% if crc.id == @current_trial.owner %> <i>(owner)</i> <%end%> </td>
               <td> <%= crc.email %> </td>
 
             </tr>

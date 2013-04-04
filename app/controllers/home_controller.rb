@@ -76,7 +76,7 @@ class HomeController < ApplicationController
           login.username = user
           hash = Digest::SHA2.hexdigest(passwd)
           login.password = hash
-          login.email= email
+          login.email = email
           login.save
           session[:username] = user
           session[:userID] = login.id
@@ -88,6 +88,7 @@ class HomeController < ApplicationController
   end
 
   def index  
+    #session[:current_trial]= 1
     if session[:userID] == nil
       logger.info("Not logged in, redirecting") 
       logger.info(splashes_path)
@@ -95,10 +96,10 @@ class HomeController < ApplicationController
   else
 
       @user = User.find(session[:userID])
-      if not @user.trials.include?(Trial.find(session[:current_trial]))
-        logger.info("things are messed up!")
-        session[:current_trial] = nil
-      end
+      # if not @user.trials.include?(Trial.find(session[:current_trial]))
+      #   logger.info("things are messed up!")
+      #   session[:current_trial] = nil
+      # end
 
       logger.info("Logged in as ")
       logger.info(@user.username)
