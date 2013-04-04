@@ -80,7 +80,7 @@ class HomeController < ApplicationController
           login.save
           session[:username] = user
           session[:userID] = login.id
-          UserMailer.welcome_email(login).deliver
+          #UserMailer.welcome_email(login).deliver
           redirect_to :action => 'index'
       else
           redirect_to :back
@@ -114,10 +114,6 @@ class HomeController < ApplicationController
        @current_trial = Trial.find(session[:current_trial])
     end
 
-    if not @user.trials.include?(Trial.find(session[:current_trial]))
-        logger.info("things are messed up!")
-        session[:current_trial] = nil
-      end
 
   if (@current_trial != nil)
       logger.info("current trial: ")
