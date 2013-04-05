@@ -2,7 +2,8 @@ class HomeController < ApplicationController
 
   def accept #Doesn't work yet. Need to implement trialID
     invitee = params[:clickeduser]
-    @connect = Connections.where("acceptinguser = '#{invitee}' AND invitinguser = '#session[:username]' AND status = 'pending'")
+    @connect = Connections.where("acceptinguser = '#{invitee}' AND invitinguser = '#session[:username]' 
+                                  AND status = 'pending'")
     connect.status = 'accepted'
     connect.save
     redirect_to :action => 'index'
@@ -88,6 +89,7 @@ class HomeController < ApplicationController
   end
 
   def index  
+    session[:current_trial] = 1
     if session[:userID] == nil
       logger.info("Not logged in, redirecting") 
       logger.info(splashes_path)

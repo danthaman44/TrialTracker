@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(:version => 20130326214305) do
     t.integer  "completedGoal"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
-    t.integer   "owner"
+    t.integer  "owner"
   end
 
   create_table "trials_users", :id => false, :force => true do |t|
