@@ -130,9 +130,9 @@ in active
           <%end%>
     </div>
     <div class = "span4 offset1">
-          <p> Invite someone! <p>
+          <p> Invite a CRC to your Trial! <p>
           <%= form_tag ("/invite") do%>   
-          <%= text_field_tag :email, '', :style => "height:30px", :placeholder => "Their email address" %>
+          <%= text_field_tag :frienduser, '', :style => "height:30px", :placeholder => "CRC's Username" %>
           <%= submit_tag ('Invite!'), :class => "btn btn-primary" %>
           <%end%>
       </div>
@@ -148,9 +148,15 @@ in active
             <tr>
               <td> <%= crc.username %> <% if crc.id == @current_trial.owner %> <i>(owner)</i> <%end%> </td>
               <td> <%= crc.email %> </td>
-
+              <td><%=  button_to("Remove CRC", {:controller => :home,
+                    :action => 'removeFriend', :id => @current_trial.id, :frienduser => crc}, {:class => "btn btn-danger", :onclick => "return confirm('Are you sure you want to remove yourself from this trial?')", :method => :delete, :remote => true}) %></td>
+              <%= logger.info (crc) %>
             </tr>
             <% end %>
+                <%= logger.info ("++++__+++++++++++++__+++++++++++++++++++++++++++++++++++++++++++++=") %>
+                <%= logger.info (@current_trial) %>
+                <%= logger.info ("-----------------") %>
+                <%= logger.info (@current_trial.id) %>
         <%end%>
           </tr>
 

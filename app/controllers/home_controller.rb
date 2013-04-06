@@ -9,6 +9,15 @@ class HomeController < ApplicationController
     redirect_to :action => 'index'
   end
 
+  def removeFriend
+    friendID = session[:id]
+    logger.info (friendID)
+    @friendtrial = Trial.find(params[:id])
+    @friendtrial.users.delete(User.find params[:frienduser])
+    logger.info(@friendtrial.users)
+    redirect_to :action => 'index'
+  end
+
   def invite
     invitee = params[:inviteuser]
     @connect = Connections.where("acceptinguser = '#{invitee}' OR invitinguser = '#{invitee}'")
@@ -89,7 +98,7 @@ class HomeController < ApplicationController
   end
 
   def index  
-    session[:current_trial] = 1
+    #session[:current_trial] = 1
     if session[:userID] == nil
       logger.info("Not logged in, redirecting") 
       logger.info(splashes_path)
