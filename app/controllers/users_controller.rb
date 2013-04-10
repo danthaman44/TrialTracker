@@ -22,7 +22,6 @@ class UsersController < ApplicationController
         echo "You wernt activated"
         redirect_to "localhost:3000"
       end
-    end
   end 
 
   # GET /users/1
@@ -99,7 +98,6 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-
     respond_to do |format|
       format.html { redirect_to users_url }
       format.json { head :no_content }
