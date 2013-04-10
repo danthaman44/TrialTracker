@@ -12,8 +12,7 @@ class User < ActiveRecord::Base
   validates :username, :uniqueness => true
 
   def activate?
-    echo "activate called"
-    update_attribute('activated', true)
+    update_attributes(:activated => true)
     if self.activated
       return true
     else
