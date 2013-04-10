@@ -1,4 +1,6 @@
 FirstApp::Application.routes.draw do
+  #devise_for :users
+
   get "users/index"
 
   get "user/index"

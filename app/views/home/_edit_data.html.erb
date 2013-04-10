@@ -65,7 +65,7 @@ in active
               <td ><b><%= f.text_field :lost, :type => 'text', :style =>"width:60px; height:30px; margin-bottom:0px; text-align:right",
               :value => @last_entry.lost %></b></td>
               <%= f.hidden_field :trial_id, :value => @current_trial.id %>
-              <td><%= f.submit "Update", :class=>"btn btn-success"%></td>
+              <td><%= f.submit "Update", :class=>"btn btn-success", :id => "update"%></td>
               <%end%>
                 <% end %>
                 <%end%>
@@ -85,7 +85,7 @@ in active
                     <td id="lost_<%= entry.id %>"><%= entry.lost %></td>
                     <% if entry != @current_trial.entries.first %>
                     <td><a href = "#" onclick="javascript:editEntry(<%= entry.id %>)">Edit</a>
-                      | <%= link_to 'Delete', entry_path(entry), :method => :delete, :toDelete => entry.id, :remote=>true, :class=>'delete_post' %></td>
+                      | <%= link_to 'Delete', entry_path(entry), :method => :delete, :id => entry.id, :remote=>true, :class=>'delete_post' %></td>
                       <%else %>
                       <td></td> 
                     <% end %>
@@ -108,7 +108,9 @@ in active
               <td ><b><%= f.text_field :lost, :type => 'text', :style =>"width:60px; height:30px; margin-bottom:0px; text-align:right",
               :value => entry.lost %></b></td>
               <%= f.hidden_field :trial_id, :value => @current_trial.id %>
-              <td><%= f.submit "Update", :class=>"btn btn-success"%></td>
+              <td><%= f.submit "Update", :class=>"btn btn-success", :id => "update"%></td>
+
+
                 <% end %>
                 </tr>
                 <tr style="display:none;"></tr>
@@ -123,15 +125,17 @@ in active
         </div>
 
         <script type="text/javascript">
+        $(document).ready(function(){
+
+
             function editEntry(id) {
-            var Oldrow = document.getElementById('entry_'.concat(id.toString()));
-            Oldrow.style.display="none";
+              var Oldrow = document.getElementById('entry_'.concat(id.toString()));
+              Oldrow.style.display="none";
 
-            var Newrow = document.getElementById('entry_form_'.concat(id.toString()));
-            Newrow.style.display="table-row";
-
-            
+              var Newrow = document.getElementById('entry_form_'.concat(id.toString()));
+              Newrow.style.display="table-row";
             }
+        });
 
         </script>
                             

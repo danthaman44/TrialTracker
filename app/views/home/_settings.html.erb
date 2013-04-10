@@ -148,15 +148,19 @@ in active
             <tr>
               <td> <%= crc.username %> <% if crc.id == @current_trial.owner %> <i>(owner)</i> <%end%> </td>
               <td> <%= crc.email %> </td>
-              <td><%=  button_to("Remove CRC", {:controller => :home,
-                    :action => 'removeFriend', :id => @current_trial.id, :frienduser => crc}, {:class => "btn btn-danger", :onclick => "return confirm('Are you sure you want to remove yourself from this trial?')", :method => :delete, :remote => true}) %></td>
-              <%= logger.info (crc) %>
+       
+              <td>
+                <% if crc.id != @current_trial.owner %>
+                <%=  button_to("Remove CRC", {:controller => :home,
+                    :action => 'removeFriend', :id => @current_trial.id, :frienduser => crc}, {:class => "btn btn-danger", :onclick => "return confirm('Are you sure you want to remove this CRC from the trial?')", :method => :delete, :remote => true}) %>
+                   <% end %>
+                </td>   
             </tr>
             <% end %>
-                <%= logger.info ("++++__+++++++++++++__+++++++++++++++++++++++++++++++++++++++++++++=") %>
+              <!--   <%= logger.info ("++++__+++++++++++++__+++++++++++++++++++++++++++++++++++++++++++++=") %>
                 <%= logger.info (@current_trial) %>
                 <%= logger.info ("-----------------") %>
-                <%= logger.info (@current_trial.id) %>
+                <%= logger.info (@current_trial.id) %> -->
         <%end%>
           </tr>
 

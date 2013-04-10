@@ -12,6 +12,19 @@ class UsersController < ApplicationController
     end
   end
 
+  def activate
+      @user=User.find(params[:id])
+      echo @user
+      if @user.activate?
+        echo "You were activated"
+        redirect_to :controller => 'home', :action => 'index'
+      else
+        echo "You wernt activated"
+        redirect_to "localhost:3000"
+      end
+    end
+  end 
+
   # GET /users/1
   # GET /users/1.json
   def show
@@ -47,7 +60,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
- 
+    @user.activated = false;
     respond_to do |format|
       if @user.save
         # Tell the UserMailer to send a welcome Email after save

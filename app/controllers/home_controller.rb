@@ -40,15 +40,15 @@ class HomeController < ApplicationController
 
   def login 
     @users = User.all
-    cuser = params[:username]
+    cuser = params[:email]
     cpass = params[:password]
     cdigest = Digest::SHA2.hexdigest(cpass)
 
     found = 0
     @users.each do |u|
-      if u.username == cuser && cdigest == u.password
+      if (u.email == cuser || u.username = cuser) && cdigest == u.password
         logger.info("found matching user")
-        session[:username] = cuser
+        session[:username] = u.username
         session[:userID] = u.id
         found = 1
         redirect_to :action => 'index'
@@ -106,6 +106,9 @@ class HomeController < ApplicationController
   else
 
       @user = User.find(session[:userID])
+      if (@user.activated == false)
+         redirect_to splashes_path
+      end
 
       logger.info("Logged in as ")
       logger.info(@user.username)

@@ -12,7 +12,27 @@
 
 $(document).ready(function(){
 	console.log('testing');
-$('.delete_post').bind('ajax:success', function() {  
-    $(this).closest('tr').fadeOut();  
-});  
+	$('.delete_post').bind('ajax:success', function() {  
+	    $(this).closest('tr').fadeOut();  
+	    return false;
+	});  
+
+
+	// $('#update').click(function() {
+	// 	var forceGet = true;
+	// 	location.reload(forceGet);
+	// 	return true;
+	// //   var r = confirm("Are you sure? If you already have an entry for today, it will be overridden.");
+	// //   if (r==true)
+	// //   {
+	// //   return true;
+	// //   }
+	// // else
+	// //   {
+	// //   return false;
+	// //   }
+	// //   return false;
+ //    });  
+
 });
+
