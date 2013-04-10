@@ -5,9 +5,9 @@ c.status = 'accepted'
 c.trialID = 123
 c.save
 
-dan = User.create({:username =>'wdd3', :password =>Digest::SHA2.hexdigest('pw'), :email =>'wdd3@duke.edu'})
-sean = User.create({:username =>'vfseanm', :password =>Digest::SHA2.hexdigest('pw'), :email => 'sean@duke.edu'})
-ash = User.create({:username =>'ashsunday', :password =>Digest::SHA2.hexdigest('pw'), :email => 'ash@duke.edu'})
+dan = User.create({:username =>'wdd3', :password =>Digest::SHA2.hexdigest('pw'), :email =>'wdd3@duke.edu', :activated => true})
+sean = User.create({:username =>'vfseanm', :password =>Digest::SHA2.hexdigest('pw'), :email => 'sean@duke.edu', :activated => true})
+ash = User.create({:username =>'ashsunday', :password =>Digest::SHA2.hexdigest('pw'), :email => 'ash@duke.edu', :activated => true})
 
 asthma = Trial.create({trialName: 'Asthma', trialID: 123, startDate: Date.new(2012, 6, 1), endDate: Date.new(2013, 12, 31), enrolledGoal: 400, completedGoal: 250, 
 
