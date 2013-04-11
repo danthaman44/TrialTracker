@@ -12,6 +12,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def activate
+      @user=User.find(params[:id])
+      session[:username] = @user.username
+      session[:userID] = @user.id
+      session[:current_trial] = nil
+      if @user.activate?
+        redirect_to :controller => 'home', :action => 'index'
+      else
+        redirect_to "localhost:3000"
+      end
+  end 
+
   # GET /users/1
   # GET /users/1.json
   def show
@@ -47,11 +59,15 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
+<<<<<<< HEAD
+=======
+    @user.activated = false
+>>>>>>> a0915804895ef3352352870f05129ac45be53453
     respond_to do |format|
       if @user.save
         # Tell the UserMailer to send a welcome Email after save
         UserMailer.welcome_email(@user).deliver
- 
+        @user.update_attributes(:activated => false)
         format.html { redirect_to(@user, :notice => 'User was successfully created.') }
         format.json { render :json => @user, :status => :created, :location => @user }
       else
@@ -85,7 +101,6 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-
     respond_to do |format|
       format.html { redirect_to users_url }
       format.json { head :no_content }

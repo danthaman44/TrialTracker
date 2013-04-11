@@ -4,7 +4,7 @@ gem 'rails', '3.2.11'
 gem 'bootstrap-sass'
 gem 'therubyracer', :platform => :ruby
 gem "dynamic_form"
-
+gem 'devise'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development do

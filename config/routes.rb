@@ -1,4 +1,6 @@
 FirstApp::Application.routes.draw do
+  #devise_for :users
+
   get "users/index"
 
   get "user/index"
@@ -76,6 +78,7 @@ FirstApp::Application.routes.draw do
    root :to => 'splashes#index'
 
    match '/' => "home#index", :as => :home
+   match '/users/:id/activate' => 'users#activate', as: :users_activate
 
    match '/insert_trials' => 'home#insert_trials', :as => 'insert_trials'
    match '/register' => 'home#register'

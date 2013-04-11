@@ -7,7 +7,6 @@ class EntriesController < ApplicationController
 
 
 	def create
-    
     logger.info("--------Inserting an Entry") 
     logger.info(params[:entry])
     logger.info("test")
@@ -20,16 +19,16 @@ class EntriesController < ApplicationController
     entry.refused = params[:entry][:refused]
     entry.lost = params[:entry][:lost]
     entry.trial_id = params[:entry][:trial_id]
-
-
 		session[:current_tab] = 'edit_data'
     respond_to do |format|
-	     if entry.save
-        format.html { redirect_to :controller => 'home', :action => 'index' }  
-        format.js
-        else
-        end
+	    if entry.save
+        format.html { redirect_to :controller => 'home', :action => 'index'}  
+        format.json { head :no_content }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @entry.errors, status: :unprocessable_entity }   
       end
+    end
   end
 
   def edit
@@ -45,8 +44,8 @@ logger.info("EDITING AN ENTRY")
 
     respond_to do |format|
       if entry.update_attributes(params[:entry])
-        format.html { redirect_to :controller => 'home', :action => 'index' }
         format.json { head :no_content }
+        format.html { redirect_to :controller => 'home', :action => 'index' }   
       else
         format.html { render action: "edit" }
         format.json { render json: entry.errors, status: :unprocessable_entity }
@@ -69,4 +68,16 @@ logger.info("EDITING AN ENTRY")
       format.json   { render :nothing => true }  
       end
   end
+
+
+  def destroy
+    @entry = Entry.find(params[:id])
+    @entry.destroy 
+    # respond_to do |format|
+    #   format.html { redirect_to :back }
+    #   format.json { head :no_content }
+    # end
+  end
+
+
 end
