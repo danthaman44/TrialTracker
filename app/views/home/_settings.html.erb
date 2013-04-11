@@ -125,19 +125,22 @@ in active
     <% if @user.id == @current_trial.userowner %> <!--only the admin can see this part or invite people to the trial -->
     <div class = "row-fluid">
       <p style="font-size:17px"> As the <strong>administrator</strong> you can invite collaborators by entering their email or by telling them the trial-code. </p>
-      <div class = "span4" style="padding-right:75px">
+      <div class = "span4">
 
           <%= form_tag ("/invite") do%>   
-            <%= text_field_tag :frienduser, '', :style => "height:30px", :placeholder => "Email" %>
-            <% if (session[:inviteerror] != nil) %>
-              <p style = "margin-top:3px;"> <font color="ff0000"><%= session[:inviteerror] %></font></p>
-            <%end%>
-          <% session[:inviteerror] = nil%>
+            <%= text_field_tag :email, '', :style => "height:30px", :placeholder => "Email" %>
           <%= submit_tag ('Send Invite'), :class => "btn btn-success" %>
           <%end%>
+          <% if (session[:invitemessage] != nil) %>
+              <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">&times;</button><p>An invite email has been sent to <%= session[:invitemessage] %></p>
+              </div>
+            <% end %>
+              
+          <% session[:invitemessage] = nil%>
       </div>
 
-      <div class="span7" style = "margin-bottom:15px; padding-left:50px; border-left: 1px solid #dddddd">
+      <div class="span7" style = "margin-bottom:15px; margin-left:40px; padding-left:80px; border-left: 1px solid #dddddd">
         <p style="font-size:17px">Trial-Code: <strong>
           <% if @current_trial != nil %>
           <%= @current_trial.id %> </strong>
@@ -176,8 +179,8 @@ in active
               <td>
                 <% if @user.id == @current_trial.userowner %> <!--'remove' button is only displayed for the owner -->
                   <% if crc.id != @current_trial.userowner %>
-                    <%=  button_to("Remove CRC", {:controller => :home, :action => 'removeFriend', :id => @current_trial.id, :frienduser => crc}, 
-                    {:form_class => "no-margin", :class => "btn btn-danger", :onclick => "return confirm('Are you sure you want to remove this CRC from the trial?')", :method => :delete, :remote => true}) %>
+                    <%=  button_to("Remove", {:controller => :home, :action => 'removeFriend', :id => @current_trial.id, :frienduser => crc}, 
+                    {:form_class => "no-margin", :class => "btn btn-danger", :onclick => "return confirm('Are you sure you want to remove this person from the trial?')", :method => :delete, :remote => true}) %>
                   <% end %>
                 <% end %>
               </td>

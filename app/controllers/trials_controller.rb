@@ -73,7 +73,7 @@ class TrialsController < ApplicationController
 
 
     @trial.startDate = Date.strptime(params[:trial][:startDate], '%m/%d/%Y')
-    @trial.owner = session[:userID]
+    @trial.userowner = session[:userID]
     respond_to do |format|
       if @trial.save
         entry = @trial.entries.create(:input_at => @trial.startDate, :enrolled => 0, :active => 0, :completed => 0, :withdrawn => 0, :refused => 0,:lost => 0, :trial_id => @trial.id)

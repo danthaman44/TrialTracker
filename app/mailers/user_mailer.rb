@@ -20,6 +20,6 @@ class UserMailer < ActionMailer::Base
     @fuser = user
     @url = "trialtracker.herokuapp.com"
     mail(:to => @fuser.email, :subject => "A fellow CRC has invited you to a Trial")
-  end
+
 
 end
