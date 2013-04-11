@@ -49,9 +49,11 @@ class HomeController < ApplicationController
     @users.each do |u|
       if (u.email == cuser && u.password == cdigest) || (u.username == cuser && u.password == cdigest)
         if u.activated != true
-          session[:unactivated] = true
+          session[:loginError] = "unactivated"
         logger.info("not activated!")
+        found = 1
         redirect_to '/loginError'
+        break
         end
 
         logger.info("found matching user")
@@ -65,7 +67,7 @@ class HomeController < ApplicationController
     end
       
     if found == 0
-      session[:wrongPW] = true
+      session[:loginError] = "wrongPassword"
       redirect_to '/loginError'
     end
   end
@@ -214,6 +216,25 @@ class HomeController < ApplicationController
       redirect_to "localhost:3000"
   
    end
+
+   def forgotPassword
+    email = params[:email]
+    logger.info(email)
+    User.all.each do |u|
+      if (u.email == email)
+        newPassword = rand(100000)
+        u.update_attributes({:password => newPassword})
+        # send email giving them newPassword
+        session[:loginError] = "newPassword"
+        logger.info("###################sending email#******************")
+      else
+        session[:loginError] = "newPasswordwrongEmail"
+      end
+      
+    end
+    redirect_to '/loginError'
+  end
+
 
 
 end
