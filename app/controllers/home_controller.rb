@@ -10,9 +10,9 @@ class HomeController < ApplicationController
     @trial = session[:current_trial]
     @user = User.where("username = '#{params[:email]}'").first
     if (@user == nil)
-      UserMailer.invite_new_user(params[:email], @trial)
+      UserMailer.invite_new_user(params[:email], @trial).deliver
     else
-      UserMailer.invite_existing_user(@user, @trial)
+      UserMailer.invite_existing_user(@user, @trial).deliver
     end
     session[:invitemessage] = "#{params[:email]}"
     session[:current_tab] = 'settings'

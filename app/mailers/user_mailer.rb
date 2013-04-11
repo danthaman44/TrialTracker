@@ -9,17 +9,17 @@ class UserMailer < ActionMailer::Base
   end
 
   def invite_new_user(email, trialid)
-    @ctrial = ctr
-    @fuser = user
+    @trialid = trialid
+    @email = email
     @url = "trialtracker.herokuapp.com"
-    mail(:to => @fuser.email, :subject => "A fellow CRC has invited you to a Trial")
+    mail(:to => @email, :subject => "A fellow CRC has invited you to a TrialTracker")
   end
 
   def invite_existing_user(user, trialid)
-    @ctrial = ctr
+    @trialid = trialid
     @fuser = user
     @url = "trialtracker.herokuapp.com"
-    mail(:to => @fuser.email, :subject => "A fellow CRC has invited you to a Trial")
-
+    mail(:to => @fuser.email, :subject => "A fellow CRC has invited you to a trial")
+  end
 
 end
