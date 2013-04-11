@@ -4,7 +4,7 @@ class UserMailer < ActionMailer::Base
    def welcome_email(user)
     @user = user
     @id = @user.id
-    @url  = "trialtracker.herokuapp.com/users/activate?id="
+    @url  = "trialtracker.herokuapp.com/users/"+@id+"/activate"
     mail(:to => @user.email, :subject => "Welcome to TrialTracker!")
   end
 end

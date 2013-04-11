@@ -47,7 +47,9 @@ class HomeController < ApplicationController
     cdigest = Digest::SHA2.hexdigest(cpass)
     found = 0
     @users.each do |u|
-      if (u.email == cuser && u.password == cdigest) || (u.username = cuser && u.password == cdigest)
+      logger.info("user")
+      logger.info(u.username)
+      if (u.email == cuser && u.password == cdigest) || (u.username == cuser && u.password == cdigest)
         logger.info("found matching user")
         logger.info(u.username)
         logger.info(u.id)
