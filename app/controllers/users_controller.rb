@@ -47,7 +47,6 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
- 
     respond_to do |format|
       if @user.save
         # Tell the UserMailer to send a welcome Email after save

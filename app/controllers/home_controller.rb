@@ -1,40 +1,20 @@
 class HomeController < ApplicationController
 
-  def accept #Doesn't work yet. Need to implement trialID
-    invitee = params[:clickeduser]
-    @connect = Connections.where("acceptinguser = '#{invitee}' AND invitinguser = '#session[:username]' 
-                                  AND status = 'pending'")
-    connect.status = 'accepted'
-    connect.save
-    redirect_to :action => 'index'
-  end
-
   def removeFriend
-    friendID = session[:id]
-    logger.info (friendID)
     @friendtrial = Trial.find(params[:id])
     @friendtrial.users.delete(User.find params[:frienduser])
-    logger.info(@friendtrial.users)
     redirect_to :action => 'index'
   end
 
   def invite
-    invitee = params[:inviteuser]
-    @connect = Connections.where("acceptinguser = '#{invitee}' OR invitinguser = '#{invitee}'")
-    condition = true
-    @connect.each do |c|
-      if (c.acceptinguser == session[:username] || c.invitinguser == session[:username] && 
-        (c.status == 'accepted' || c.status == 'pending') )
-        condition = false
-      end
+    @ctrial = session[:current_trial]
+    @fuser = User.where("username = '#{params[:frienduser]}'").first
+    if (@fuser == nil)
+      session[:inviteerror] = "User #{params[:frienduser]} does not exist"
+    else
+      UserMailer.invite_email(@fuser, @ctrial)
     end
-    if (condition)
-        newcon = Connections.new
-        newcon.acceptinguser = invitee
-        newcon.invitinguser = session[:username]
-        newcon.status = 'pending'
-        newcon.save
-    end
+    session[:current_tab] = 'settings'
     redirect_to :action => 'index'
   end
 
@@ -58,8 +38,6 @@ class HomeController < ApplicationController
     
     if found == 0
       session[:errormessage] = 'Username/password is incorrect!'
-      logger.info (session[:errormessage])
-      logger.info ("===============================")
       redirect_to :back
     end
   end
@@ -90,7 +68,7 @@ class HomeController < ApplicationController
           login.save
           session[:username] = user
           session[:userID] = login.id
-          #UserMailer.welcome_email(login).deliver
+          UserMailer.welcome_email(login).deliver
           redirect_to :action => 'index'
       else
           redirect_to :back

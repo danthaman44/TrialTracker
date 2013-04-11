@@ -129,10 +129,15 @@ in active
           <%= @current_trial.id %> </strong></p>
           <%end%>
     </div>
+
     <div class = "span4 offset1">
           <p> Invite a CRC to your Trial! <p>
           <%= form_tag ("/invite") do%>   
           <%= text_field_tag :frienduser, '', :style => "height:30px", :placeholder => "CRC's Username" %>
+            <% if (session[:inviteerror] != nil) %>
+              <p style = "margin-top:3px;"> <font color="ff0000"><%= session[:inviteerror] %></font></p>
+            <%end%>
+          <% session[:inviteerror] = nil%>
           <%= submit_tag ('Invite!'), :class => "btn btn-primary" %>
           <%end%>
       </div>
@@ -140,25 +145,23 @@ in active
 
 <table class="table table-striped table-condensed table-hover">
   <thead>
+        <div class = "span4">
           <tr>
               <th style="text-align: left;">On this trial:</th>
             </tr>
-        <% if @current_crcs != nil %>
+          <% if @current_crcs != nil %>
               <% @current_crcs.each do |crc| %>
             <tr>
               <td> <%= crc.username %> <% if crc.id == @current_trial.owner %> <i>(owner)</i> <%end%> </td>
               <td> <%= crc.email %> </td>
               <td><%=  button_to("Remove CRC", {:controller => :home,
                     :action => 'removeFriend', :id => @current_trial.id, :frienduser => crc}, {:class => "btn btn-danger", :onclick => "return confirm('Are you sure you want to remove yourself from this trial?')", :method => :delete, :remote => true}) %></td>
-              <%= logger.info (crc) %>
             </tr>
             <% end %>
-                <%= logger.info ("++++__+++++++++++++__+++++++++++++++++++++++++++++++++++++++++++++=") %>
-                <%= logger.info (@current_trial) %>
-                <%= logger.info ("-----------------") %>
-                <%= logger.info (@current_trial.id) %>
-        <%end%>
+
+          <%end%>
           </tr>
+        </div>
 
         </thead>
       </table>
