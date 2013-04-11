@@ -16,6 +16,7 @@ class UsersController < ApplicationController
       @user=User.find(params[:id])
       session[:username] = @user.username
       session[:userID] = @user.id
+      session[:current_trial] = nil
       if @user.activate?
         redirect_to :controller => 'home', :action => 'index'
       else
@@ -58,7 +59,10 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
+<<<<<<< HEAD
+=======
     @user.activated = false
+>>>>>>> a0915804895ef3352352870f05129ac45be53453
     respond_to do |format|
       if @user.save
         # Tell the UserMailer to send a welcome Email after save

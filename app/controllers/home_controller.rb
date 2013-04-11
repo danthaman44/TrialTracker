@@ -1,40 +1,20 @@
 class HomeController < ApplicationController
 
-  def accept #Doesn't work yet. Need to implement trialID
-    invitee = params[:clickeduser]
-    @connect = Connections.where("acceptinguser = '#{invitee}' AND invitinguser = '#session[:username]' 
-                                  AND status = 'pending'")
-    connect.status = 'accepted'
-    connect.save
-    redirect_to :action => 'index'
-  end
-
   def removeFriend
-    friendID = session[:id]
-    logger.info (friendID)
     @friendtrial = Trial.find(params[:id])
     @friendtrial.users.delete(User.find params[:frienduser])
-    logger.info(@friendtrial.users)
     redirect_to :action => 'index'
   end
 
   def invite
-    invitee = params[:inviteuser]
-    @connect = Connections.where("acceptinguser = '#{invitee}' OR invitinguser = '#{invitee}'")
-    condition = true
-    @connect.each do |c|
-      if (c.acceptinguser == session[:username] || c.invitinguser == session[:username] && 
-        (c.status == 'accepted' || c.status == 'pending') )
-        condition = false
-      end
+    @ctrial = session[:current_trial]
+    @fuser = User.where("username = '#{params[:frienduser]}'").first
+    if (@fuser == nil)
+      session[:inviteerror] = "User #{params[:frienduser]} does not exist"
+    else
+      UserMailer.invite_email(@fuser, @ctrial)
     end
-    if (condition)
-        newcon = Connections.new
-        newcon.acceptinguser = invitee
-        newcon.invitinguser = session[:username]
-        newcon.status = 'pending'
-        newcon.save
-    end
+    session[:current_tab] = 'settings'
     redirect_to :action => 'index'
   end
 
@@ -47,6 +27,7 @@ class HomeController < ApplicationController
     cdigest = Digest::SHA2.hexdigest(cpass)
     found = 0
     @users.each do |u|
+
       if (u.email == cuser && u.password == cdigest) || (u.username == cuser && u.password == cdigest)
         if u.activated != true
           session[:loginError] = "unactivated"
@@ -55,7 +36,6 @@ class HomeController < ApplicationController
         redirect_to '/loginError'
         break
         end
-
         logger.info("found matching user")
         logger.info(u.username)
         session[:username] = u.username
@@ -69,6 +49,7 @@ class HomeController < ApplicationController
     if found == 0
       session[:loginError] = "wrongPassword"
       redirect_to '/loginError'
+
     end
   end
 
@@ -84,6 +65,7 @@ class HomeController < ApplicationController
   end
 
   def register
+      session[:current_trial] = 1
       @title = 'Website Example -- Register Page'
       user = params[:username]
       passwd = params[:password]
@@ -99,7 +81,7 @@ class HomeController < ApplicationController
           login.save
           session[:username] = user
           session[:userID] = login.id
-          #UserMailer.welcome_email(login).deliver
+          UserMailer.welcome_email(login).deliver
           redirect_to :action => 'index'
       else
           redirect_to :back
@@ -107,7 +89,7 @@ class HomeController < ApplicationController
   end
 
   def index  
-    #session[:current_trial] = 1
+    session[:current_trial] = 1
     if session[:userID] == nil
       logger.info("Not logged in, redirecting") 
       logger.info(splashes_path)
@@ -115,6 +97,12 @@ class HomeController < ApplicationController
     else
 
       @user = User.find(session[:userID])
+
+      logger.info("my status:")
+      if @user.activated != true
+        logger.info("not activated!")
+        redirect_to splashes_path
+      end
       logger.info("Logged in as ")
       logger.info(@user.username)
       @trials = @user.trials
@@ -221,12 +209,14 @@ class HomeController < ApplicationController
     email = params[:email]
     logger.info(email)
     User.all.each do |u|
+      logger.info(u.email)
       if (u.email == email)
         newPassword = rand(100000)
         u.update_attributes({:password => newPassword})
         # send email giving them newPassword
         session[:loginError] = "newPassword"
         logger.info("###################sending email#******************")
+        break
       else
         session[:loginError] = "newPasswordwrongEmail"
       end
