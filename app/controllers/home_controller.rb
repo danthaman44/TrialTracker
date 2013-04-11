@@ -90,7 +90,7 @@ class HomeController < ApplicationController
 
   def index  
 
-    session[:userID] =1
+    reset_session
     if session[:userID] == nil
       logger.info("Not logged in, redirecting") 
       logger.info(splashes_path)
