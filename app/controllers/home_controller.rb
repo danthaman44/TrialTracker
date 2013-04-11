@@ -7,13 +7,14 @@ class HomeController < ApplicationController
   end
 
   def invite
-    @ctrial = session[:current_trial]
-    @fuser = User.where("username = '#{params[:frienduser]}'").first
-    if (@fuser == nil)
-      session[:inviteerror] = "User #{params[:frienduser]} does not exist"
+    @trial = session[:current_trial]
+    @user = User.where("username = '#{params[:email]}'").first
+    if (@user == nil)
+      UserMailer.invite_new_user(params[:email], @trial)
     else
-      UserMailer.invite_email(@fuser, @ctrial)
+      UserMailer.invite_existing_user(@user, @trial)
     end
+    session[:invitemessage] = "#{params[:email]}"
     session[:current_tab] = 'settings'
     redirect_to :action => 'index'
   end
@@ -89,7 +90,6 @@ class HomeController < ApplicationController
   end
 
   def index  
-    session[:current_trial] = 1
     if session[:userID] == nil
       logger.info("Not logged in, redirecting") 
       logger.info(splashes_path)
