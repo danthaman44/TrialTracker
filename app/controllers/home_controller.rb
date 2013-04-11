@@ -41,13 +41,16 @@ class HomeController < ApplicationController
   def login 
     @users = User.all
     cuser = params[:email]
+    logger.info("person trying to log in: ")
+    logger.info(cuser)
     cpass = params[:password]
     cdigest = Digest::SHA2.hexdigest(cpass)
-
     found = 0
     @users.each do |u|
-      if (u.email == cuser || u.username = cuser) && cdigest == u.password
+      if (u.email == cuser && u.password == cdigest) || (u.username = cuser && u.password == cdigest)
         logger.info("found matching user")
+        logger.info(u.username)
+        logger.info(u.id)
         session[:username] = u.username
         session[:userID] = u.id
         found = 1
@@ -84,13 +87,14 @@ class HomeController < ApplicationController
       if !user.blank? && !User.exists?(user) && passwd == verify
           login = User.new
           login.username = user
+          login.activated = false
           hash = Digest::SHA2.hexdigest(passwd)
           login.password = hash
           login.email= email
           login.save
           session[:username] = user
           session[:userID] = login.id
-          UserMailer.welcome_email(login).deliver
+          #UserMailer.welcome_email(login).deliver
           redirect_to :action => 'index'
       else
           redirect_to :back
@@ -103,13 +107,15 @@ class HomeController < ApplicationController
       logger.info("Not logged in, redirecting") 
       logger.info(splashes_path)
       redirect_to splashes_path
-  else
+    else
 
       @user = User.find(session[:userID])
-      if (@user.activated == false)
-         redirect_to splashes_path
+      logger.info("my status:")
+      logger.info(@user.activated)
+      if @user.activated != true
+        logger.info("not activated!")
+        redirect_to splashes_path
       end
-
       logger.info("Logged in as ")
       logger.info(@user.username)
       @trials = @user.trials

@@ -14,12 +14,11 @@ class UsersController < ApplicationController
 
   def activate
       @user=User.find(params[:id])
-      echo @user
+      session[:username] = @user.username
+      session[:userID] = @user.id
       if @user.activate?
-        echo "You were activated"
         redirect_to :controller => 'home', :action => 'index'
       else
-        echo "You wernt activated"
         redirect_to "localhost:3000"
       end
   end 
@@ -59,12 +58,12 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
-    @user.activated = false;
+    @user.activated = false
     respond_to do |format|
       if @user.save
         # Tell the UserMailer to send a welcome Email after save
         UserMailer.welcome_email(@user).deliver
- 
+        @user.update_attributes(:activated => false)
         format.html { redirect_to(@user, :notice => 'User was successfully created.') }
         format.json { render :json => @user, :status => :created, :location => @user }
       else
