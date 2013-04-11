@@ -122,11 +122,14 @@ class HomeController < ApplicationController
     end
 
 
+
+
   if (@current_trial != nil)
       logger.info("current trial: ")
       logger.info(@current_trial.trialName)  
       @current_crcs = @current_trial.users #the collaborators of our current trial
-      logger.info(@current_crcs)
+      logger.info("owner: ")
+      logger.info(@current_trial.userowner)
   
       entries = @current_trial.entries
       @entries_recentFirst = entries.sort { |a, b| b.input_at <=> a.input_at }
