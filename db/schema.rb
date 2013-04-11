@@ -65,7 +65,6 @@ ActiveRecord::Schema.define(:version => 20130326214305) do
     t.string   "password"
     t.string   "email"
     t.integer  "trial_id"
-    t.boolean  "activated"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

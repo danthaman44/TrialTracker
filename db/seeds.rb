@@ -1,9 +1,3 @@
-c = Connections.new
-c.acceptinguser = 'Sundar'
-c.invitinguser = 'peggy'
-c.status = 'accepted'
-c.trialID = 123
-c.save
 
 dan = User.create({:username =>'wdd3', :password =>Digest::SHA2.hexdigest('pw'), :email =>'wdd3@duke.edu', :activated => true})
 sean = User.create({:username =>'vfseanm', :password =>Digest::SHA2.hexdigest('pw'), :email => 'sean@duke.edu', :activated => true})

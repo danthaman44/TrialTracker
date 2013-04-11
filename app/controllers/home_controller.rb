@@ -1,40 +1,20 @@
 class HomeController < ApplicationController
 
-  def accept #Doesn't work yet. Need to implement trialID
-    invitee = params[:clickeduser]
-    @connect = Connections.where("acceptinguser = '#{invitee}' AND invitinguser = '#session[:username]' 
-                                  AND status = 'pending'")
-    connect.status = 'accepted'
-    connect.save
-    redirect_to :action => 'index'
-  end
-
   def removeFriend
-    friendID = session[:id]
-    logger.info (friendID)
     @friendtrial = Trial.find(params[:id])
     @friendtrial.users.delete(User.find params[:frienduser])
-    logger.info(@friendtrial.users)
     redirect_to :action => 'index'
   end
 
   def invite
-    invitee = params[:inviteuser]
-    @connect = Connections.where("acceptinguser = '#{invitee}' OR invitinguser = '#{invitee}'")
-    condition = true
-    @connect.each do |c|
-      if (c.acceptinguser == session[:username] || c.invitinguser == session[:username] && 
-        (c.status == 'accepted' || c.status == 'pending') )
-        condition = false
-      end
+    @ctrial = session[:current_trial]
+    @fuser = User.where("username = '#{params[:frienduser]}'").first
+    if (@fuser == nil)
+      session[:inviteerror] = "User #{params[:frienduser]} does not exist"
+    else
+      UserMailer.invite_email(@fuser, @ctrial)
     end
-    if (condition)
-        newcon = Connections.new
-        newcon.acceptinguser = invitee
-        newcon.invitinguser = session[:username]
-        newcon.status = 'pending'
-        newcon.save
-    end
+    session[:current_tab] = 'settings'
     redirect_to :action => 'index'
   end
 
@@ -63,8 +43,6 @@ class HomeController < ApplicationController
     
     if found == 0
       session[:errormessage] = 'Username/password is incorrect!'
-      logger.info (session[:errormessage])
-      logger.info ("===============================")
       redirect_to :back
     end
   end
@@ -81,6 +59,7 @@ class HomeController < ApplicationController
   end
 
   def register
+      session[:current_trial] = 1
       @title = 'Website Example -- Register Page'
       user = params[:username]
       passwd = params[:password]
@@ -104,7 +83,7 @@ class HomeController < ApplicationController
   end
 
   def index  
-    #session[:current_trial] = 1
+    session[:current_trial] = 1
     if session[:userID] == nil
       logger.info("Not logged in, redirecting") 
       logger.info(splashes_path)
@@ -113,7 +92,6 @@ class HomeController < ApplicationController
 
       @user = User.find(session[:userID])
       logger.info("my status:")
-      logger.info(@user.activated)
       if @user.activated != true
         logger.info("not activated!")
         redirect_to splashes_path
