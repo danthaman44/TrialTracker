@@ -47,10 +47,15 @@ class HomeController < ApplicationController
     cdigest = Digest::SHA2.hexdigest(cpass)
     found = 0
     @users.each do |u|
-      if (u.email == cuser && u.password == cdigest) || (u.username = cuser && u.password == cdigest)
+      if (u.email == cuser && u.password == cdigest) || (u.username == cuser && u.password == cdigest)
+        if u.activated != true
+          session[:unactivated] = true
+        logger.info("not activated!")
+        redirect_to '/loginError'
+        end
+
         logger.info("found matching user")
         logger.info(u.username)
-        logger.info(u.id)
         session[:username] = u.username
         session[:userID] = u.id
         found = 1
@@ -58,12 +63,10 @@ class HomeController < ApplicationController
         break
       end
     end
-    
+      
     if found == 0
-      session[:errormessage] = 'Username/password is incorrect!'
-      logger.info (session[:errormessage])
-      logger.info ("===============================")
-      redirect_to :back
+      session[:wrongPW] = true
+      redirect_to '/loginError'
     end
   end
 
@@ -110,12 +113,6 @@ class HomeController < ApplicationController
     else
 
       @user = User.find(session[:userID])
-      logger.info("my status:")
-      logger.info(@user.activated)
-      if @user.activated != true
-        logger.info("not activated!")
-        redirect_to splashes_path
-      end
       logger.info("Logged in as ")
       logger.info(@user.username)
       @trials = @user.trials

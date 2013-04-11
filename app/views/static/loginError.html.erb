@@ -1,0 +1,136 @@
+<head>
+	<link href="/assets/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+		hr { display: block; height: 1px;
+    		border: 0; border-top: 1px solid #ccc;
+    		margin: 1em 0; padding: 0; }
+	</style>
+</head>
+<body>	
+	   <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="/home/index">TrialTracker </a>
+                    
+                    
+
+                    <div class="nav-collapse collapse">
+                        <p class="navbar-text pull-right">
+                        Logged in as <a href="#" class="navbar-link"><%= session[:username] %></a>
+                        </p>
+                        <ul class="nav">
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#contact">FAQ</a></li>
+                            <li> <%=link_to("Logout", logout_path) %> </li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+      <div>
+      	<br>
+      	<br>
+      	<br>
+      </div>
+   <div class = "container">
+   	  <div class = "hero-unit">
+		<legend> Login </legend>
+
+    <% if session[:unactivated] %>
+        <div class="alert">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>Your account has not yet been activated. Please check your email for an activation link.
+        </div>
+        <% session[:unactivated] = nil%>
+    <% end %>
+
+    <% if session[:wrongPW]  %>
+        <div class="alert">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>The email and password that you
+            entered do not match any records in our database.
+        </div>
+        <% session[:wrongPW]  = nil%>
+    <% end %>
+
+    <%= form_tag ("/login"), :class=>"form-horizontal" do |login_form | %>    
+
+  <div class = "row-fluid">
+    <div class ="span2">
+    </div>
+      <div class="span10">
+
+
+<form class="form-horizontal">
+  <div class="control-group">
+      <label class="control-label" for="email">Email</label>
+      <div class="controls">
+        <%= text_field_tag :email, '', :style => "height:30px" %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <label class="control-label" for="password">Password</label>
+      <div class="controls">
+        <%= password_field_tag :password, '', :style => "height:30px" %>
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="controls">
+      <%= submit_tag ('Sign In'), :class => "btn btn-primary" %>
+        </div>
+    <% end %>
+
+  </div>
+
+<div class="accordion" id="accordion2">
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+        Collapsible Group Item #1
+      </a>
+    </div>
+    <div id="collapseOne" class="accordion-body collapse in">
+      <div class="accordion-inner">
+        Anim pariatur cliche...
+      </div>
+    </div>
+  </div>
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+        Collapsible Group Item #2
+      </a>
+    </div>
+    <div id="collapseTwo" class="accordion-body collapse">
+      <div class="accordion-inner">
+        Anim pariatur cliche...
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+  <div class="accordion" id="accordion2">
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+        Forgot Password?
+      </a>
+    </div>
+    <div id="collapseOne" class="accordion-body collapse">
+      <div class="accordion-inner">
+        Enter your email and we'll send send you a new password. 
+      </div>
+    </div>
+  </div>
+</div>
+
+		
+	</div>
+  </div>
+</body>
