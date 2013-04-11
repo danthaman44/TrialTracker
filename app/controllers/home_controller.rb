@@ -27,12 +27,17 @@ class HomeController < ApplicationController
     cdigest = Digest::SHA2.hexdigest(cpass)
     found = 0
     @users.each do |u|
-      logger.info("user")
-      logger.info(u.username)
+
       if (u.email == cuser && u.password == cdigest) || (u.username == cuser && u.password == cdigest)
+        if u.activated != true
+          session[:loginError] = "unactivated"
+        logger.info("not activated!")
+        found = 1
+        redirect_to '/loginError'
+        break
+        end
         logger.info("found matching user")
         logger.info(u.username)
-        logger.info(u.id)
         session[:username] = u.username
         session[:userID] = u.id
         found = 1
@@ -40,10 +45,11 @@ class HomeController < ApplicationController
         break
       end
     end
-    
+      
     if found == 0
-      session[:errormessage] = 'Username/password is incorrect!'
-      redirect_to :back
+      session[:loginError] = "wrongPassword"
+      redirect_to '/loginError'
+
     end
   end
 
@@ -91,6 +97,7 @@ class HomeController < ApplicationController
     else
 
       @user = User.find(session[:userID])
+
       logger.info("my status:")
       if @user.activated != true
         logger.info("not activated!")
@@ -115,11 +122,14 @@ class HomeController < ApplicationController
     end
 
 
+
+
   if (@current_trial != nil)
       logger.info("current trial: ")
       logger.info(@current_trial.trialName)  
       @current_crcs = @current_trial.users #the collaborators of our current trial
-      logger.info(@current_crcs)
+      logger.info("owner: ")
+      logger.info(@current_trial.userowner)
   
       entries = @current_trial.entries
       @entries_recentFirst = entries.sort { |a, b| b.input_at <=> a.input_at }
@@ -197,6 +207,27 @@ class HomeController < ApplicationController
       redirect_to "localhost:3000"
   
    end
+
+   def forgotPassword
+    email = params[:email]
+    logger.info(email)
+    User.all.each do |u|
+      logger.info(u.email)
+      if (u.email == email)
+        newPassword = rand(100000)
+        u.update_attributes({:password => newPassword})
+        # send email giving them newPassword
+        session[:loginError] = "newPassword"
+        logger.info("###################sending email#******************")
+        break
+      else
+        session[:loginError] = "newPasswordwrongEmail"
+      end
+      
+    end
+    redirect_to '/loginError'
+  end
+
 
 
 end

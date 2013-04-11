@@ -3,6 +3,7 @@
 <head>
 	<link href="/assets/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
 	<link href="/assets/bootstrap-responsive.css" rel="stylesheet">
+	
 	<style type="text/css">
 		body {background-image:url('/assets/medical_billing.png');}
 		h1 {font-size:500%;
@@ -37,10 +38,6 @@
                         </ul>
                      
                          <ul class="nav pull-right">   
-  							<% if (session[:errormessage] != nil) %>
-    	 						<li style = "margin-top:10px;"> <font color="ff0000"><%= session[:errormessage] %></font></li>
-    							<% session[:errormessage] = nil%>
-  							<% end %>
   						<li>
   							&nbsp &nbsp
   						</li>
@@ -119,7 +116,9 @@
 				/*-ms-filter must come before filter*/
 				filter: alpha(opacity = 90);padding-top: 30px; padding-left: 30px; padding-right: 30px; padding-bottom: 50px; background-color:#FFF"><h3 style="
 				margin-bottom: 10px;
-				">New to TrialTracker?<br><span style="font-size: 26px;">Sign up!</span></h3>
+				">
+				
+				New to TrialTracker?<br><span style="font-size: 26px;">Sign up!</span></h3>
 						<%= form_tag ("/register") do %>
 						<table>
 						<tr>

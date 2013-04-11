@@ -1,5 +1,5 @@
 class Trial < ActiveRecord::Base
-  attr_accessible :trialID, :trialName, :endDate, :startDate, :enrolledGoal, :completedGoal, :entries_attributes, :owner
+  attr_accessible :trialID, :trialName, :endDate, :startDate, :enrolledGoal, :completedGoal, :entries_attributes, :userowner
   has_many :entries, :autosave => true
   accepts_nested_attributes_for :entries
   has_and_belongs_to_many :users, :autosave => true

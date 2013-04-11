@@ -4,4 +4,7 @@ class StaticController < ApplicationController
 		logger.info("got to the correct controller method")
 	end
 
+	def loginError
+	end
+
 end

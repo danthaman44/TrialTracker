@@ -20,6 +20,9 @@
                                 #data_table th, #data_table td {
                                   text-align: right;
                                 }
+                                .no-margin {
+                                  margin: 0px;
+                                }
                                 </style>
                             <link href="assets/bootstrap-responsive.css" rel="stylesheet">
                                 
@@ -176,9 +179,11 @@
                         Logged in as <a href="#" class="navbar-link"><%= session[:username] %></a>
                         </p>
                         <ul class="nav">
+<<<<<<< HEAD
                             <li> <%= link_to("About", about_path) %></li>
+=======
+>>>>>>> d9d7e5c1647ce352537a25d7451b413b5ee5e637
                             <li><%= link_to("FAQ", faq_path) %></li>
-                            <li><%= link_to("Directory", directory_path) %></li>
                             <li> <%=link_to("Logout", logout_path) %> </li>
                         </ul>
                     </div><!--/.nav-collapse -->
@@ -208,7 +213,7 @@
                             <%= render 'trials/index' %>
                             
                             <li class="nav-header">Add or join more Trials</li>
-                            <a href="#addTrialModal" role="button" class="btn btn-success" data-toggle="modal">New Trial</a>
+                            <a href="#addTrialModal" role="button" class="btn btn-success" data-toggle="modal">Add Trial</a>
                         </ul>
                     </div><!--/.well -->
                 </div><!--/span-->
