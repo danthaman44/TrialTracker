@@ -89,11 +89,8 @@ FirstApp::Application.routes.draw do
    match '/faq' => 'static#faq'
    match '/join' => 'trials#join'
    match '/directory' => 'users#index'
+   match '/loginError' => 'static#loginError'
+   match '/forgotPassword' => 'home#forgotPassword'
 
-  # See how all your routes lay out with "rake routes"
 
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
-  
 end
