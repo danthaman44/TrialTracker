@@ -16,6 +16,7 @@ class UsersController < ApplicationController
       @user=User.find(params[:id])
       session[:username] = @user.username
       session[:userID] = @user.id
+      session[:current_trial] = nil
       if @user.activate?
         redirect_to :controller => 'home', :action => 'index'
       else
