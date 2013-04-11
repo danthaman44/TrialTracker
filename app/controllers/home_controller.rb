@@ -59,6 +59,7 @@ class HomeController < ApplicationController
   end
 
   def register
+      session[:current_trial] = 1
       @title = 'Website Example -- Register Page'
       user = params[:username]
       passwd = params[:password]
