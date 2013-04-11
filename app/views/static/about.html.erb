@@ -1,0 +1,150 @@
+<head>
+	<link href="/assets/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+		hr { display: block; height: 1px;
+    		border: 0; border-top: 1px solid #ccc;
+    		margin: 1em 0; padding: 0; }
+
+
+    .ch-item {
+        width: 26%;
+        height: 37%;
+        border-radius: 50%;
+        position: relative;
+        cursor: default;
+        box-shadow: 
+            inset 0 0 0 0 rgba(200,95,66, 0.4),
+            inset 0 0 0 16px rgba(255,255,255,0.6),
+            0 1px 2px rgba(0,0,0,0.1);
+        transition: all 0.4s ease-in-out;
+      }
+      .ch-img-1 { 
+          background-image: url(/assets/ricardo.jpg);
+      }
+       
+      .ch-img-2 { 
+          background-image: url(/assets/dan.jpg);
+      }
+       
+      .ch-img-3 { 
+          background-image: url(../images/6.jpg);
+      }
+
+      .ch-info {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          overflow: hidden;
+          opacity: 0;
+          transition: all 0.4s ease-in-out;
+          transform: scale(0);
+          backface-visibility: hidden;
+      }
+
+      .ch-info h3 {
+        color: #fff;
+        text-transform: uppercase;
+        position: relative;
+        letter-spacing: 2px;
+        font-size: 22px;
+        margin: 0 30px;
+        padding: 65px 0 0 0;
+        height: 110px;
+        font-family: 'Open Sans', Arial, sans-serif;
+        text-shadow: 
+            0 0 1px #fff, 
+            0 1px 2px rgba(0,0,0,0.3);
+      }
+
+      .ch-info p {
+          color: #fff;
+          padding: 10px 5px;
+          font-style: italic;
+          margin: 0 30px;
+          font-size: 12px;
+          border-top: 1px solid rgba(255,255,255,0.5);
+      }
+
+      .ch-info p a {
+          display: block;
+          color: rgba(255,255,255,0.7);
+          font-style: normal;
+          font-weight: 700;
+          text-transform: uppercase;
+          font-size: 9px;
+          letter-spacing: 1px;
+          padding-top: 4px;
+          font-family: 'Open Sans', Arial, sans-serif;
+      }
+ 
+      .ch-info p a:hover {
+          color: rgba(255,242,34, 0.8);
+      }
+
+      
+      .ch-item:hover {
+          box-shadow: 
+              inset 0 0 0 110px rgba(200,95,66, 0.4),
+              inset 0 0 0 16px rgba(255,255,255,0.8),
+              0 1px 2px rgba(0,0,0,0.1);
+      }
+
+      .ch-item:hover .ch-info {
+          opacity: 1;
+          transform: scale(1);    
+      }
+	</style>
+</head>
+<body>	
+	   <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="/home/index">TrialTracker </a>
+                    
+                    
+
+                    <div class="nav-collapse collapse">
+                        <p class="navbar-text pull-right">
+                        Logged in as <a href="#" class="navbar-link"><%= session[:username] %></a>
+                        </p>
+                        <ul class="nav">
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#contact">FAQ</a></li>
+                            <li> <%=link_to("Logout", logout_path) %> </li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+      <div>
+      	<br>
+      	<br>
+      	<br>
+      </div>
+   <div class = "container">
+   	  <div class = "hero-unit">
+		<legend> <strong> <h1> Our Team</h1> </strong> </legend>
+    <div class="ch-item ch-img-1">
+           <div class="ch-info">
+                  <h3>Ricardo Pietrobon</h3>
+            </div>           
+    </div>
+    Ricardo is an Associate Professor of Surgery and an Associate Professor in Anesthesiology
+    <hr>
+     <div class="ch-item ch-img-2">
+           <div class="ch-info">
+                  <h3>Dan Deng</h3>
+            </div>
+    </div>
+
+
+		
+	</div>
+  </div>
+</body>

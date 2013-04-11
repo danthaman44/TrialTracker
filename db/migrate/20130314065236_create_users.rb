@@ -5,6 +5,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :password
       t.string :email
       t.integer :trial_id
+      t.boolean :activated
       t.timestamps
     end
   end
