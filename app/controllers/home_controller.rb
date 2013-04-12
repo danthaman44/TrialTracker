@@ -8,7 +8,8 @@ class HomeController < ApplicationController
 
   def invite
     @trial = session[:current_trial]
-    @user = User.where("username = '#{params[:email]}'").first
+    @user = User.where(:email => params[:email]).first
+    logger.info(@user.username)
     if (@user == nil)
       UserMailer.invite_new_user(params[:email], @trial).deliver
     else
