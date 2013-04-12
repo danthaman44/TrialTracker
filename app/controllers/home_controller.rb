@@ -72,7 +72,16 @@ class HomeController < ApplicationController
       passwd = params[:password]
       verify = params[:verify]
       email = params[:email]
-      if !user.blank? && !User.exists?(user) && passwd == verify
+      if email == ''
+        session[:registererror] = "noEmail"
+        redirect_to splashes_path
+      elsif user == ''
+        session[:registererror] = "noUsername"
+        redirect_to splashes_path
+      elsif passwd != verify
+        session[:registererror] = "passwordMismatch"
+        redirect_to splashes_path
+      else 
           login = User.new
           login.username = user
           login.activated = false
@@ -83,9 +92,8 @@ class HomeController < ApplicationController
           session[:username] = user
           session[:userID] = login.id
           UserMailer.welcome_email(login).deliver
-          redirect_to :action => 'index'
-      else
-          redirect_to :back
+          session[:loginError] = "registered"
+          redirect_to '/loginError'
       end
   end
 
@@ -99,9 +107,8 @@ class HomeController < ApplicationController
 
       @user = User.find(session[:userID])
 
-      logger.info("my status:")
       if @user.activated != true
-        logger.info("not activated!")
+        logger.info("account not activated!")
         redirect_to splashes_path
       end
       logger.info("Logged in as ")
@@ -116,7 +123,7 @@ class HomeController < ApplicationController
           session[:current_trial] = @current_trial.id
         else
           @current_trial = nil
-          flash[:notice] = "You currently don't have any trials. Click 'New Trial' to make one or join one"
+          flash[:notice] = "You currently don't have any trials. Click 'Add Trial' to make one or join one"
         end 
     else
        @current_trial = Trial.find(session[:current_trial])

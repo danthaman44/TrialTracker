@@ -15,7 +15,7 @@
     <div class="control-group">
     <label class="control-label" for="inputEmail">Trial Code</label>
     <div class="controls">
-       <%= number_field_tag(:trial_id, nil, {:style => "height:30px; width:100px;"})%>
+       <%= number_field_tag(:trial_id, nil, {:style => "height:30px; width:180px;"})%>
     </div>
   </div>
   <%= submit_tag "Join Trial", :class=>"btn btn-success"%> 
@@ -58,22 +58,22 @@
 
   <div class="field">
    <label class="control-label" for="inputEmail">Enrolled Goal</label>
-    <%= f.number_field :enrolledGoal, :style=>"height:30px" %>
+    <%= f.number_field :enrolledGoal, :style=>"height:30px; width:180px;" %>
   </div>
   <div class="field">
     <label class="control-label" for="inputEmail">Completed Goal</label>
-    <%= f.number_field :completedGoal, :style=>"height:30px" %>
+    <%= f.number_field :completedGoal, :style=>"height:30px; width:180px;" %>
   </div>
 
 <div class="field">
   <label class="control-label" for="inputEmail">Start Date</label>
-    <%= f.text_field :startDate, :type => 'text', :style=>"height:30px", :class=>"datepicker", 
+    <%= f.text_field :startDate, :type => 'text', :style=>"height:30px; width:180px;", :class=>"datepicker", 
        :value => Date.today.strftime("%m/%d/%Y") %>
   </div>
 
 <div class="field">
   <label class="control-label" for="inputEmail">End Date</label>
-    <%= f.text_field :endDate, :type => 'text', :style=>"height:30px", :class=>"datepicker", 
+    <%= f.text_field :endDate, :type => 'text', :style=>"height:30px; width:180px;", :class=>"datepicker", 
        :value => (Date.today + 1.year).strftime("%m/%d/%Y") %>
   </div>
    

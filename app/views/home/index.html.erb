@@ -1,4 +1,4 @@
- 
+
 <html>
     <head>
         <meta charset="utf-8">
@@ -203,7 +203,7 @@
                             <li><a href="#">Flesh Eating Bacteria</a></li> -->
                             <% if flash[:notice] %>
                             <div class="notice">
-                              <div class="alert alert-error">
+                              <div class="alert">
                                  <strong><%= flash[:notice] %></strong>
                                </div>
                             </div>
@@ -229,43 +229,50 @@
                       
                         
                         <ul class="nav nav-tabs" id="myTab">
-                            <li
-<% if session[:current_tab] == 'view_trends' %>
-class = 'active'
-  <% end %>
-><a href="#view_trends" data-toggle="tab">View Trends</a></li>
-                            <li
-                            <% if session[:current_tab] == 'edit_data' %>
-class = 'active'
-  <% end %>
-><a href="#edit" data-toggle="tab">Edit Data</a></li>
-                            <!--<li><a href="#report" data-toggle="tab">Report</a></li>-->
-                            <li
+                          <li
                             <% if session[:current_tab] == 'settings' %>
 class = 'active'
   <% end %>
 >
                             <a href="#settings" data-toggle="tab">Settings</a></li>
+                            
+                            <li
+                            <% if session[:current_tab] == 'edit_data' %>
+class = 'active'
+  <% end %>
+><a href="#edit" data-toggle="tab">Edit Data</a></li>
+                            
+
+                            <li
+<% if session[:current_tab] == 'view_trends' %>
+class = 'active'
+  <% end %>
+><a href="#view_trends" data-toggle="tab">View Trends</a></li>
                         </ul>
                         
                         <div class="tab-content">
 
 
-<!-- *********** View Trends is in views/home/_view_trends.html.erb ****************-->
-       <%= render "view_trends" %>                     
-                            
-                            
-                            
-                     
-                
-<!-- *********** Edit Data is in views/home/_edit_data.html.erb ****************-->
-       <%= render "edit_data" %> 
+
 
         
                             
                             
-      <!-- *********** Settings is in views/home/_settings.html.erb ****************-->                     
-<%= render "settings" %> 
+             <!-- *********** Settings is in views/home/_settings.html.erb ****************-->                     
+        <%= render "settings" %> 
+ 
+
+<!-- *********** Edit Data is in views/home/_edit_data.html.erb ****************-->
+        <%= render "edit_data" %>  
+
+       <!-- *********** View Trends is in views/home/_view_trends.html.erb ****************-->
+        <%= render "view_trends" %>  
+
+                 
+                            
+                             
+                     
+
 
        
                         </div>
@@ -279,7 +286,7 @@ class = 'active'
             <hr>
             
             <footer>
-                <p>&copy; Company 2012</p>
+                <p>&copy; 2013</p>
             </footer>
             
         </div><!--/.fluid-container-->
@@ -294,14 +301,6 @@ class = 'active'
         $(document).ready(function(){ 
         $(".datepicker").datepicker()
         .on('changeDate', function(ev){
-        //if (ev.date.valueOf() > endDate.valueOf()){
-          //  $('#alert').show().find('strong').text('The start date must be before the end date.');
-        //} else {
-          //  $('#alert').hide();
-          //  startDate = new Date(ev.date);
-          //  $('#date-start-display').text($('#date-start').data('date'));
-        //}
-        //$('#date-start').datepicker('hide');
     });
 
       })

@@ -7,25 +7,6 @@ in active
   <% end %>
 
 " id="edit">
-<!--
-
-
-
-
-<form class="form-inline" action="#" method="post">
-                <input id="quantity" type="text" class="input-small" placeholder="1" >
-                    <div class="btn-group" data-toggle="buttons-checkbox">
-                        <button name="enrolled" type="button" class="btn btn-primary">Enrolled</button>
-                        <button type="button" class="btn btn-primary">Vulnerable</button>
-                        <button type="button" class="btn btn-primary">Refused</button>
-                        <button type="button" class="btn btn-primary">Withdrawn</button>
-                        <button type="button" class="btn btn-primary">Lost</button>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-success">Add Subject(s)</button>
-                    </form>
-
--->
 <div class="row-fluid">
 <div class= "span12">
        <legend>My Data</legend>
@@ -125,7 +106,6 @@ in active
         </div>
 
         <script type="text/javascript">
-        $(document).ready(function(){
 
 
             function editEntry(id) {
@@ -135,7 +115,6 @@ in active
               var Newrow = document.getElementById('entry_form_'.concat(id.toString()));
               Newrow.style.display="table-row";
             }
-        });
 
         </script>
                             

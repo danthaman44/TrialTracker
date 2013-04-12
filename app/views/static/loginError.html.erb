@@ -28,8 +28,8 @@
                     <div class="nav-collapse collapse">
                         
                         <ul class="nav">
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#contact">FAQ</a></li>
+                            <li><a href="/about">About</a></li>
+                            <li><a href="/faq">FAQ</a></li>
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>
@@ -68,6 +68,13 @@
             <button type="button" class="close" data-dismiss="alert">&times;</button>We have no record of an account with the email that you entered.
         </div>
     <% end %>
+
+    <% if session[:loginError] == 'registered'  %>
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>You have been sent an email with a link to activate your account.
+        </div>
+    <% end %>
+
 
 
     <% session[:loginError] = nil%>
