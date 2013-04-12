@@ -3,10 +3,12 @@ class SplashesController < ApplicationController
   # GET /splashes.json
   def index
     @splashes = Splash.all
-    session[:username] = nil
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @splashes }
+        if session[:userID] == nil
+           format.html {}
+        else 
+          format.html { redirect_to :controller => "home", :action=>"index"}
+        end
     end
   end
 

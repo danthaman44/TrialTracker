@@ -19,6 +19,12 @@ class EntriesController < ApplicationController
     entry.refused = params[:entry][:refused]
     entry.lost = params[:entry][:lost]
     entry.trial_id = params[:entry][:trial_id]
+
+    oldEntry = Entry.where(:input_at => Date.current(), :trial_id => params[:entry][:trial_id]).first
+    if oldEntry != nil
+      logger.info("We have an entry with this date")
+      oldEntry.destroy
+    end
 		session[:current_tab] = 'edit_data'
     respond_to do |format|
 	    if entry.save
