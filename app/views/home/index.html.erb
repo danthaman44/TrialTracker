@@ -226,43 +226,50 @@
                       
                         
                         <ul class="nav nav-tabs" id="myTab">
-                            <li
-<% if session[:current_tab] == 'view_trends' %>
-class = 'active'
-  <% end %>
-><a href="#view_trends" data-toggle="tab">View Trends</a></li>
-                            <li
-                            <% if session[:current_tab] == 'edit_data' %>
-class = 'active'
-  <% end %>
-><a href="#edit" data-toggle="tab">Edit Data</a></li>
-                            <!--<li><a href="#report" data-toggle="tab">Report</a></li>-->
-                            <li
+                          <li
                             <% if session[:current_tab] == 'settings' %>
 class = 'active'
   <% end %>
 >
                             <a href="#settings" data-toggle="tab">Settings</a></li>
+                            
+                            <li
+                            <% if session[:current_tab] == 'edit_data' %>
+class = 'active'
+  <% end %>
+><a href="#edit" data-toggle="tab">Edit Data</a></li>
+                            
+
+                            <li
+<% if session[:current_tab] == 'view_trends' %>
+class = 'active'
+  <% end %>
+><a href="#view_trends" data-toggle="tab">View Trends</a></li>
                         </ul>
                         
                         <div class="tab-content">
 
 
-<!-- *********** View Trends is in views/home/_view_trends.html.erb ****************-->
-       <%= render "view_trends" %>                     
-                            
-                            
-                            
-                     
-                
-<!-- *********** Edit Data is in views/home/_edit_data.html.erb ****************-->
-       <%= render "edit_data" %> 
+
 
         
                             
                             
-      <!-- *********** Settings is in views/home/_settings.html.erb ****************-->                     
-<%= render "settings" %> 
+             <!-- *********** Settings is in views/home/_settings.html.erb ****************-->                     
+        <%= render "settings" %> 
+ 
+
+<!-- *********** Edit Data is in views/home/_edit_data.html.erb ****************-->
+        <%= render "edit_data" %>  
+
+       <!-- *********** View Trends is in views/home/_view_trends.html.erb ****************-->
+        <%= render "view_trends" %>  
+
+                 
+                            
+                             
+                     
+
 
        
                         </div>

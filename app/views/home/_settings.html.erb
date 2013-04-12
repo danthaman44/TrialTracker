@@ -1,11 +1,3 @@
-<head>
-  <%= javascript_include_tag :defaults %>
-  <style type="text/css">
-    r {
-      color:red;
-    }
-  </style>
-</head>
 
 <div class="tab-pane fade
 
@@ -147,11 +139,13 @@ in active
         <small> They can join by clicking the green 'Add Trial' button and entering this code on the left side.</small>
 
       </div>
+    </div>
 
       <% end %>
-
-    </div>
   </div>
+</div>
+
+
 <% if @user.id == @current_trial.userowner %>
   <div class = "row-fluid">
     <div class ="span11">
@@ -191,6 +185,5 @@ in active
       </table>
     <% end %>
 </div>
-</div>
 
-</div> <!-- end span12 -->
+</div> <!-- end settings-->
