@@ -86,7 +86,7 @@ in active
           <%= trial.submit "Update", {:class => "btn btn-success", :onclick => "return confirm('Are you sure you want to update settings?')", :disabled => true}%> 
           <% end %>
         </td>
-    <% end %>
+
         <td>
           &nbsp &nbsp
         </td>
@@ -94,11 +94,9 @@ in active
         <% if @current_crcs != nil %>
 
           <% if @user.id == @current_trial.userowner %>
-          &nbsp
           <%= button_to("Leave Trial", {:controller => :trials,
           :action => 'destroy', :id => @current_trial.id }, {:class => "btn btn-danger", :onclick => "return confirm('Are you sure? If you leave this trial, it will be deleted')", :method => :delete, :remote => true}) %>
           <% else %> 
-          &nbsp
           <%= button_to("Leave Trial", {:controller => :trials,
                     :action => 'destroy', :id => @current_trial.id }, {:class => "btn btn-danger", :onclick => "return confirm('Are you sure you want to remove yourself from this trial?')", :method => :delete, :remote => true}) %>
           <% end %>
@@ -191,7 +189,7 @@ in active
 
         </thead>
       </table>
-
+    <% end %>
 </div>
 </div>
 

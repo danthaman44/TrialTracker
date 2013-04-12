@@ -200,7 +200,7 @@
                             <li><a href="#">Flesh Eating Bacteria</a></li> -->
                             <% if flash[:notice] %>
                             <div class="notice">
-                              <div class="alert alert-error">
+                              <div class="alert">
                                  <strong><%= flash[:notice] %></strong>
                                </div>
                             </div>
@@ -291,14 +291,6 @@ class = 'active'
         $(document).ready(function(){ 
         $(".datepicker").datepicker()
         .on('changeDate', function(ev){
-        //if (ev.date.valueOf() > endDate.valueOf()){
-          //  $('#alert').show().find('strong').text('The start date must be before the end date.');
-        //} else {
-          //  $('#alert').hide();
-          //  startDate = new Date(ev.date);
-          //  $('#date-start-display').text($('#date-start').data('date'));
-        //}
-        //$('#date-start').datepicker('hide');
     });
 
       })

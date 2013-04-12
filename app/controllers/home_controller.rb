@@ -98,9 +98,8 @@ class HomeController < ApplicationController
 
       @user = User.find(session[:userID])
 
-      logger.info("my status:")
       if @user.activated != true
-        logger.info("not activated!")
+        logger.info("account not activated!")
         redirect_to splashes_path
       end
       logger.info("Logged in as ")
@@ -115,7 +114,7 @@ class HomeController < ApplicationController
           session[:current_trial] = @current_trial.id
         else
           @current_trial = nil
-          flash[:notice] = "You currently don't have any trials. Click 'New Trial' to make one or join one"
+          flash[:notice] = "You currently don't have any trials. Click 'Add Trial' to make one or join one"
         end 
     else
        @current_trial = Trial.find(session[:current_trial])
