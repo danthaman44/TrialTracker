@@ -1,0 +1,197 @@
+<head>
+	<link href="/assets/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+		hr { display: block; height: 1px;
+    		border: 0; border-top: 1px solid #ccc;
+    		margin: 1em 0; padding: 0; }
+
+
+    .ch-item {
+        width: 28%;
+        height: 37%;
+        border-radius: 50%;
+        position: relative;
+        cursor: default;
+        box-shadow: 
+            inset 0 0 0 0 rgba(200,95,66, 0.4),
+            inset 0 0 0 16px rgba(255,255,255,0.6),
+            0 1px 2px rgba(0,0,0,0.1);
+        transition: all 0.4s ease-in-out;
+      }
+      .ch-img-1 { 
+          background-image: url(/assets/ricardo.jpg);
+      }
+       
+      .ch-img-2 { 
+          background-image: url(/assets/dan.jpg);
+      }
+       
+      .ch-img-3 { 
+          background-image: url(/assets/sean.jpg);
+      }
+
+      .ch-info {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          overflow: hidden;
+          opacity: 0;
+          transition: all 0.4s ease-in-out;
+          transform: scale(0);
+          backface-visibility: hidden;
+      }
+
+      .ch-info h3 {
+        color: #fff;
+        text-transform: uppercase;
+        position: relative;
+        letter-spacing: 2px;
+        font-size: 22px;
+        margin: 0 30px;
+        padding: 65px 0 0 0;
+        height: 110px;
+        font-family: 'Open Sans', Arial, sans-serif;
+        text-shadow: 
+            0 0 1px #fff, 
+            0 1px 2px rgba(0,0,0,0.3);
+      }
+
+      .ch-info p {
+          color: #fff;
+          padding: 10px 5px;
+          font-style: italic;
+          margin: 0 30px;
+          font-size: 12px;
+          border-top: 1px solid rgba(255,255,255,0.5);
+      }
+
+      .ch-info p a {
+          display: block;
+          color: rgba(255,255,255,0.7);
+          font-style: normal;
+          font-weight: 700;
+          text-transform: uppercase;
+          font-size: 9px;
+          letter-spacing: 1px;
+          padding-top: 4px;
+          font-family: 'Open Sans', Arial, sans-serif;
+      }
+ 
+      .ch-info p a:hover {
+          color: rgba(255,242,34, 0.8);
+      }
+
+      
+      .ch-item:hover {
+          box-shadow: 
+              inset 0 0 0 110px rgba(200,95,66, 0.4),
+              inset 0 0 0 16px rgba(255,255,255,0.8),
+              0 1px 2px rgba(0,0,0,0.1);
+      }
+
+      .ch-item:hover .ch-info {
+          opacity: 1;
+          transform: scale(1);    
+      }
+	</style>
+</head>
+<body>	
+	   <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="/home/index">TrialTracker </a>
+                    
+                    
+
+                    <div class="nav-collapse collapse">
+                        <p class="navbar-text pull-right">
+                        </p>
+                        <ul class="nav">
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#contact">FAQ</a></li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+      <div>
+      	<br>
+      	<br>
+      	<br>
+      </div>
+   <div class = "container">
+   	  <div class = "hero-unit">
+		<legend> <strong> <h1> <center> Our Team </center> </h1> </strong> </legend>
+    <br>
+    <div class = "row-fluid">
+   
+        <div class="ch-item ch-img-1 span3">
+               <div class="ch-info">
+                      <h3>Ricardo Pietrobon</h3>
+                </div>    
+                
+        </div>
+        <div class = "offset3">
+              Ricardo is an Associate Professor of Surgery and an Associate Professor in Anesthesiology at the 
+              Duke University School of Medicine. He holds an MD from the Federal University of Parana (Brazil), 
+              a PhD from the University of North Carolina at Chapel Hill, and MBA from Duke University. His current
+              research interests include finding methods to improve quality and productivity of biomedical research.
+              <br>
+               <%= link_to "LinkedIn", "http://www.linkedin.com/profile/view?id=5629214&authType=OUT_OF_NETWORK&authToken=hTKX&locale=en_US&srchid=edf3abc6-5ec9-4c96-a850-d4f2b809d71f-0&srchindex=1&srchtotal=322160&goback=%2Efps_PBCK_ricardo_*1_*1_*1_*1_*1_*1_*2_*1_Y_*1_*1_*1_false_1_R_*1_*51_*1_*51_true_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2&pvs=ps&trk=pp_profile_name_link" %> |
+              <%= link_to "Duke Medicine", "http://surgery.duke.edu/faculty/details/0206217" %>  
+
+        </div>
+       
+  </div>
+     <hr>
+     <div class = "row-fluid">
+   
+        <div class="ch-item ch-img-3 span3">
+               <div class="ch-info">
+                      <h3>Sean Miller</h3>
+                </div>    
+                
+        </div>
+        <div class = "offset3">
+             Sean is a rising senior at Duke University majoring in Computer Science. He has an interest and previous work experience
+             with start-ups. He developed the mobile website for KoalaCab, a local cab-sharing service for students. 
+             Last summer, Sean worked for Google in Mountain View, California, and will be returning to Google's
+             New York office this summer.    
+              <br>
+              <%= link_to "LinkedIn", "http://www.linkedin.com/profile/view?id=230116943&authType=NAME_SEARCH&authToken=HwZB&locale=en_US&srchid=01228572-911c-4731-af89-14258aa8b5ab-0&srchindex=1&srchtotal=1402&goback=%2Efps_PBCK_sean+miller_*1_*1_*1_*1_*1_*1_*2_*1_Y_*1_*1_*1_false_1_R_*1_*51_*1_*51_true_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2_*2&pvs=ps&trk=pp_profile_name_link" %> |
+              <%= link_to "Github", "https://github.com/vfseanm" %> 
+        </div>
+       
+  </div>
+
+    <hr>
+       <div class = "row-fluid">
+   
+        <div class="ch-item ch-img-2 span3">
+               <div class="ch-info">
+                      <h3>Dan Deng</h3>
+                </div>    
+                
+        </div>
+        <div class = "offset3">
+              Dan is a rising senior at Duke University majoring in Computer Science. He holds a passion 
+              for technology and entrepreneurship, and currently interns at Groundwork Labs, a local start-up
+              accelerator. In his free time, he enjoys learning new ways to build web and mobile apps. This summer, Dan will be working for VMware in Palo Alto, California. 
+              <br>
+              <%= link_to "LinkedIn", "http://www.linkedin.com/profile/view?id=155319533&trk=hb_tab_pro_top" %> |
+              <%= link_to "Github", "https://github.com/danthaman44" %> 
+        </div>
+       
+  </div>
+
+
+		
+	</div>
+  </div>
+</body>

@@ -87,6 +87,8 @@ FirstApp::Application.routes.draw do
    match '/removeFriend' => 'home#removeFriend'
    match '/logout' => 'home#logout'
    match '/faq' => 'static#faq'
+
+   match '/about' => 'static#about'
    match '/join' => 'trials#join'
    match '/directory' => 'users#index'
    match '/loginError' => 'static#loginError'
