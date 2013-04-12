@@ -83,6 +83,7 @@ class TrialsController < ApplicationController
         session[:current_trial] = @trial.id
         logger.info("our current session, create")
         logger.info(session[:current_trial])
+        session[:current_tab] = 'settings'
         # format.html { redirect_to @trial, notice: 'Trial was successfully created.' }
         format.json { head :no_content }
         format.html {redirect_to :controller => 'home', :action => 'index' }
