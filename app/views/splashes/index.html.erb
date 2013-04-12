@@ -132,6 +132,11 @@
            			 <button type="button" class="close" data-dismiss="alert">&times;</button><small>The passwords that you entered do not match.</small>
         			</div>
     			<% end %>
+    			<% if session[:registererror] == "doubleEmail" %>
+        			<div class="alert">
+           			 <button type="button" class="close" data-dismiss="alert">&times;</button><small>The email that you entered already has an account associated with it.</small>
+        			</div>
+    			<% end %>
     		
     			<% session[:registererror] = nil%>
 				
