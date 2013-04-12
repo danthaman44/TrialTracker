@@ -81,6 +81,13 @@ class HomeController < ApplicationController
         session[:registererror] = "passwordMismatch"
         redirect_to splashes_path
       else 
+        User.all.each do |u|
+          if u.email == email
+            session[:registererror] = "doubleEmail"
+            redirect_to splashes_path
+            return
+          end
+        end
           login = User.new
           login.username = user
           login.activated = false
