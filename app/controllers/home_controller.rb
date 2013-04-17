@@ -1,12 +1,15 @@
+#Sean Miller, Dan Deng, Ash Sundar 
+# This class contains all methods used from the main page. 
+
 class HomeController < ApplicationController
 
-  def removeFriend
+  def removeFriend 
     @friendtrial = Trial.find(params[:id])
     @friendtrial.users.delete(User.find params[:frienduser])
     redirect_to :action => 'index'
   end
 
-  def invite
+  def invite #allows the owner of trial to invite another use to join the trial
     @trial = session[:current_trial]
     @user = User.where(:email => params[:email]).first
     if (@user == nil)
@@ -19,7 +22,7 @@ class HomeController < ApplicationController
     redirect_to :action => 'index'
   end
 
-  def login 
+  def login #when a user logs in the splash page
     @users = User.all
     cuser = params[:email]
     logger.info("person trying to log in: ")
@@ -29,7 +32,7 @@ class HomeController < ApplicationController
     found = 0
     @users.each do |u|
 
-      if (u.email == cuser && u.password == cdigest) || (u.username == cuser && u.password == cdigest)
+      if (u.email == cuser && u.password == cdigest) || (u.username == cuser && u.password == cdigest) #verfies the current uses email and password
         if u.activated != true
           session[:loginError] = "unactivated"
         logger.info("not activated!")
@@ -54,7 +57,7 @@ class HomeController < ApplicationController
     end
   end
 
-  def logout
+  def logout #when the user logs out, all session are reset
     logger.info("Logging out") 
     session[:username] = nil
     session[:userID] = nil
@@ -64,14 +67,14 @@ class HomeController < ApplicationController
     redirect_to splashes_path
   end
 
-  def register
+  def register #creates a new user object
       session[:current_trial] = 1
       @title = 'Website Example -- Register Page'
       user = params[:username]
       passwd = params[:password]
       verify = params[:verify]
       email = params[:email]
-      if email == ''
+      if email == ''                      # Some basic validation of the user. This should really be done in the model...
         session[:registererror] = "noEmail"
         redirect_to splashes_path
       elsif user == ''
@@ -103,9 +106,9 @@ class HomeController < ApplicationController
       end
   end
 
-  def index  
+  def index  #runs automatically on page load. Loads all the graphs and other content. Also redirects to splash page if user is not logged in
     #reset_session
-    if session[:userID] == nil
+    if session[:userID] == nil #checks if a user is logged in
       logger.info("Not logged in, redirecting") 
       logger.info(splashes_path)
       redirect_to splashes_path
@@ -113,7 +116,7 @@ class HomeController < ApplicationController
 
       @user = User.find(session[:userID])
 
-      if @user.activated != true
+      if @user.activated != true #the user has not validated their account through email
         logger.info("account not activated!")
         redirect_to splashes_path
       end
@@ -135,10 +138,7 @@ class HomeController < ApplicationController
        @current_trial = Trial.find(session[:current_trial])
     end
 
-
-
-
-  if (@current_trial != nil)
+  if (@current_trial != nil) #the following code is used for generating the graphs
       logger.info("current trial: ")
       logger.info(@current_trial.trialName)  
       @current_crcs = @current_trial.users #the collaborators of our current trial
@@ -198,29 +198,7 @@ class HomeController < ApplicationController
   end
       
   end
-  def Show
-    @data = [["harry", 10], ["sue", 19]]
 
-    respond_to do |format|
-      format.js
-    end
-  end
-
- 
-  def insert_trials
-      logger.info("****** Inserting Trials! ******")
-      Trial.create(:description => 'new', :tdate => 'Friday', :trialName => 'hers')
-      Trial.create(:description => 'newer', :tdate => 'Thursday', :trialName => 'yours')
-      #// call ashwin's db stuff
-      #enrolled = params['enrolled']
-      redirect_to "localhost:3000"
-      #redirect_to index
-   end
-
-   def showSplash 
-      redirect_to "localhost:3000"
-  
-   end
 
    def forgotPassword
     email = params[:email]

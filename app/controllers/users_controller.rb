@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
-  def index
+  def index #shows list of all registered users
     @users = User.all
     @user = User.new
     @trials = Trial.all
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def activate
+  def activate #called when a user clicks a confirmation link in their email. An activated account can then be used
       @user=User.find(params[:id])
       session[:username] = @user.username
       session[:userID] = @user.id
