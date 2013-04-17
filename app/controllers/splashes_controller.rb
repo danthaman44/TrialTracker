@@ -1,17 +1,18 @@
 class SplashesController < ApplicationController
   # GET /splashes
   # GET /splashes.json
-  def index
+  def index #this shows the splash page. It is the only method that is called for the splash page
     @splashes = Splash.all
     respond_to do |format|
         if session[:userID] == nil
            format.html {}
-        else 
+        else #automatic log in if the user has previously loggedin
           format.html { redirect_to :controller => "home", :action=>"index"}
         end
     end
   end
 
+#--------------------------------------nothing below here is used...yet----------------------------------------------
   # GET /splashes/1
   # GET /splashes/1.json
   def show

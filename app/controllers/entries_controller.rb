@@ -1,3 +1,7 @@
+#Sean Miller, Dan Deng, Ash Sundar 
+# This class contains all the methods associated with
+#creating, destroying, displaying, and modifying an entry object
+
 class EntriesController < ApplicationController
   respond_to :html, :json
 	def new
@@ -6,7 +10,7 @@ class EntriesController < ApplicationController
 
 
 
-	def create
+	def create #creates a new entry object in db
     logger.info("--------Inserting an Entry") 
     logger.info(params[:entry])
     logger.info("test")
@@ -41,7 +45,7 @@ class EntriesController < ApplicationController
 logger.info("EDITING AN ENTRY")
   end
 
-  def update
+  def update #updates and entry in the db
     entry = Entry.find(params[:id])
     params[:entry][:input_at] = Date.strptime(params[:entry][:input_at], '%m/%d/%Y')
 
@@ -75,8 +79,8 @@ logger.info("EDITING AN ENTRY")
       end
   end
 
-
-  def destroy
+ 
+  def destroy #deletes an entry from the db
     @entry = Entry.find(params[:id])
     @entry.destroy 
     # respond_to do |format|

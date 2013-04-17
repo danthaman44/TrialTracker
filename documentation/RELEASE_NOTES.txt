@@ -1,0 +1,17 @@
+Current functionality:
+1. Users can register for accounts. Accounts are validated by email
+
+2. Users can create new trials, and can specific when the trial began and ended. 
+The creator of a trial has administrator privelidges over the trial. The creator
+can modify the trial's settings, invite/remove people from the trial, and delete the trial if they choose
+
+3. Users can add one data entry per day for their trials. Entry data includes the number
+people enrolled, active, withdrawn, refused, and completed for a trial
+
+4. Users can invite other users to join their trial by email
+
+5. Users can see their entry data in a bar chart and a progress-over-time line graph.
+The line chart allows users to see projected and target numbers as well
+
+TrialTracker has been tested on the Google Chrome, Mozilla Firefox, and Apple Safari
+browsers. It achieved satisfactory performace on each.

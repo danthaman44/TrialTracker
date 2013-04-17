@@ -32,7 +32,7 @@ class TrialsController < ApplicationController
     end
   end
 
-  def join
+  def join #adds a user to a trial
     @trial = Trial.find(params[:trial_id])
     if @trial == nil
       logger.info("Trial doesn't exist")
@@ -56,7 +56,7 @@ class TrialsController < ApplicationController
 
   # POST /trials
   # POST /trials.json
-  def create
+  def create #creates a new trial object in db
     @trial = Trial.new(params[:trial])
     if @trial.enrolledGoal == nil
       @trial.enrolledGoal = 0
@@ -108,7 +108,7 @@ class TrialsController < ApplicationController
 
   # PUT /trials/1
   # PUT /trials/1.json
-  def update
+  def update #updates the settings of a trial, like its start and end dates and its goals
     @trial = Trial.find(params[:id])
     logger.info("updating trial:")
     logger.info(@trial)

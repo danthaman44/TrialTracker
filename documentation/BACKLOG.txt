@@ -1,0 +1,13 @@
+In the future, we would like to implement
+
+1. An ability to users to register and join sites. For example,
+CRC's at Duke can affiliate with a site called "Duke University Medical Center"
+Sites will be able to collaborate on trials, and data collection between sites may be
+gamified. Each site will have a directory of all its members, allowing for easy communication.
+
+2. The categories in which data is recorded will be dynamic. 
+Users will be able to add the the exisiting sixe categories provided
+
+3. Users will have custom account pages where they will be able
+to edit their account settings and upload an avatar
+
