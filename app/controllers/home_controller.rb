@@ -67,8 +67,8 @@ class HomeController < ApplicationController
     redirect_to splashes_path
   end
 
-  def register #creates a new user object
-      session[:current_trial] = 1
+
+  def register
       @title = 'Website Example -- Register Page'
       user = params[:username]
       passwd = params[:password]
@@ -98,8 +98,6 @@ class HomeController < ApplicationController
           login.password = hash
           login.email= email
           login.save
-          session[:username] = user
-          session[:userID] = login.id
           UserMailer.welcome_email(login).deliver
           session[:loginError] = "registered"
           redirect_to '/loginError'
