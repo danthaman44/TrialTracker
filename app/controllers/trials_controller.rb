@@ -110,6 +110,8 @@ class TrialsController < ApplicationController
   # PUT /trials/1.json
   def update
     @trial = Trial.find(params[:id])
+    logger.info("updating trial:")
+    logger.info(@trial)
 
     session[:current_tab] = 'settings'
     params[:trial][:startDate] = Date.strptime(params[:trial][:startDate], '%m/%d/%Y')

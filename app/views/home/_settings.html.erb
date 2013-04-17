@@ -72,7 +72,7 @@ in active
         <td>
 
             <% if @user.id == @current_trial.userowner %>
-            <%= trial.submit "Update", {:class => "btn btn-success", :onclick => "return confirm('Are you sure you want to update settings?')", :remote => true}%> 
+            <%= trial.submit "Update", {:class => "btn btn-success", :onclick => "return confirm('Are you sure you want to update settings?')", :remote => true, :action => 'update', :method =>'update'}%> 
             <% else %>
             <%= trial.submit "Update", {:class => "btn btn-success", :onclick => "return confirm('Are you sure you want to update settings?')", :disabled => true}%> 
             <% end %>
