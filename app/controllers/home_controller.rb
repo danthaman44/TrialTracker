@@ -123,7 +123,7 @@ class HomeController < ApplicationController
       @trials = @user.trials
       logger.info(@trials)
 
-    if session[:current_trial] == nil
+    if session[:current_trial] == nil || !Trial.find_by_id(session[:current_trial])
         logger.info("logging in, viewing first trial")
         if @trials.length > 0
           @current_trial = @trials[0] # the trial displayed first by default
