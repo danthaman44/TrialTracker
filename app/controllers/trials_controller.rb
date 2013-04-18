@@ -33,11 +33,21 @@ class TrialsController < ApplicationController
   end
 
   def join #adds a user to a trial
-    @trial = Trial.find(params[:trial_id])
-    if @trial == nil
-      logger.info("Trial doesn't exist")
-      # do something
+    if params[:trial_id].to_i ==0
+      logger.info("notinteger")
+        session[:joinerror] = "notinteger"
+       redirect_to splashes_path
+    elsif !Trial.find_by_id(params[:trial_id])
+      logger.info("nosuchtrial")
+      session[:joinerror] = "nosuchtrial"
+      redirect_to splashes_path
     else
+      @trial = Trial.find(params[:trial_id])
+      if @trial.users.find_by_id(session[:userID]) #I am already on this trial!
+        logger.info("alreadyjoined")
+       session[:joinerror] = "alreadyjoined"
+       redirect_to splashes_path
+     end
       user = User.find session[:userID]
       @trial.users << user
       session[:current_trial] = @trial.id
