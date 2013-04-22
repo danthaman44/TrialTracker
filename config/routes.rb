@@ -82,6 +82,7 @@ FirstApp::Application.routes.draw do
 
    match '/insert_trials' => 'home#insert_trials', :as => 'insert_trials'
    match '/register' => 'home#register'
+   match '/changeaccount' => 'home#changeaccount'
    match '/login' => 'home#login'
    match '/invite' => 'home#invite'
    match '/removeFriend' => 'home#removeFriend'
