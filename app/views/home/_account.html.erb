@@ -1,0 +1,50 @@
+<!--************************* begin View Trends ******************** -->
+                            
+    <div class="tab-pane fade
+
+<% if @current_tab == 'account' %>
+in active
+  <% end %>
+
+" id="account">
+
+<div class="row-fluid">
+<div class= "span8">
+	 <legend>Change Account Information</legend>
+            <%= form_tag ("/register") do %>
+					<table>
+						<tr>
+
+    						<%= text_field_tag :curmail, '', :style => "height:30px", :placeholder => "Current email"  %>
+    						&nbsp
+						</tr>
+						<tr>
+
+    						<%= text_field_tag :newemail, '', :style => "height:30px", :placeholder => "New email"  %>
+    						&nbsp
+						</tr>
+						<tr>
+   							<%= password_field_tag :curpassword, '', :style => "height:30px", :placeholder => "Current password"  %>
+ 							&nbsp &nbsp
+ 						</tr>
+ 						<tr>
+   							<%= password_field_tag :newpassword, '', :style => "height:30px", :placeholder => "New password"  %>
+ 							&nbsp &nbsp
+   							<%= password_field_tag :verify, '', :style => "height:30px", :placeholder => "Retype new password"  %>
+   							<br/>
+   								<p><input type="checkbox" id="emailupdates" name="emailupdates" value="emailupdates" checked="checked"> Receive Email Updates</p>
+   							<h5>By clicking OK, your password or email will have 
+   							changed!</h5>
+    						<%= submit_tag ('Change'),  :class => "btn btn-primary", :style=> "width: 240px; height: 50px" %>
+						</tr>
+					</table>
+         	<%end%>
+    </div>
+    <div class = "span4">
+        
+</div>
+</div> <!-- end row -->
+
+<div id ="blanka"> </div>
+</div>
+

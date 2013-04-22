@@ -256,6 +256,14 @@ class = 'active'
 class = 'active'
   <% end %>
 ><a href="#view_trends" data-toggle="tab">View Trends</a></li>
+
+<li
+<% if session[:current_tab] == 'account' %>
+class = 'active'
+  <% end %>
+><a href="#account" data-toggle="tab">Account</a></li>
+
+
                         </ul>
                         
                         <div class="tab-content">
@@ -277,7 +285,7 @@ class = 'active'
         <%= render "view_trends" %>  
 
                  
-                            
+        <%= render "account" %>                    
                              
                      
 
