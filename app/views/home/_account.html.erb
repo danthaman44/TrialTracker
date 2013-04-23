@@ -1,0 +1,46 @@
+<!--************************* begin View Trends ******************** -->
+                            
+    <div class="tab-pane fade
+
+<% if session[:current_tab] == 'account' %>
+in active
+  <% end %>
+
+" id="account">
+
+<div class="row-fluid">
+<div class= "span8">
+	 <legend>Change Password</legend>
+            <%= form_tag ("/changeaccount") do %>
+					<table>
+						<tr>
+   							<%= password_field_tag :curpassword, '', :style => "height:30px", :placeholder => "Current password"  %>
+ 							&nbsp &nbsp
+ 						</tr>
+ 						<tr>
+   							<%= password_field_tag :newpassword, '', :style => "height:30px", :placeholder => "New password"  %>
+ 							&nbsp &nbsp
+   							<%= password_field_tag :verifypass, '', :style => "height:30px", :placeholder => "Retype new password"  %>
+   							<br/>
+   								<p><input type="checkbox" id="emailupdates" name="emailupdates" value="emailupdates" checked="checked"> Receive Email Updates</p>
+   							<h5>By clicking OK, your password will have 
+   							changed!</h5>
+    						<%= submit_tag ('Change'),  :class => "btn btn-primary", :style=> "width: 240px; height: 50px" %>
+						</tr>
+					</table>
+				<% if session[:accounterror] == true %>
+					<div class="alert">
+           				 <button type="button" class="close" data-dismiss="alert">&times;</button>Passwords entered do not match 
+        			</div>
+        		<%elsif session[:accounterror] == false%>
+        			<div class="alert alert-success">
+            			<button type="button" class="close" data-dismiss="alert">&times;</button>You have successfully changed your password!
+       				 </div>
+        		<%end%>
+         	<%end%>
+    </div>
+</div> <!-- end row -->
+
+<div id ="blanka"> </div>
+</div>
+

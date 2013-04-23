@@ -220,7 +220,7 @@
                            
                             <%= render 'trials/index' %>
                             
-                            <li class="nav-header">Add or join more Trials</li>
+                            <li class="nav-header">Add more Trials</li>
                             <a href="#addTrialModal" role="button" class="btn btn-success" data-toggle="modal">Add Trial</a>
                         </ul>
                     </div><!--/.well -->
@@ -256,6 +256,14 @@ class = 'active'
 class = 'active'
   <% end %>
 ><a href="#view_trends" data-toggle="tab">View Trends</a></li>
+
+<li
+<% if session[:current_tab] == 'account' %>
+class = 'active'
+  <% end %>
+><a href="#account" data-toggle="tab">Account</a></li>
+
+
                         </ul>
                         
                         <div class="tab-content">
@@ -277,7 +285,7 @@ class = 'active'
         <%= render "view_trends" %>  
 
                  
-                            
+        <%= render "account" %>                    
                              
                      
 

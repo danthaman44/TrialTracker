@@ -22,6 +22,21 @@ class HomeController < ApplicationController
     redirect_to :action => 'index'
   end
 
+  def changeaccount
+    thisuser = User.find(session[:userID])
+
+    if (Digest::SHA2.hexdigest(params[:curpassword]) == thisuser.password && 
+      params[:newpassword] == params[:verifypass])
+        session[:accounterror] = false
+        thisuser.password = Digest::SHA2.hexdigest(params[:newpassword])
+        thisuser.save
+    else
+      session[:accounterror] = true
+    end
+    session[:current_tab] = 'account'
+    redirect_to :action => 'index'
+  end
+
   def login #when a user logs in the splash page
     @users = User.all
     cuser = params[:email]
@@ -64,6 +79,7 @@ class HomeController < ApplicationController
     session[:connections] = nil
     session[:current_tab] = nil
     session[:current_trial] = nil
+    session[:accounterror] = nil
     redirect_to splashes_path
   end
 
@@ -123,7 +139,7 @@ class HomeController < ApplicationController
       @trials = @user.trials
       logger.info(@trials)
 
-    if session[:current_trial] == nil
+    if session[:current_trial] == nil || !Trial.find_by_id(session[:current_trial])
         logger.info("logging in, viewing first trial")
         if @trials.length > 0
           @current_trial = @trials[0] # the trial displayed first by default
