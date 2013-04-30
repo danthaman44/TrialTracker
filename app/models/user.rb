@@ -23,5 +23,32 @@ class User < ActiveRecord::Base
       return false
     end
   end
+
+
+  def update_password(oldpw, newpw, confirm)
+    if (oldpw == nil || newpw == nil || confirm == nil)
+       return false
+    end
+    logger.info("old" + oldpw)
+    logger.info("new" + newpw)
+    logger.info("confirm" + confirm)
+    logger.info("enter update method")
+    hashold = Digest::SHA2.hexdigest(oldpw)
+    hashnew = Digest::SHA2.hexdigest(newpw)
+    if self.password != hashold #user did not type in the correct original pw
+       puts "old pw wrong"
+       logger.info("old pw wrong")
+       return false
+    end
+    if newpw != confirm #users confirm pw did not match
+       puts "passwords dont match"
+       logger.info("pw dont match")
+       return false
+    end
+    logger.info("method change success!")
+    puts "changing pw"
+    update_attributes(:password => hashnew)
+    return true
+  end
  
 end

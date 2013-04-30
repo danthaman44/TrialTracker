@@ -1,5 +1,9 @@
+<%= javascript_include_tag "application" %>
+
 <head>
 	<link href="/assets/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
+	<link href="/assets/m-buttons.css" media="screen" rel="stylesheet" type="text/css" />
+	<link href="/assets/m-styles.min.css" media="screen" rel="stylesheet" type="text/css" />
 	<style type="text/css">
 		hr { display: block; height: 1px;
     		border: 0; border-top: 1px solid #ccc;
@@ -15,18 +19,25 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="#">TrialTracker </a>
+                     <a class="brand" href="/home/index">TrialTracker </a>
                     
                     
 
                     <div class="nav-collapse collapse">
-                        <p class="navbar-text pull-right">
-                        Logged in as <a href="#" class="navbar-link"><%= session[:username] %></a>
-                        </p>
+                        <ul class="nav pull-right">
+				            <li class="dropdown"><a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"><%= session[:username] %> <b class="caret"></b></a>
+				              <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+				                <li> <%= link_to "Account", @user %> </li>
+				                <li> <%=link_to("Log Out", logout_path) %> </li>
+				              </ul>
+				            </li>
+				          </ul>
+				          <p class = "navbar-text pull-right"> Logged in as </p>
+
                         <ul class="nav">
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#contact">FAQ</a></li>
-                            <li> <%=link_to("Logout", logout_path) %> </li>
+                             <li> <%= link_to("About", about_path) %></li>
+
+                            <li><%= link_to("FAQ", faq_path) %></li>
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>
@@ -37,63 +48,189 @@
       	<br>
       	<br>
       </div>
-   <div class = "container">
+   <div class = "container-fluid">
    	  <div class = "hero-unit">
-		<h2> My Account </h2>
+		<h2> Account Settings </h2>
 		<hr>
-
-			<div class = "form">
-				<%= form_for (@user), :html=>{ :class=>"form-horizontal"} do |user|  %>
-				<div class = "span4">
-					<img src = "/assets/nurse.png">
-				</div>
-
-				<div class="controls">
-					<label class="control-label" for="inputEmail">User Name &nbsp</label>
-				 	<%= user.text_field :username, :type => 'text', :style=>"height:30px"%>
-				</div>
-			    <br>
-				<div class="controls">
-				<label class="control-label" for="inputEmail">Email &nbsp </label>
-				 		<%= user.text_field :email, :type => 'text', :style=>"height:30px"%>
-				</div>
-			     <br>
-			     <div class="controls">
-				<label class="control-label" for="inputEmail"> Current Password &nbsp</label>
-				 		<%= user.password_field :password, :type => 'text', :style=>"height:30px"%>
-				</div>
+		<div class = "row-fluid">
+			<div class = "span2" style = "margin-left:40px">
+				<img src = "/assets/nurse.png" >
 				<br>
-				 <div class="controls">
-				<label class="control-label" for="inputEmail"> New Password &nbsp</label>
-				 		<%= user.password_field :password, :type => 'text', :style=>"height:30px"%>
-				</div>
+				<a> &nbsp &nbsp Change Avatar </a>
 				<br>
 
-				<div class="offset5">
-				<table>
-					<tr>
+
+			</div>
+
+			<div class = "offset3">
+				<table class="table table-hover">
+					<tr id = "username">
 						<td>
-		   				<%= user.submit :Update, :class => "btn btn-primary" %>
-		   			    <%end%>
-		   			</td>
+							<b>User Name:</b>  &nbsp &nbsp <%= @user.username %>
+						</td>
+						<td>
+							<div class = "btn btn-link" id = "editname"> Edit </div>
+						</td>
+					</tr>    
 
-		   			<td>
-		   				&nbsp &nbsp
-		   			</td>
-		   			<td>
-			   			<%= button_to("Delete Account", {:controller => :users,
-	          :action => 'destroy', :id => @user.id }, {:class => "btn btn-danger", :onclick => "return confirm('Are you sure? You will lose all your trial data')", :method => :delete, :remote => true}) %>
-          			</td>
-          			<tr>
-                </table>
+					<tr class = "warning" id = "newusername" style = "display:none">
+						<td>
+							<%= form_for @user do |f| %>
+							<b>User Name:</b>  &nbsp &nbsp 	<%= f.text_field :username, :value => @user.username, :style => "height:30px; margin-top:10px;", :id => "newname" %>
+						</td>
+						<td>
+							<%= f.submit "Update", {:class => "m-btn green rnd", :style => "margin-top:10x", :id=>"submitname"} %>
+							<% end %>
+						</td>
+					</tr>    
 
-		  		</div>
+				
+
+
+					<tr id = "email">
+						<td>
+							<b>Email:</b> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp<%= @user.email %>
+						</td>
+						<td>
+							<div class = "btn btn-link" id = "editemail"> Edit </div>
+						</td>
+					</tr>  
+					<tr class = "warning" id = "newemail" style = "display:none">
+						<td>
+							<%= form_for @user do |f| %>
+							<b>Email:</b>  &nbsp &nbsp 	<%= f.text_field :email, :value => @user.email, :style => "height:30px; margin-top:10px;"%>
+						</td>
+						<td>
+							<%= f.submit "Update", {:class => "m-btn green rnd", :style => "margin-top:10x"} %>
+							<% end %>
+						</td>
+					</tr>  
+
+					<tr  id = "site">
+						<td>
+							<b>Site:</b> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Duke University
+						</td>
+						<td>
+							<div class = "btn btn-link" id = "editsite"> Edit </div>
+						</td>
+					</tr>  
+					<tr class = "warning" id = "newsite" style = "display:none">
+						<td>
+							<%= form_for @user do |f| %>
+							<b>Site:</b>  &nbsp &nbsp 	<%= f.text_field "site", :value => "site", :style => "height:30px; margin-top:10px;"%>
+						</td>
+						<td>
+							<%= f.submit "Update", {:class =>  "m-btn green rnd", :style => "margin-top:10x"} %>
+							<% end %>
+						</td>
+					</tr>  
+
+					<tr  id = "password">
+						<td>
+							<b>Password:</b> &nbsp &nbsp &nbsp ********
+						</td>
+						<td>
+							<div class = "btn btn-link" id = "editpassword"> Edit </div>
+						</td>
+					</tr>   
+
+				   <tr class = "warning" id = "newpassword" style = "display:none">
+						<td>
+							<%= form_for @user do |f| %>
+							<b>Old password:</b>  &nbsp &nbsp 	<%= f.password_field :oldpassword, :style => "height:30px; margin-top:10px;"%>
+							<br>
+							<b>New password:</b>  &nbsp &nbsp 	<%= f.password_field :newpassword, :style => "height:30px; margin-top:10px;"%>
+							<br>
+							<b>Retype new password:</b>  &nbsp &nbsp 	<%= f.password_field :confirmpassword, :style => "height:30px; margin-top:10px;"%>
+							<br>
+
+						</td>
+
+						<td>
+							<%= f.submit "Update", {:class =>  "m-btn green rnd", :style => "margin-top:10x"} %>
+							<% end %>
+						</td>
+					</tr>  	
+
+				</table>
+
+				<b>My Trials</b>
+				<hr style = "width:90px;">
 		
-			 </div>
-		<div class = "offset6">
-		<%= link_to 'Home', home_path %>
-	   </div>
+				<% @user.trials.each do |trial| %>
+
+				<li> Name : <%= trial.trialName %> &nbsp &nbsp ID: <%= trial.id %> </li>
+
+				<% end %>
+		
+			</div>
+		</div>
+
+
 	</div>
-		<hr>
   </div>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+  <script type="text/javascript">
+
+   $(document).ready(function() {
+   		$("#editname").click(function() {
+			editName();
+		});
+		$("#editemail").click(function() {
+			editEmail();
+		});
+		$("#editsite").click(function() {
+			editSite();
+		});
+		$("#editpassword").click(function() {
+			editPassword();
+		});
+		// $("#submitname").click(function() {
+		// 	validateName();
+		// });
+
+		// function validateName(event) {
+		// 	alert("got here");
+		// 	return true
+		// }
+  
+   		function editName() {
+              var Oldrow = document.getElementById('username');
+              Oldrow.style.display="none";
+
+              var Newrow = document.getElementById('newusername');
+              Newrow.style.display="table-row";
+            }
+
+        function editEmail() {
+              var Oldrow = document.getElementById('email');
+              Oldrow.style.display="none";
+
+              var Newrow = document.getElementById('newemail');
+              Newrow.style.display="table-row";
+            }
+
+           function editSite() {
+              var Oldrow = document.getElementById('site');
+              Oldrow.style.display="none";
+
+              var Newrow = document.getElementById('newsite');
+              Newrow.style.display="table-row";
+            }
+
+           function editPassword() {
+              var Oldrow = document.getElementById('password');
+              Oldrow.style.display="none";
+
+              var Newrow = document.getElementById('newpassword');
+              Newrow.style.display="table-row";
+            }
+
+      });
+
+  </script>
+
+
+
 </body>

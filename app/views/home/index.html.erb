@@ -182,8 +182,8 @@
           <ul class="nav pull-right">
             <li class="dropdown"><a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"><%= session[:username] %> <b class="caret"></b></a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
-                <li> <a> Account </a> </li>
-                <li> <%=link_to("Logout", logout_path) %> </li>
+                <li> <%= link_to "Account", @user %> </li>
+                <li> <%=link_to("Log Out", logout_path) %> </li>
               </ul>
             </li>
           </ul>
@@ -257,12 +257,6 @@ class = 'active'
   <% end %>
 ><a href="#view_trends" data-toggle="tab">View Trends</a></li>
 
-<li
-<% if session[:current_tab] == 'account' %>
-class = 'active'
-  <% end %>
-><a href="#account" data-toggle="tab">Account</a></li>
-
 
                         </ul>
                         
@@ -284,8 +278,7 @@ class = 'active'
        <!-- *********** View Trends is in views/home/_view_trends.html.erb ****************-->
         <%= render "view_trends" %>  
 
-                 
-        <%= render "account" %>                    
+                           
                              
                      
 

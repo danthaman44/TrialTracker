@@ -29,13 +29,13 @@ class UsersController < ApplicationController
   def show
     @trials = Trial.all
     @user = User.find(params[:id])
-    # if session[:userID] != @user.id
-    #    format.html { redirect_to :controller => 'home', :action => 'index' }
-    # end
-
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @user }
+      if session[:userID] != @user.id
+        format.html { redirect_to :controller => "home", :action=>"index"}
+      else
+        format.html # show.html.erb
+        format.json { render json: @user }
+      end
     end
   end
 
@@ -79,11 +79,28 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     pw = @user.password
-    logger.info("password")
+    logger.info("current real password: ")
     logger.info(pw)
-    @user.password = Digest::SHA2.hexdigest(pw)
+
+    oldpw = params[:user][:oldpassword]
+    logger.info("old password: ")
+    logger.info(oldpw)
+
+    newpw = params[:user][:newpassword]
+    logger.info("new password: ")
+    logger.info(newpw)
+
+    confirm = params[:user][:confirmpassword]
+    logger.info("confirmation: ")
+    logger.info(confirm)
     respond_to do |format|
-      if @user.update_attributes(params[:user])
+      if @user.update_password(oldpw, newpw, confirm)
+        logger.info("password updated!")
+        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.json { head :no_content }     
+      elsif @user.update_attributes(params[:user])
+        session[:username] = @user.username
+        logger.info("password not updated!")
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
