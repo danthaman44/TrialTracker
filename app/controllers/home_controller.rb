@@ -213,7 +213,6 @@ class HomeController < ApplicationController
       
   end
 
-
    def forgotPassword
     email = params[:email]
     logger.info(email)
@@ -223,8 +222,8 @@ class HomeController < ApplicationController
         newPassword = rand(100000)
         u.update_attributes({:password => newPassword})
         # send email giving them newPassword
+        UserMailer.forgot_password(email,newPassword).deliver
         session[:loginError] = "newPassword"
-        logger.info("###################sending email#******************")
         break
       else
         session[:loginError] = "newPasswordwrongEmail"
