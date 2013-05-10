@@ -10,6 +10,15 @@ class UserMailer < ActionMailer::Base
     mail(:to => @user.email, :subject => "Welcome to TrialTracker!")
   end
 
+  def forgot_password (email, password)
+    @password = password
+    @email = email
+
+    @url = "trialtracker.herokuapp.com"
+    mail(:to => @email, :subject => "You new password is "+@password+".Be sure to change your password as
+      soon as you log into your account!")
+  end
+
   def invite_new_user(email, trialid) #when a current user invites someone who does not have a trialtracker account
     @trialid = trialid
     @email = email
