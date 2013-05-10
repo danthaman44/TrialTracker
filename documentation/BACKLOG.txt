@@ -6,8 +6,20 @@ Sites will be able to collaborate on trials, and data collection between sites m
 gamified. Each site will have a directory of all its members, allowing for easy communication.
 
 2. The categories in which data is recorded will be dynamic. 
-Users will be able to add the the exisiting sixe categories provided
+Users will be able to add the the exisiting six categories provided
 
 3. Users will have custom account pages where they will be able
 to edit their account settings and upload an avatar
 
+4. Users will be able to customize the look of the site on the front end
+with custom avatars and background colors. 
+
+5. The look/UI of the site will be improved significantly. We
+will have a real logo, and incorporate CSS libraries 
+besides Twitter Bootstrap. The site will also be responsive
+on multiple browsers, including Firefox, Chrome, IE, and Safari.
+
+6. The site will have a custom domain name
+
+7. We will have a beautiful landing page for the site that includes information
+about the project for CRC's to view

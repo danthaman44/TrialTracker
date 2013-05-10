@@ -28,11 +28,10 @@ end
 gem 'jquery-rails', '2.0.2'
 
 
-group :production do
+group :test, :production do
 	gem 'pg', '0.12.2'
-    gem 'coffee-rails', '3.2.2'
-    gem 'uglifier', '1.2.3'
-
+  gem 'coffee-rails', '3.2.2'
+  gem 'uglifier', '1.2.3'
 end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

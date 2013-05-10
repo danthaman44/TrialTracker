@@ -13,5 +13,8 @@ people enrolled, active, withdrawn, refused, and completed for a trial
 5. Users can see their entry data in a bar chart and a progress-over-time line graph.
 The line chart allows users to see projected and target numbers as well
 
+6. Users have an account page where they can edit their name, email, and password
+
 TrialTracker has been tested on the Google Chrome, Mozilla Firefox, and Apple Safari
-browsers. It achieved satisfactory performace on each.
+browsers. It achieved satisfactory performace on each. It has sub-par performance
+on Internet explorer
