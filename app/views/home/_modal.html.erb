@@ -7,29 +7,10 @@
   </div>
 
   <div class="modal-body" height="500px">
-    <div class = "row-fluid">
-    <div class="span5" style ="padding-left:15px;">
-    <h4>Join an Existing Trial</h4>
-    <%= form_tag("/join", :method => "get") do %>
+    <div class = "row-fluid"> 
 
-    <div class="control-group">
-    <label class="control-label" for="inputEmail">Trial Code</label>
-    <div class="controls">
-       <%= text_field_tag(:trial_id, nil, {:style => "height:30px; width:180px;"})%>
-    </div>
-  </div>
-  <%= submit_tag "Join Trial", :class=>"btn btn-success"%> 
-<% end %>
-
-  </div>
-
-
-    
-
-  <div class="span6" style = "margin-bottom:15px; padding-left:30px; border-left: 1px solid #eeeeee">
+  <div class="span6" style = "margin-bottom:15px; padding-left:30px;">
     <h4>Create a New Trial</h4>
-
-   <!--  <%= render 'trials/form' %> -->
 
 <%= form_for(@trial) do |f| %>
   <% if @trial.errors.any? %>
@@ -81,7 +62,7 @@
     </div>
   </div>
 </div>
-<%= f.submit :class => "btn btn-success", :id => "new_trial", disable_with: "Submitting..." %>
+<%= f.submit :class => "m-btn green rnd", :id => "new_trial", disable_with: "Submitting..." %>
     <% end %>
 
         <style>

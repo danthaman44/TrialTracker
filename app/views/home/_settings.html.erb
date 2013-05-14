@@ -72,9 +72,9 @@ in active
         <td>
 
             <% if @user.id == @current_trial.userowner %>
-            <%= trial.submit "Update", {:class => "btn btn-success", :onclick => "return confirm('Are you sure you want to update settings?')", :remote => true, :action => 'update', :method =>'update'}%> 
+            <%= trial.submit "Update", {:class => "m-btn green rnd", :onclick => "return confirm('Are you sure you want to update settings?')", :remote => true, :action => 'update', :method =>'update'}%> 
             <% else %>
-            <%= trial.submit "Update", {:class => "btn btn-success", :onclick => "return confirm('Are you sure you want to update settings?')", :disabled => true}%> 
+            <%= trial.submit "Update", {:class => "m-btn green rnd", :onclick => "return confirm('Are you sure you want to update settings?')", :disabled => true}%> 
             <% end %>
          <%end%>
         </td>
@@ -88,10 +88,10 @@ in active
 
           <% if @user.id == @current_trial.userowner %>
           <%= button_to("Leave Trial", {:controller => :trials,
-          :action => 'destroy', :id => @current_trial.id }, {:class => "btn btn-danger", :style => "margin-top: 20px", :onclick => "return confirm('Are you sure? If you leave this trial, it will be deleted')", :method => :delete, :remote => true}) %>
+          :action => 'destroy', :id => @current_trial.id }, {:class => "m-btn red rnd", :style => "margin-top: 27px", :onclick => "return confirm('Are you sure? If you leave this trial, it will be deleted')", :method => :delete, :remote => true}) %>
           <% else %> 
           <%= button_to("Leave Trial", {:controller => :trials,
-                    :action => 'destroy', :id => @current_trial.id }, {:class => "btn btn-danger", :style => "margin-top: 20px",       :onclick => "return confirm('Are you sure you want to remove yourself from this trial?')", :method => :delete, :remote => true}) %>
+                    :action => 'destroy', :id => @current_trial.id }, {:class => "m-btn red rnd", :style => "margin-top: 27px",       :onclick => "return confirm('Are you sure you want to remove yourself from this trial?')", :method => :delete, :remote => true}) %>
           <% end %>
       <%end%>
       </td>

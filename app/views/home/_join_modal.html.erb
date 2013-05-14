@@ -1,0 +1,66 @@
+<!--************************ Join Trial Modal ****************************-->
+
+<div id="joinTrialModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3 id="myModalLabel">Add Trial</h3>
+  </div>
+
+  <div class="modal-body" height="500px">
+    <div class = "row-fluid">
+    <div class="span5" style ="padding-left:15px;">
+    <h4>Join an Existing Trial</h4>
+    <%= form_tag("/join", :method => "get") do %>
+
+    <div class="control-group">
+    <label class="control-label" for="inputEmail">Trial Code</label>
+    <div class="controls">
+       <%= text_field_tag(:trial_id, nil, {:style => "height:30px; width:180px;"})%>
+    </div>
+  </div>
+  <%= submit_tag "Join Trial", :class=>"m-btn green rnd"%> 
+<% end %>
+
+  </div>
+
+
+  
+</div>
+
+        <div class="modal-footer">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+</div>
+</div>
+
+<script type="text/javascript">
+
+function allTrials(query, process) {
+                var data = ["sean", "nikhil", "dan", "ashwin", "shiv"];
+                return data;
+
+}
+
+$("#new_trial").click(function(e) {
+  e.preventDefault();
+  var trialName = $('#trial_name').value
+  alert("error")
+  if (trialName == "") {
+    alert("error");
+  }
+});
+
+</script>
+
+<!--**************** End Modal  ************************************-->
+
+  
+
+
+
+
+
+
+
+
+

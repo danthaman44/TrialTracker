@@ -11,6 +11,7 @@
                         <!-- Le styles -->
                         <link href="/assets/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
                         <link href="/assets/datepicker.css" media="screen" rel="stylesheet" type="text/css" />
+                          <link href="/assets/m-styles.min.css" media="screen" rel="stylesheet" type="text/css" />
                             <style type="text/css">
                                 body {
                                     padding-top: 60px;
@@ -221,13 +222,18 @@
                             <%= render 'trials/index' %>
                             
                             <li class="nav-header">Add more Trials</li>
-                            <a href="#addTrialModal" role="button" class="btn btn-success" data-toggle="modal">Add Trial</a>
+                            <a href="#addTrialModal" role="button" class="m-btn green rnd" data-toggle="modal">Add Trial</a>
+
+                            <a href="#joinTrialModal" role="button" class="m-btn green rnd" data-toggle="modal">Join Trial</a>
+
                         </ul>
                     </div><!--/.well -->
                 </div><!--/span-->
 
 <!-- *********** modal is in views/home/_modal.html.erb ****************-->
         <%= render "modal" %>
+         <%= render "join_modal" %>
+
 
 
                 <div class="span9">
