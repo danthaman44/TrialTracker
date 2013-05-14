@@ -5,6 +5,7 @@ gem 'bootstrap-sass'
 gem 'therubyracer', :platform => :ruby
 gem "dynamic_form"
 gem 'devise'
+gem 'google-analytics-rails'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development do
