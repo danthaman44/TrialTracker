@@ -209,6 +209,8 @@ class HomeController < ApplicationController
     @entry = Entry.new # Used in edit data form
     @entry2 = Entry.new
     @trial = Trial.new # Used in modal form
+    all_trials = Trial.all
+    @autocomplete_trials = all_trials.map(&:trialName)
   end
       
   end

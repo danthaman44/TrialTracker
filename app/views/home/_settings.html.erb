@@ -120,7 +120,7 @@ in active
 
           <%= form_tag ("/invite") do%>   
             <%= text_field_tag :email, '', :style => "height:30px", :placeholder => "Email" %>
-          <%= submit_tag ('Send Invite'), :class => "btn btn-success" %>
+          <%= submit_tag ('Send Invite'), :class => "m-btn green rnd" %>
           <%end%>
           <% if (session[:invitemessage] != nil) %>
               <div class="alert alert-success">

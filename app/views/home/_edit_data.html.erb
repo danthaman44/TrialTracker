@@ -46,7 +46,7 @@ in active
               <td ><b><%= f.text_field :lost, :type => 'text', :style =>"width:60px; height:30px; margin-bottom:0px; text-align:right",
               :value => @last_entry.lost %></b></td>
               <%= f.hidden_field :trial_id, :value => @current_trial.id %>
-              <td><%= f.submit "Update", :class=>"m-btn green", :id => "update", :onclick => "return confirm('Are you sure you want to update this data? If you have another entry on todays date, it will be overwritten')"%></td>
+              <td><%= f.submit "Update", :class=>"m-btn green", :style => "margin-top: 1px", :id => "update", :onclick => "return confirm('Are you sure you want to update this data? If you have another entry on todays date, it will be overwritten')"%></td>
               <%end%>
                 <% end %>
                 <%end%>
@@ -89,7 +89,7 @@ in active
               <td ><b><%= f.text_field :lost, :type => 'text', :style =>"width:60px; height:30px; margin-bottom:0px; text-align:right",
               :value => entry.lost %></b></td>
               <%= f.hidden_field :trial_id, :value => @current_trial.id %>
-              <td><%= f.submit "Update", :class=>"m-btn green rnd", :id => "update", :onclick => "return confirm('Are you sure you want to update? If you have another entry on todays date, it will be overwritten')"%></td>
+              <td><%= f.submit "Update", :class=>"m-btn green", :style => "margin-top: 1px", :id => "update", :onclick => "return confirm('Are you sure you want to update? If you have another entry on todays date, it will be overwritten')"%></td>
                 <% end %>
                 </tr>
                 <tr style="display:none;"></tr>

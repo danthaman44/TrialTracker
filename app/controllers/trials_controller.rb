@@ -32,22 +32,35 @@ class TrialsController < ApplicationController
     end
   end
 
+  def joinByName
+    # if Trial.where(params[:trialName]) == nil
+    #     logger.info("nosuchtrial")
+    #     session[:joinerror] = "nosuchtrial"
+    #     redirect_to splashes_path
+    # end
+    @trial = Trial.where("trialName = ?", params[:trialName]).first
+    logger.info("Trialname: " + @trial.trialName)
+    user = User.find session[:userID]
+    @trial.users << user
+    session[:current_trial] = @trial.id
+    respond_to do |format|
+    format.html { redirect_to :controller => 'home', :action => 'index' }
+    format.json { head :no_content }
+  end
+
+
   def join #adds a user to a trial
-    if params[:trial_id].to_i ==0
-      logger.info("notinteger")
-        session[:joinerror] = "notinteger"
-       redirect_to splashes_path
-    elsif !Trial.find_by_id(params[:trial_id])
+    if Trial.find_by_id(params[:trial_id]) == nil 
       logger.info("nosuchtrial")
       session[:joinerror] = "nosuchtrial"
       redirect_to splashes_path
+    elsif @trial.users.find_by_id(session[:userID]) #I am already on this trial!
+         logger.info("alreadyjoined")
+         session[:joinerror] = "alreadyjoined"
+         redirect_to splashes_path
+    end
     else
-      @trial = Trial.find(params[:trial_id])
-      if @trial.users.find_by_id(session[:userID]) #I am already on this trial!
-        logger.info("alreadyjoined")
-       session[:joinerror] = "alreadyjoined"
-       redirect_to splashes_path
-     end
+      @trial = Trial.find(params[:trialName])
       user = User.find session[:userID]
       @trial.users << user
       session[:current_trial] = @trial.id

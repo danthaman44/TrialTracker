@@ -98,7 +98,7 @@
 					<tr class = "warning" id = "newemail" style = "display:none">
 						<td>
 							<%= form_for @user do |f| %>
-							<b>Email:</b>  &nbsp &nbsp 	<%= f.text_field :email, :value => @user.email, :style => "height:30px; margin-top:10px;"%>
+							<b>Email:</b>  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp	<%= f.text_field :email, :value => @user.email, :style => "height:30px; margin-top:10px;"%>
 						</td>
 						<td>
 							<%= f.submit "Update", {:class => "m-btn green rnd", :style => "margin-top:10x"} %>
@@ -127,7 +127,7 @@
 
 					<tr  id = "password">
 						<td>
-							<b>Password:</b> &nbsp &nbsp &nbsp ********
+							<b>Password:</b> &nbsp &nbsp &nbsp *********
 						</td>
 						<td>
 							<div class = "btn btn-link" id = "editpassword"> Edit </div>
@@ -137,11 +137,11 @@
 				   <tr class = "warning" id = "newpassword" style = "display:none">
 						<td>
 							<%= form_for @user do |f| %>
-							<b>Old password:</b>  &nbsp &nbsp 	<%= f.password_field :oldpassword, :style => "height:30px; margin-top:10px;"%>
+							<b>Old password:</b>  &nbsp &nbsp &nbsp 	<%= f.password_field :oldpassword, :style => "height:30px; margin-top:10px;"%>
 							<br>
 							<b>New password:</b>  &nbsp &nbsp 	<%= f.password_field :newpassword, :style => "height:30px; margin-top:10px;"%>
 							<br>
-							<b>Retype new password:</b>  &nbsp &nbsp 	<%= f.password_field :confirmpassword, :style => "height:30px; margin-top:10px;"%>
+							<b>Confirm password:</b>  &nbsp &nbsp 	<%= f.password_field :confirmpassword, :style => "height:30px; margin-top:10px;"%>
 							<br>
 
 						</td>
@@ -155,11 +155,15 @@
 				</table>
 
 				<b>My Trials</b>
-				<hr style = "width:90px;">
+				<hr style = "width:200px;">
 		
 				<% @user.trials.each do |trial| %>
-
-				<li> Name : <%= trial.trialName %> &nbsp &nbsp ID: <%= trial.id %> </li>
+				<table>
+					<tr>
+						<td style = "width:150px"> Name : <i><%= trial.trialName %></i> </td>
+						<td style = "width:100px">  ID: <i> <%= trial.id %> </i> </td>
+				    </tr>
+			    </table>
 
 				<% end %>
 		
@@ -208,14 +212,6 @@
               Oldrow.style.display="none";
 
               var Newrow = document.getElementById('newemail');
-              Newrow.style.display="table-row";
-            }
-
-           function editSite() {
-              var Oldrow = document.getElementById('site');
-              Oldrow.style.display="none";
-
-              var Newrow = document.getElementById('newsite');
               Newrow.style.display="table-row";
             }
 

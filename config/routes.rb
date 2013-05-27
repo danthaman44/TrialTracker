@@ -91,6 +91,7 @@ FirstApp::Application.routes.draw do
 
    match '/about' => 'static#about'
    match '/join' => 'trials#join'
+   match '/joinByName' => 'trials#joinByName'
    match '/directory' => 'users#index'
    match '/loginError' => 'static#loginError'
    match '/forgotPassword' => 'home#forgotPassword'
